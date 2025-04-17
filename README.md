@@ -14,5 +14,4 @@ This project builds on top of [Relational Q Learning](https://github.com/harshak
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/Relational-Fitted-Q-on-Atari.git
-cd Relational-Fitted-Q-on-Atari
+git python run.py
