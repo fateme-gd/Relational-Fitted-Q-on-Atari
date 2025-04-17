@@ -21,7 +21,7 @@ relational_q_learning_path = os.path.join(visual_fitted_q_path, 'Relational_Q_Le
 # added
 from blendrl.agents.blender_agent import BlenderActorCritic
 from blendrl.env_vectorized import VectorizedNudgeBaseEnv
-from nudge.utils import save_hyperparams
+from blendrl.nudge.utils import save_hyperparams
 import os
 import sys
 import time
@@ -32,14 +32,14 @@ import random
 import numpy as np
 from rtpt import RTPT
 
-from nudge.utils import load_model_train
+from blendrl.nudge.utils import load_model_train
 
 ############  Fitted Q Imports ######
 from Relational_Q_Learning.core.trainer import RRT, GBQL
 from Relational_Q_Learning.core.exploration_strategy import EpsilonGreedyWithExponentialDecay
 from Relational_Q_Learning.core.util.launcher_util import setup_logger
 import gtimer as gt
-from srlearn import Background
+from Relational_Q_Learning.srlearn import Background
 ######################################
 
 # Log in to your W&B account

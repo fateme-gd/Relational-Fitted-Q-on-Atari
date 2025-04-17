@@ -1,7 +1,7 @@
 import numpy as np
 import torch.nn as nn
 import torch
-from nsfr.nsfr.utils.logic import get_index_by_predname
+from .utils.logic import get_index_by_predname
 import re
 
 

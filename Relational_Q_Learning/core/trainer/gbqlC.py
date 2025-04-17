@@ -10,32 +10,9 @@ import random
 import gtimer as gt
 from ..exploration_strategy import EpsilonGreedy
 import torch
+from ..util.save_model import log_trajectory, save_image
 
-import json
 
-def log_trajectory(trajectory, filename="trajectory_log.json"):
-    """
-    Logs a trajectory to a file in JSON format.
-
-    Parameters:
-    - trajectory: List of tuples containing (current_state, action, next_state, reward, done).
-    - filename: Name of the file to log the trajectory.
-    """
-    # Convert the trajectory to a serializable format
-    serializable_trajectory = [
-        {
-            "current_state": current_state,
-            "action": action,
-            "next_state": next_state,
-            "reward": reward.tolist() if isinstance(reward, np.ndarray) else reward,
-            "done": done
-        }
-        for current_state, action, next_state, reward, done in trajectory
-    ]
-
-    # Append the trajectory to the log file
-    with open(filename, "a") as f:
-        f.write(json.dumps(serializable_trajectory) + "\n")
 
 def get_key_from_value(d, value):
     for key, val in d.items():
@@ -61,24 +38,6 @@ def get_diagnostics(paths, **kwargs):
                 'Total Reward Mean': average_reward,
                 'Total Reward Max': reward_max}
 
-from PIL import Image
-import numpy as np
-def save_image(img, filename):
-    if isinstance(img, torch.Tensor):
-        img = img.cpu().numpy()  # Move to CPU and convert to NumPy array
-    # print( f"Image shape before reshape: {img.shape}")
-    # Reshape the image to remove extra dimensions
-    if img.ndim == 4 and img.shape[0] == 1:
-        img = img[0,0]  # Remove the batch and channel dimensions
-        # print("Image after dimension reduction:", img)
-
-    # Convert to uint8 if necessary
-    if img.dtype != np.uint8:
-        img = (img * 255).astype(np.uint8)
-
-    # Save the image using Pillow
-    image = Image.fromarray(img)
-    image.save(filename)
 
 class GBQL(Trainer):
     def __init__(self, n_iter=100, n_trees=5, batch_size=10,
@@ -155,10 +114,11 @@ class GBQL(Trainer):
         traj_lens = []
         bellman_error = []
         goal_reached = True
+        current_state = []
         for i in range(batch_size):
             print("Generating batch: ", i)
             trajectory = []
-            while goal_reached:
+            while goal_reached or len(current_state) == 0: 
                 done = True
                 next_logic_obs, img2 = self.env.reset()
                 action = random.choice([2,3,4,5])
@@ -200,7 +160,7 @@ class GBQL(Trainer):
                 #     print(f"action: {action_key}")
                 #     print(f"reward: {reward}")
                 #     print(f"next_state: {next_state}")
-                if state_id%1000 == 0:
+                if state_id%1000 ==0:
                     save_image(img, f"state_{state_id}.png")
 
                 trajectory.append((current_state, action, next_state, reward ,done)) 
@@ -334,12 +294,17 @@ class GBQL(Trainer):
         idx, q_values, best_action = self.predict(env, q_function, state, self.additional_facts)   #env
         if not best:
             idx = self.exploration_strategy.get_action_idx(idx, len(possible_actions))
+            print(f"Exploration strategy selected action index: {idx}")
         return possible_actions[idx], q_values[idx]
 
     def train(self):
         """Fitted Q Learning"""
         current_q = None
         
+        current_q = RDNRegressor()
+        current_q.from_json("out/gbql-stack/gbql-stack_2025_04_16_19_20_43_0000--s-0/itr_20.json")
+        
+
         if self.burn_in_traj > 0:   #This is zero in our case
             logger.log(f"adding {self.burn_in_traj} burn_in_traj")
             train_batch = Database()
@@ -360,7 +325,8 @@ class GBQL(Trainer):
             gt.stamp("bsrl learning", unique=False)
         
             self.n_estimators.append(updated_q) 
-
+            self.exploration_strategy.end_epoch()
+            
             if i % self.test_gap == 0: # after 10 iterations it is evaluation time
                 logger.log(f"Iteration {i} evaluating")
                 paths = self.evaluate(self.n_eval_traj, updated_q)
@@ -368,10 +334,13 @@ class GBQL(Trainer):
                 self._log_stat(updated_q, training_stats, paths, i)
                 logger.record_dict(self.exploration_strategy.stats(), prefix='exploration/')
                 logger.dump_tabular()
-                self.exploration_strategy.end_epoch()
                 if self.learning_rate_strategy is not None:
                     self.learning_rate = self.learning_rate_strategy.end_epoch()
             current_q = updated_q
+            
+            # save_boosted_rdn_regressor(updated_q, filename=f"{logger.get_snapshot_dir()}/boosted_rdn_regressor.pkl")
+            # save_external_files(updated_q, filename=f"{logger.get_snapshot_dir()}/boosted_rdn_regressor.pkl")
+            
             logger.log(f"Iteration {i} ended")
         return current_q
 
@@ -455,6 +424,7 @@ class GBQL(Trainer):
                 else:
                     current_test_state = next_symbolic
             paths.append(path)
+            print(path)
         return paths
 
 
@@ -482,6 +452,7 @@ class GBQL(Trainer):
             modified_test_states.append(modified_state)
 
         test.facts = modified_test_states
+        print("modified_test_states: ", modified_test_states)
         
         q_test_values = 0.0        # it use this as true value. In block it is always zero
         for action in all_actions:
@@ -496,7 +467,7 @@ class GBQL(Trainer):
         # for q_func in q_function:
 
         q_values = q_function.predict(test)     #rql prediction
-        # print("q_values: ", q_values)  #up,down,left,right
+        print("q_values: ", q_values)  #up,down,left,right
 
         where_max = np.where(q_values == np.max(q_values))[0]
         if len(where_max) == 1:

@@ -2,8 +2,8 @@ from collections import OrderedDict
 
 import torch
 import gymnasium as gym
-from nsfr.nsfr.common import get_nsfr_model, get_blender_nsfr_model
-from nsfr.nsfr.utils.common import load_module
+from .nsfr.nsfr.common import get_nsfr_model, get_blender_nsfr_model
+from .nsfr.nsfr.utils.common import load_module
 import torch
 import torch.nn as nn
 from torch.distributions.categorical import Categorical

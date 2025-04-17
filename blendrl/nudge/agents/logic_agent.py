@@ -7,10 +7,10 @@ import torch
 import torch.nn as nn
 from torch.distributions import Categorical
 
-from nsfr.nsfr.common import get_nsfr_model
-from nsfr.nsfr.utils.common import load_module
-from nudge.env import NudgeBaseEnv
-from nudge.torch_utils import softor
+from blendrl.nsfr.nsfr.common import get_nsfr_model
+from blendrl.nsfr.nsfr.utils.common import load_module
+from ..env import NudgeBaseEnv
+from ..torch_utils import softor
 
 
 class NsfrActorCritic(nn.Module):

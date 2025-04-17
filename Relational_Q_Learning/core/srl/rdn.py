@@ -1,4 +1,4 @@
-from srlearn.rdn import BoostedRDNRegressor
+from Relational_Q_Learning.srlearn.rdn import BoostedRDNRegressor
 
 
 class RDNRegressor(BoostedRDNRegressor):

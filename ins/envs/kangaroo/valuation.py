@@ -1,6 +1,6 @@
 import torch as th
 
-from nsfr.nsfr.utils.common import bool_to_probs
+from blendrl.nsfr.nsfr.utils.common import bool_to_probs
 
 """ in ocatari/ram/kangaroo.py :
         MAX_ESSENTIAL_OBJECTS = {

@@ -1,9 +1,9 @@
 import os
 
-from nsfr.nsfr.facts_converter import FactsConverter
-from nsfr.nsfr.utils.logic import get_lang, get_blender_lang, build_infer_module
-from nsfr.nsfr.nsfr import NSFReasoner
-from nsfr.nsfr.valuation import ValuationModule
+from blendrl.nsfr.nsfr.facts_converter import FactsConverter
+from blendrl.nsfr.nsfr.utils.logic import get_lang, get_blender_lang, build_infer_module
+from blendrl.nsfr.nsfr.nsfr import NSFReasoner
+from blendrl.nsfr.nsfr.valuation import ValuationModule
 
 
 def get_nsfr_model(env_name: str, rules: str, device: str, train=False, explain=False):

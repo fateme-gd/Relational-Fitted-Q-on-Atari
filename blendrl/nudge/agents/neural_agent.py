@@ -5,9 +5,9 @@ import random
 import pickle
 from pathlib import Path
 
-from nsfr.nsfr.utils.common import load_module
+from blendrl.nsfr.nsfr.utils.common import load_module
 from torch.distributions import Categorical
-from nudge.env import NudgeBaseEnv
+from ..env import NudgeBaseEnv
 
 
 class ActorCritic(nn.Module):

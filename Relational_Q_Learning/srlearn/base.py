@@ -291,22 +291,25 @@ class BaseBoostedRelationalModel(BaseEstimator, ClassifierMixin):
 
         self.file_system.files.TREES_DIR.value.mkdir(parents=True)
 
-        with open(
-            self.file_system.files.BRDNS_DIR.value.joinpath(
-                "{0}.model".format(self.target)
-            ),
-            "w",
-        ) as _fh:
-            _fh.write("\n".join(_model))
+        for tar in self.target.split(","):
+            for _mo in _model:
+                if tar == _mo[-1]:
+                    with open(
+                        self.file_system.files.BRDNS_DIR.value.joinpath(
+                            "{0}.model".format(tar)
+                        ),
+                        "w",
+                    ) as _fh:
+                        _fh.write("\n".join(_mo))
 
-        for i, _tree in enumerate(_estimators):
-            with open(
-                self.file_system.files.TREES_DIR.value.joinpath(
-                    "{0}Tree{1}.tree".format(self.target, i)
-                ),
-                "w"
-            ) as _fh:
-                _fh.write(_tree)
+                    for i, _tree in enumerate(_estimators):
+                        with open(
+                            self.file_system.files.TREES_DIR.value.joinpath(
+                                "{0}Tree{1}.tree".format(tar, i)
+                            ),
+                            "w"
+                        ) as _fh:
+                            _fh.write(_tree)
 
     @property
     def feature_importances_(self):

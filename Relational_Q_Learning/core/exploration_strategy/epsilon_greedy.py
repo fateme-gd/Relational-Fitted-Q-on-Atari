@@ -10,7 +10,9 @@ class EpsilonGreedy(ExplorationStrategy):
         self.rng = random.Random(seed)
 
     def get_action_idx(self, best_idx, action_space):
-        if self.rng.random() <= self.epsilon:
+        rand = self.rng.random()
+        print(f"Random value: {rand}, Epsilon: {self.epsilon}")
+        if rand <= self.epsilon:
             return self.rng.randrange(0, action_space)
         return best_idx
 
@@ -50,7 +52,7 @@ class EpsilonGreedyWithLinearDecay(EpsilonGreedy):
 
 class EpsilonGreedyWithExponentialDecay(EpsilonGreedy):
 
-    def __init__(self, epsilon=0.99, seed=None, min_epsilon=0.7, decay_rate=0.975):
+    def __init__(self, epsilon=0.99, seed=None, min_epsilon=0.01, decay_rate=0.975):
         """Exponential Decay
 
         Exploration begins from epsilon and is reduced by factor of decay_rate

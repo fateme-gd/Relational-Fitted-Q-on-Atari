@@ -1,6 +1,6 @@
 from typing import Dict
 from abc import ABC
-from nsfr.nsfr.utils.common import load_module
+from .nsfr.nsfr.utils.common import load_module
 import torch
 
 

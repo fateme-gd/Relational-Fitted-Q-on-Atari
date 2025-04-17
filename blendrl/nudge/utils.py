@@ -9,12 +9,12 @@ import re
 
 from .agents.logic_agent import NsfrActorCritic
 from .agents.neural_agent import ActorCritic
-from nudge.env import NudgeBaseEnv
+from .env import NudgeBaseEnv
 from blendrl.env_vectorized import VectorizedNudgeBaseEnv
 from functools import reduce
-from nsfr.nsfr.utils.torch import softor
+from ..nsfr.nsfr.utils.torch import softor
 
-from nsfr.nsfr.nsfr import NSFReasoner
+from ..nsfr.nsfr.nsfr import NSFReasoner
  
 def to_proportion(dic):
     # Using reduce to get the sum of all values in the dictionary
@@ -281,7 +281,7 @@ def load_neuralppo_model(model_dir,
     # Setup the environment
     env = NudgeBaseEnv.from_name(environment, mode=algorithm, **env_kwargs)
     # model = ActorCritic(env).to(device)
-    from utils import CNNActor
+    from blendrl.utils import CNNActor
     model = CNNActor(n_actions=18) #, device=device, verbose=1)
     # Load the model weights
     with open(checkpoint_path, "rb") as f:

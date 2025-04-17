@@ -7,20 +7,18 @@ import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from nudge.agents.logic_agent import NsfrActorCritic
-from nudge.agents.neural_agent import NeuralPPO, ActorCritic
-from nudge.torch_utils import softor
+from ..nudge.torch_utils import softor
 
 # from nudge.env import NudgeBaseEnv
 from torch.distributions.categorical import Categorical
 
 
 from torch.distributions import Categorical
-from nsfr.nsfr.utils.common import load_module
-from nsfr.nsfr.common import get_nsfr_model
+from blendrl.nsfr.nsfr.utils.common import load_module
+from blendrl.nsfr.nsfr.common import get_nsfr_model
 
-from utils import get_blender, load_cleanrl_agent
-from nudge.utils import print_program
+from blendrl.utils import get_blender, load_cleanrl_agent
+from ..nudge.utils import print_program
 
 from captum.attr import (
     GradientShap,
