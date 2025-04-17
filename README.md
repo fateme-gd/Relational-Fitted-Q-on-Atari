@@ -11,7 +11,7 @@ This project builds on top of [Relational Q Learning](https://github.com/harshak
 
 ### Installation
 
-1. Clone this repository:
-
+1. Clone this repository
+2. 
 ```bash
 git python run.py
