@@ -1,0 +1,4 @@
+onLadder:2:oplayer,oladder
+rightLadder:2:oplayer,oladder
+leftLadder:2:oplayer,oladder
+sameLevelChild:2:oplayer,ochild

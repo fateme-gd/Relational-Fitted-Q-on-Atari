@@ -1,0 +1,14 @@
+numpy
+scipy
+scikit-learn
+
+[docs]
+sphinx
+sphinx_rtd_theme
+sphinx_gallery
+numpydoc
+matplotlib
+
+[tests]
+coverage
+pytest

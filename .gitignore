@@ -1,0 +1,20 @@
+# Ignore Python cache and logs
+__pycache__/
+*.pyc
+*.log
+
+# Ignore virtual environment
+venv/
+
+# Ignore system files
+.DS_Store
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore large data files
+data/*
+
+*.png
+trajectory_log.json
+

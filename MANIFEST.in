@@ -1,0 +1,3 @@
+include README.rst
+include srlearn/v1-0.jar
+include srlearn/auc.jar
