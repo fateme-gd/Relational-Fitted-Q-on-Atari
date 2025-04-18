@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from Relational_Q_Learning.core.learning_rate_strategy.learning_rate_strategy import LearningRateStrategy
 from ins.envs.kangaroo.reward_eng import clear_environment_info, reward_engineering
 from srlearn import Background, Database
 from ..srl import RDNRegressor
@@ -48,7 +49,7 @@ class GBQL(Trainer):
                  learning_rate=0.9, discount_factor=0.99,
                  n_evaluation_trajectories=2, n_burn_in_traj=0,
                  additional_facts=None, goal_q_value=200,  # ToDo check if ok
-                 exploration_strategy=EpsilonGreedy(), device = None, learning_rate_strategy=None,
+                 exploration_strategy=EpsilonGreedy(), device = None, learning_rate_strategy=LearningRateStrategy(),
                  buffer=ReplayBuffer, test_gap=10):
         self.n_iterations = n_iter
         self.n_trees = n_trees
@@ -120,8 +121,11 @@ class GBQL(Trainer):
         for i in range(batch_size):
             print("Generating batch: ", i)
             trajectory = []
+
+            """clear the reward dictionary at the beginning"""
             clear_environment_info()
 
+            """keep reseting the env if it starts at the end or the logic representation is empty"""
             while goal_reached or len(current_state) == 0: 
                 done = True
                 next_logic_obs, img2 = self.env.reset()
@@ -134,7 +138,7 @@ class GBQL(Trainer):
             done = False
             traj_len = 0
             while not done:
-                action, q_value = self.get_action(current_state, q_function)   #current state is the symbolic state   g  
+                action, q_value = self.get_action(current_state, q_function)   
                 action_key = get_key_from_value(self.env.pred2action, action)
                 action_key = "{ACTION}({player},{state_id})".format(ACTION = action_key, player = "obj1", state_id=f"s{state_id}")
                 # trajectory.append((current_state, action))  #cause later we need the action from trajectory to step in the env. if sth else is needed to be done with trajectory. then we have to erite a reverse action func
@@ -173,19 +177,17 @@ class GBQL(Trainer):
 
                 trajectory.append((current_state, action, next_state, reward ,done)) 
                 if done:                               
-                    # trajectory.append((current_state, action, next_state, reward ,"Done"))  #check trajectory's format. whether the state format is consistent in all cases
                     traj_lens.append(traj_len)
                     next_state_qvalue = self.goal_qvalue
                     print(f"Reached goal, setting next state Q-value to goal Q-value: {next_state_qvalue}")
                 else:
-                    _, next_state_qvalue = self.get_action(next_state, q_function, best=True)     #env
+                    _, next_state_qvalue = self.get_action(next_state, q_function, best=True)     
                     traj_len += 1
                     if traj_len >= self.max_traj_len :
                         # trajectory.append((next_state, "END"))
                         traj_lens.append(traj_len)
                         done = True
                         # print("Reached max trajectory length, ending trajectory")
-                    # else:
                 current_state = next_state  
 
 
@@ -334,6 +336,9 @@ class GBQL(Trainer):
         
             self.n_estimators.append(updated_q) 
             self.exploration_strategy.end_epoch()
+            
+            if self.learning_rate_strategy is not None:
+                    self.learning_rate = self.learning_rate_strategy.end_epoch()
 
             if i % self.test_gap == 0: # after 10 iterations it is evaluation time
                 logger.log(f"Iteration {i} evaluating")
@@ -342,8 +347,7 @@ class GBQL(Trainer):
                 self._log_stat(updated_q, training_stats, paths, i)
                 logger.record_dict(self.exploration_strategy.stats(), prefix='exploration/')
                 logger.dump_tabular()
-                if self.learning_rate_strategy is not None:
-                    self.learning_rate = self.learning_rate_strategy.end_epoch()
+                
             current_q = updated_q
             
             # save_boosted_rdn_regressor(updated_q, filename=f"{logger.get_snapshot_dir()}/boosted_rdn_regressor.pkl")
