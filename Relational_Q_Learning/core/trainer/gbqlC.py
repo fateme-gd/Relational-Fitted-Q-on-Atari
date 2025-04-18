@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from ins.envs.kangaroo.reward_eng import clear_environment_info, reward_engineering
 from srlearn import Background, Database
 from ..srl import RDNRegressor
 import numpy as np
@@ -115,6 +116,9 @@ class GBQL(Trainer):
         bellman_error = []
         goal_reached = True
         current_state = []
+
+        clear_environment_info() 
+
         for i in range(batch_size):
             print("Generating batch: ", i)
             trajectory = []
@@ -125,6 +129,8 @@ class GBQL(Trainer):
                 (next_logic_obs, _ ), _, _, _ , _ = self.env.step(action)
                 self.agent.logic_actor.compute_init_v(next_logic_obs)  # we need to pass the state to logic actor to compute the init v
                 current_state, goal_reached = self.agent.logic_actor.print_valuations_input(self.agent.logic_actor.V_0, min_value=0.7)
+            print(f"Current state: {current_state}")
+        
             done = False
             traj_len = 0
             while not done:
@@ -136,6 +142,8 @@ class GBQL(Trainer):
                 (next_state, img ), reward, done, _ , _ = self.env.step(action)
                 self.agent.logic_actor.compute_init_v(next_state)
                 next_state, goal_reached = self.agent.logic_actor.print_valuations_input(self.agent.logic_actor.V_0, min_value=0.7)
+
+                reward = reward_engineering(str(current_state), str(next_state))
                 
                 reward = torch.tensor(reward).to(self.device).view(-1)
                 reward = reward.cpu().numpy()
@@ -294,15 +302,15 @@ class GBQL(Trainer):
         idx, q_values, best_action = self.predict(env, q_function, state, self.additional_facts)   #env
         if not best:
             idx = self.exploration_strategy.get_action_idx(idx, len(possible_actions))
-            print(f"Exploration strategy selected action index: {idx}")
+            # print(f"Exploration strategy selected action index: {idx}")
         return possible_actions[idx], q_values[idx]
 
     def train(self):
         """Fitted Q Learning"""
         current_q = None
         
-        current_q = RDNRegressor()
-        current_q.from_json("out/gbql-stack/gbql-stack_2025_04_16_19_20_43_0000--s-0/itr_20.json")
+        # current_q = RDNRegressor()
+        # current_q.from_json("out/gbql-stack/gbql-stack_2025_04_16_19_20_43_0000--s-0/itr_20.json")
         
 
         if self.burn_in_traj > 0:   #This is zero in our case
@@ -326,7 +334,7 @@ class GBQL(Trainer):
         
             self.n_estimators.append(updated_q) 
             self.exploration_strategy.end_epoch()
-            
+
             if i % self.test_gap == 0: # after 10 iterations it is evaluation time
                 logger.log(f"Iteration {i} evaluating")
                 paths = self.evaluate(self.n_eval_traj, updated_q)
@@ -452,7 +460,7 @@ class GBQL(Trainer):
             modified_test_states.append(modified_state)
 
         test.facts = modified_test_states
-        print("modified_test_states: ", modified_test_states)
+        # print("modified_test_states: ", modified_test_states)
         
         q_test_values = 0.0        # it use this as true value. In block it is always zero
         for action in all_actions:
@@ -467,7 +475,7 @@ class GBQL(Trainer):
         # for q_func in q_function:
 
         q_values = q_function.predict(test)     #rql prediction
-        print("q_values: ", q_values)  #up,down,left,right
+        # print("q_values: ", q_values)  #up,down,left,right
 
         where_max = np.where(q_values == np.max(q_values))[0]
         if len(where_max) == 1:
