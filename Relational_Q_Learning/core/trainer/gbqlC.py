@@ -22,7 +22,7 @@ def get_key_from_value(d, value):
     return None
 
 def get_diagnostics(paths, **kwargs):
-        successes = [p['is_success'][0] for p in paths]
+        successes = [p['is_success'] for p in paths]
         rewards = [p['episode_reward'] for p in paths]
         percent_solved = [p['percent_solved'] for p in paths]
         average_reward = np.mean(rewards)
@@ -42,7 +42,7 @@ def get_diagnostics(paths, **kwargs):
 
 class GBQL(Trainer):
     def __init__(self, n_iter=100, n_trees=5, batch_size=10,
-                 train_env=None, bk=None, max_trajectory_length=500,
+                 train_env=None, bk=None, max_trajectory_length=5000,
                  replay_sampling_rate=0.10, test_env=None, agent = None,
                  max_buffer_size=100000, target_predicate="q_value",
                  learning_rate=0.9, discount_factor=0.99,
@@ -117,11 +117,11 @@ class GBQL(Trainer):
         goal_reached = True
         current_state = []
 
-        clear_environment_info() 
-
         for i in range(batch_size):
             print("Generating batch: ", i)
             trajectory = []
+            clear_environment_info()
+
             while goal_reached or len(current_state) == 0: 
                 done = True
                 next_logic_obs, img2 = self.env.reset()
