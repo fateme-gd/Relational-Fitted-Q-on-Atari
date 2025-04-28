@@ -12,7 +12,7 @@ from ..exploration_strategy import EpsilonGreedy
 
 class GBQL(Trainer):
     def __init__(self, n_iter=20, n_trees=5, batch_size=10,
-                 train_env=None, bk=None, max_trajectory_length=50,
+                 train_env=None, bk=None, max_trajectory_length=5000,
                  replay_sampling_rate=0.10, test_env=None,
                  max_buffer_size=1000, target_predicate="q_value",
                  learning_rate=0.9, discount_factor=0.99,

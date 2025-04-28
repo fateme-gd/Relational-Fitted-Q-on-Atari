@@ -1,4 +1,4 @@
-from core.learning_rate_strategy import LearningRateStrategy
+from .learning_rate_strategy import LearningRateStrategy
 
 
 class LinearDecay(LearningRateStrategy):

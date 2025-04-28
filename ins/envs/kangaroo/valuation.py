@@ -106,15 +106,30 @@ def on_pl_bell(bell: th.Tensor, obj: th.Tensor) -> th.Tensor:
     return _on_platform(bell, obj)
 
 
+def _onLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
+    player_x = player[..., 1]
+    obj_x = obj[..., 1]
+    player_y = player[..., 2]
+    obj_y = obj[..., 2]
+    obj_prob = obj[:, 0]
+    x_prob =  bool_to_probs(abs(player_x - obj_x) < 6.5)
+    return x_prob
+    y_prob = bool_to_probs(abs(player_y - obj_y) < 7 )
+
+    # print("player is", player, player_x, player_y)
+    # print("obj is : ", obj, obj_prob)
+    # print("same_level_ladder: ", same_level_ladder(player, obj))
+    # return  x_prob * y_prob * obj_prob
+
 def onLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     player_x = player[..., 1]
     obj_x = obj[..., 1]
     player_y = player[..., 2]
     obj_y = obj[..., 2]
     obj_prob = obj[:, 0]
-    x_prob =  bool_to_probs(abs(player_x - obj_x) < 5)
+    x_prob =  bool_to_probs(abs(player_x - obj_x) < 6.5)
     # return x_prob
-    y_prob = bool_to_probs(abs(player_y - obj_y) < 8 )
+    y_prob = bool_to_probs(abs(player_y - obj_y) < 30.5 )
 
     # print("player is", player, player_x, player_y)
     # print("obj is : ", obj, obj_prob)
@@ -126,7 +141,7 @@ def leftLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     player_x = player[..., 1]
     obj_x = obj[..., 1]
     obj_prob = obj[:, 0]
-    return bool_to_probs(5 <= obj_x - player_x)  * same_level_ladder(player, obj) * obj_prob 
+    return bool_to_probs(6.5 <= obj_x - player_x)  * same_level_ladder(player, obj) * obj_prob 
 
 
 def rightLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
@@ -135,18 +150,18 @@ def rightLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     obj_x = obj[..., 1]
     obj_prob = obj[:, 0]
     same_level_ladder(player, obj)
-    return bool_to_probs(5 <= player_x - obj_x) * same_level_ladder(player, obj) * obj_prob 
+    return bool_to_probs(6.5 <= player_x - obj_x) * same_level_ladder(player, obj) * obj_prob 
 
 def same_level_ladder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     player_y = player[..., 2]
     obj_y = obj[..., 2]
     obj_prob = obj[:, 0]
-    if abs(player_y - obj_y) < 19:
-        return bool_to_probs(abs(player_y - obj_y) < 19) * obj_prob
-    elif abs(player_y - obj_y) < 20:
-        return bool_to_probs(abs(player_y - obj_y) < 20) * obj_prob * (1 - onLadder(player, obj))
-    else:
-        return bool_to_probs(abs(player_y - obj_y) < 19) * obj_prob
+    # if abs(player_y - obj_y) < 19:
+    return bool_to_probs(abs(player_y - obj_y) < 18) * obj_prob
+    # elif abs(player_y - obj_y) < 20:
+    #     return bool_to_probs(abs(player_y - obj_y) < 20) * obj_prob * (1 - _onLadder(player, obj))
+    # else:
+    #     return bool_to_probs(abs(player_y - obj_y) < 19) * obj_prob
 
 
 def same_level_fruit(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
