@@ -126,10 +126,10 @@ class GBQL(Trainer):
                 action_key = "{ACTION}({player},{state_id})".format(ACTION = action_key, player = "obj1", state_id=f"s{state_id}")
                 # trajectory.append((current_state, action))  #cause later we need the action from trajectory to step in the env. if sth else is needed to be done with trajectory. then we have to erite a reverse action func
                 
-                (_, img_0 ), _, done, _ , _ = self.env.step(action)
-                (_, img_1 ), _, _, _ , _ = self.env.step(0)
-                (_, img_2 ), _, _, _ , _ = self.env.step(0)
-                (next_state, img_2 ), reward, done, _ , _ = self.env.step(0)
+                (next_state, img_0 ), reward , done, _ , _ = self.env.step(action)
+                # (_, img_1 ), _, _, _ , _ = self.env.step(0)
+                # (_, img_2 ), _, _, _ , _ = self.env.step(0)
+                # (next_state, img_2 ), _, done, _ , _ = self.env.step(0)
 
                 self.agent.logic_actor.compute_init_v(next_state)
                 next_state, goal_reached = self.agent.logic_actor.print_valuations_input(self.agent.logic_actor.V_0, min_value=0.7)
@@ -144,8 +144,8 @@ class GBQL(Trainer):
                 if len(next_state)==0:
                     print(f"next_state in {state_id} is empty")
                     save_image(img_0, f"img/state_{state_id+1}_1.png")
-                    save_image(img_1, f"img/state_{state_id+1}_2.png")
-                    save_image(img_2, f"img/state_{state_id+1}_3.png")
+                    # save_image(img_1, f"img/state_{state_id+1}_2.png")
+                    # save_image(img_2, f"img/state_{state_id+1}_3.png")
                     # reward -= 1
                     next_state = current_state 
 
@@ -169,7 +169,7 @@ class GBQL(Trainer):
                 
 
                 if state_id%500==0:
-                    save_image(img_2, f"img/state_{state_id+1}.png")
+                    save_image(img_0, f"img/state_{state_id+1}.png")
 
                 trajectory.append((current_state, action, next_state, reward ,done)) 
                 if goal_reached:                               
@@ -308,7 +308,7 @@ class GBQL(Trainer):
         current_q = None
         
         # current_q = RDNRegressor()
-        # current_q.from_json("out/gbql-stack/gbql-stack_2025_04_16_19_20_43_0000--s-0/itr_20.json")
+        # current_q.from_json("out/gbql-stack/gbql-stack_2025_04_30_10_03_05_0000--s-0/itr_0.json")
         
 
         if self.burn_in_traj > 0:   #This is zero in our case
@@ -447,6 +447,7 @@ class GBQL(Trainer):
         
         state_id = "s1"
         all_actions = list(env.pred2action.values())[-4:]
+
         
         test = Database()
         modified_test_states = []
@@ -469,7 +470,7 @@ class GBQL(Trainer):
             test.facts += additional_facts
 
         q_values = q_function.predict(test)     #rql prediction
-        # print("q_values: ", q_values)  #up,down,left,right
+        # print("q_values: ", q_values)  #up,right,left,down
 
         where_max = np.where(q_values == np.max(q_values))[0]
         if len(where_max) == 1:
