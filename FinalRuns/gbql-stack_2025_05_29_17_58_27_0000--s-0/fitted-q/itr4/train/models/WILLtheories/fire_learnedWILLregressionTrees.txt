@@ -1,0 +1,253 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 0.000
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 145
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 22:19:58 5/29/25.  [Using 4,410,192 memory cells.]  %%%%%
+
+% FOR fire(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 10.266653846153861;  // std dev = 0.162, 52.000 (wgt'ed) examples reached here.  /* #pos=52 */
+%   else if ( rightLadder(A, D, B) )
+%   | then return -0.06699999999999996;  // std dev = 3.09e-09, 28.000 (wgt'ed) examples reached here.  /* #pos=28 */
+%   | else return -0.13400000000000015;  // std dev = 0.000, 65.000 (wgt'ed) examples reached here.  /* #pos=65 */
+
+
+% Clauses:
+
+fire(A, B, 10.266653846153861) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, -0.06699999999999996) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #2.
+
+fire(A, B, -0.13400000000000015) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, 10.266653846153861) :-  /* #pos=52 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(a, b, -0.06699999999999996) :-  /* #pos=28 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_fire(underscore, underscore, -0.13400000000000015) :-  /* #pos=65 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #2 @ 22:19:58 5/29/25.  [Using 4,440,728 memory cells.]  %%%%%
+
+% FOR fire(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return -1.5508961636302185E-14;  // std dev = 0.162, 52.000 (wgt'ed) examples reached here.  /* #pos=52 */
+%   else if ( rightLadder(A, D, B) )
+%   | then return -4.163336342344337E-17;  // std dev = 0.000, 28.000 (wgt'ed) examples reached here.  /* #pos=28 */
+%   | else return 1.3877787807814457E-16;  // std dev = 0.000, 65.000 (wgt'ed) examples reached here.  /* #pos=65 */
+
+
+% Clauses:
+
+fire(A, B, -1.5508961636302185E-14) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, -4.163336342344337E-17) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #2.
+
+fire(A, B, 1.3877787807814457E-16) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, -1.5508961636302185E-14) :-  /* #pos=52 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(a, b, -4.163336342344337E-17) :-  /* #pos=28 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_fire(underscore, underscore, 1.3877787807814457E-16) :-  /* #pos=65 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #3 @ 22:19:58 5/29/25.  [Using 4,430,352 memory cells.]  %%%%%
+
+% FOR fire(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 4.782499183000674E-16;  // std dev = 0.162, 52.000 (wgt'ed) examples reached here.  /* #pos=52 */
+%   else return 0;  // std dev = 0.000, 93.000 (wgt'ed) examples reached here.  /* #pos=93 */
+
+
+% Clauses:
+
+fire(A, B, 4.782499183000674E-16) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, 0) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, 4.782499183000674E-16) :-  /* #pos=52 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=93 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #4 @ 22:19:58 5/29/25.  [Using 4,432,328 memory cells.]  %%%%%
+
+% FOR fire(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 4.782499183000674E-16;  // std dev = 0.162, 52.000 (wgt'ed) examples reached here.  /* #pos=52 */
+%   else return 0;  // std dev = 0.000, 93.000 (wgt'ed) examples reached here.  /* #pos=93 */
+
+
+% Clauses:
+
+fire(A, B, 4.782499183000674E-16) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, 0) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, 4.782499183000674E-16) :-  /* #pos=52 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=93 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #5 @ 22:19:58 5/29/25.  [Using 4,435,672 memory cells.]  %%%%%
+
+% FOR fire(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 4.782499183000674E-16;  // std dev = 0.162, 52.000 (wgt'ed) examples reached here.  /* #pos=52 */
+%   else return 0;  // std dev = 0.000, 93.000 (wgt'ed) examples reached here.  /* #pos=93 */
+
+
+% Clauses:
+
+fire(A, B, 4.782499183000674E-16) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, 0) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, 4.782499183000674E-16) :-  /* #pos=52 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=93 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for fire.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+fire(R, T, Total) :- // A general accessor. 
+   fire(R, T, 1000000, Total), !.
+fire(R, T, Total) :- waitHere("This should not fail", fire(R, T, Total)).
+
+fire(R, T, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_fire_tree1(R, T, TreesToUse, Total1),
+   getScore_fire_tree2(R, T, TreesToUse, Total2),
+   getScore_fire_tree3(R, T, TreesToUse, Total3),
+   getScore_fire_tree4(R, T, TreesToUse, Total4),
+   getScore_fire_tree5(R, T, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+fire(R, T, TreesToUse, Total) :- waitHere("This should not fail", fire(R, T, TreesToUse, Total)).
+
+getScore_fire_tree1(R, T, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_fire_tree1(R, T, TreesToUse, Total1) :- fire_tree1(R, T, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_fire_tree2(R, T, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_fire_tree2(R, T, TreesToUse, Total2) :- fire_tree2(R, T, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_fire_tree3(R, T, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_fire_tree3(R, T, TreesToUse, Total3) :- fire_tree3(R, T, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_fire_tree4(R, T, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_fire_tree4(R, T, TreesToUse, Total4) :- fire_tree4(R, T, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_fire_tree5(R, T, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_fire_tree5(R, T, TreesToUse, Total5) :- fire_tree5(R, T, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(fire, 2, [
+   onLadder(a, underscore, b),
+   rightLadder(a, underscore, b)]).
+
+%%%%%  WILL-Produced Tree Combined @ 22:19:58 5/29/25.  [Using 4,418,704 memory cells.]  %%%%%
+
+% FOR fire(A, B):
+%   return 0;  // std dev = 4.532, 735.000 (wgt'ed) examples reached here.  /* #pos=735 */
+
+
+% Clauses:
+
+fire(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=735 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:

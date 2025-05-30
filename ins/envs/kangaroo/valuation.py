@@ -17,42 +17,6 @@ from blendrl.nsfr.nsfr.utils.common import bool_to_probs
             'Time': 1,}       
 """
 
-# def climbing(player: th.Tensor) -> th.Tensor:
-#     status = player[..., 3]
-#     return bool_to_probs(status == 12)
-
-
-# def not_climbing(player: th.Tensor) -> th.Tensor:
-#     status = player[..., 3
-#     return bool_to_probs(status != 12)
-
-
-
-# def state_has(player: th.Tensor) -> th.Tensor:
-#     return player[:, 0]
-
-# def state_has(ladder: th.Tensor) -> th.Tensor:
-#     return ladder[:, 0]
-
-# def state_has(platform: th.Tensor) -> th.Tensor:
-#     return platform[:, 0]
-
-# def state_has(fruit: th.Tensor) -> th.Tensor:
-#     return fruit[:, 0]
-
-# def state_has(bell: th.Tensor) -> th.Tensor:
-#     return bell[:, 0]
-
-# def state_has(monkey: th.Tensor) -> th.Tensor:
-#     return monkey[:, 0]
-
-# def state_has(throwncoconut: th.Tensor) -> th.Tensor:
-#     return throwncoconut[:, 0]
-
-# def state_has(fallingcoconut: th.Tensor) -> th.Tensor:
-#     return fallingcoconut[:, 0]
-
-
 
 def sameLevelChild(player: th.Tensor, child: th.Tensor) -> th.Tensor:
     player_y = player[..., 2]
@@ -106,20 +70,6 @@ def on_pl_bell(bell: th.Tensor, obj: th.Tensor) -> th.Tensor:
     return _on_platform(bell, obj)
 
 
-def _onLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
-    player_x = player[..., 1]
-    obj_x = obj[..., 1]
-    player_y = player[..., 2]
-    obj_y = obj[..., 2]
-    obj_prob = obj[:, 0]
-    x_prob =  bool_to_probs(abs(player_x - obj_x) < 6.5)
-    return x_prob
-    y_prob = bool_to_probs(abs(player_y - obj_y) < 7 )
-
-    # print("player is", player, player_x, player_y)
-    # print("obj is : ", obj, obj_prob)
-    # print("same_level_ladder: ", same_level_ladder(player, obj))
-    # return  x_prob * y_prob * obj_prob
 
 def onLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     player_x = player[..., 1]
@@ -136,7 +86,7 @@ def onLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     # print("same_level_ladder: ", same_level_ladder(player, obj))
     return  x_prob * y_prob * obj_prob
 
-def leftLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
+def leftOfLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     """True iff the player is 'left of' the object."""
     player_x = player[..., 1]
     obj_x = obj[..., 1]
@@ -144,7 +94,7 @@ def leftLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     return bool_to_probs(6.5 <= obj_x - player_x)  * same_level_ladder(player, obj) * obj_prob 
 
 
-def rightLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
+def rightOfLadder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     """True iff the player is 'right of' the object."""
     player_x = player[..., 1]
     obj_x = obj[..., 1]
@@ -158,10 +108,7 @@ def same_level_ladder(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     obj_prob = obj[:, 0]
     # if abs(player_y - obj_y) < 19:
     return bool_to_probs(abs(player_y - obj_y) < 18) * obj_prob
-    # elif abs(player_y - obj_y) < 20:
-    #     return bool_to_probs(abs(player_y - obj_y) < 20) * obj_prob * (1 - _onLadder(player, obj))
-    # else:
-    #     return bool_to_probs(abs(player_y - obj_y) < 19) * obj_prob
+    
 
 
 def same_level_fruit(player: th.Tensor, obj: th.Tensor) -> th.Tensor:

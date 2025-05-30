@@ -1,0 +1,309 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 0.003
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 6,800
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 16:11:04 5/29/25.  [Using 32,254,872 memory cells.]  %%%%%
+
+% FOR left(A, B):
+%   if ( leftLadder(A, C, B) )
+%   then return -0.1471627284886361;  // std dev = 0.150, 4,486.000 (wgt'ed) examples reached here.  /* #pos=4,486 */
+%   else if ( onLadder(A, D, B) )
+%   | then return 3.2804090909090626;  // std dev = 1.211, 792.000 (wgt'ed) examples reached here.  /* #pos=792 */
+%   | else return -0.117605781865969;  // std dev = 0.309, 1,522.000 (wgt'ed) examples reached here.  /* #pos=1,522 */
+
+
+% Clauses:
+
+left(A, B, -0.1471627284886361) :- 
+     leftLadder(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, 3.2804090909090626) :- 
+     onLadder(A, C, B), 
+     !. // Clause #2.
+
+left(A, B, -0.117605781865969) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, -0.1471627284886361) :-  /* #pos=4,486 */ 
+   leftLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(a, b, 3.2804090909090626) :-  /* #pos=792 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_left(underscore, underscore, -0.117605781865969) :-  /* #pos=1,522 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   leftLadder(a, underscore, b)
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #2 @ 16:11:39 5/29/25.  [Using 33,463,536 memory cells.]  %%%%%
+
+% FOR left(A, B):
+%   if ( rightLadder(A, C, B) )
+%   then return 3.1783598967784047E-15;  // std dev = 0.309, 1,522.000 (wgt'ed) examples reached here.  /* #pos=1,522 */
+%   else if ( leftLadder(A, D, B) )
+%   | then return 4.878224935508008E-15;  // std dev = 0.150, 4,486.000 (wgt'ed) examples reached here.  /* #pos=4,486 */
+%   | else return 2.7181399667539943E-14;  // std dev = 1.211, 792.000 (wgt'ed) examples reached here.  /* #pos=792 */
+
+
+% Clauses:
+
+left(A, B, 3.1783598967784047E-15) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, 4.878224935508008E-15) :- 
+     leftLadder(A, C, B), 
+     !. // Clause #2.
+
+left(A, B, 2.7181399667539943E-14) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, 3.1783598967784047E-15) :-  /* #pos=1,522 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(a, b, 4.878224935508008E-15) :-  /* #pos=4,486 */ 
+   leftLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_left(underscore, underscore, 2.7181399667539943E-14) :-  /* #pos=792 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   leftLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #3 @ 16:12:18 5/29/25.  [Using 34,702,704 memory cells.]  %%%%%
+
+% FOR left(A, B):
+%   if ( rightLadder(A, C, B) )
+%   then return 4.084920458541969E-18;  // std dev = 0.309, 1,522.000 (wgt'ed) examples reached here.  /* #pos=1,522 */
+%   else if ( onLadder(A, D, B) )
+%   | then return 2.6168741696593966E-15;  // std dev = 1.211, 792.000 (wgt'ed) examples reached here.  /* #pos=792 */
+%   | else return -2.0128051402756127E-16;  // std dev = 0.150, 4,486.000 (wgt'ed) examples reached here.  /* #pos=4,486 */
+
+
+% Clauses:
+
+left(A, B, 4.084920458541969E-18) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, 2.6168741696593966E-15) :- 
+     onLadder(A, C, B), 
+     !. // Clause #2.
+
+left(A, B, -2.0128051402756127E-16) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, 4.084920458541969E-18) :-  /* #pos=1,522 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(a, b, 2.6168741696593966E-15) :-  /* #pos=792 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_left(underscore, underscore, -2.0128051402756127E-16) :-  /* #pos=4,486 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #4 @ 16:12:58 5/29/25.  [Using 34,780,328 memory cells.]  %%%%%
+
+% FOR left(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return -2.7110749111427435E-15;  // std dev = 1.211, 792.000 (wgt'ed) examples reached here.  /* #pos=792 */
+%   else if ( rightLadder(A, D, B) )
+%   | then return 4.084920458541969E-18;  // std dev = 0.309, 1,522.000 (wgt'ed) examples reached here.  /* #pos=1,522 */
+%   | else return 1.368351115281429E-16;  // std dev = 0.150, 4,486.000 (wgt'ed) examples reached here.  /* #pos=4,486 */
+
+
+% Clauses:
+
+left(A, B, -2.7110749111427435E-15) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, 4.084920458541969E-18) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #2.
+
+left(A, B, 1.368351115281429E-16) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, -2.7110749111427435E-15) :-  /* #pos=792 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(a, b, 4.084920458541969E-18) :-  /* #pos=1,522 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_left(underscore, underscore, 1.368351115281429E-16) :-  /* #pos=4,486 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #5 @ 16:13:30 5/29/25.  [Using 34,618,792 memory cells.]  %%%%%
+
+% FOR left(A, B):
+%   if ( rightLadder(A, C, B) )
+%   then return 4.084920458541969E-18;  // std dev = 0.309, 1,522.000 (wgt'ed) examples reached here.  /* #pos=1,522 */
+%   else if ( leftLadder(A, D, B) )
+%   | then return -1.8769352248678528E-16;  // std dev = 0.150, 4,486.000 (wgt'ed) examples reached here.  /* #pos=4,486 */
+%   | else return 2.6168741696593966E-15;  // std dev = 1.211, 792.000 (wgt'ed) examples reached here.  /* #pos=792 */
+
+
+% Clauses:
+
+left(A, B, 4.084920458541969E-18) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, -1.8769352248678528E-16) :- 
+     leftLadder(A, C, B), 
+     !. // Clause #2.
+
+left(A, B, 2.6168741696593966E-15) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, 4.084920458541969E-18) :-  /* #pos=1,522 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(a, b, -1.8769352248678528E-16) :-  /* #pos=4,486 */ 
+   leftLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_left(underscore, underscore, 2.6168741696593966E-15) :-  /* #pos=792 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   leftLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for left.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+left(F, G, Total) :- // A general accessor. 
+   left(F, G, 1000000, Total), !.
+left(F, G, Total) :- waitHere("This should not fail", left(F, G, Total)).
+
+left(F, G, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_left_tree1(F, G, TreesToUse, Total1),
+   getScore_left_tree2(F, G, TreesToUse, Total2),
+   getScore_left_tree3(F, G, TreesToUse, Total3),
+   getScore_left_tree4(F, G, TreesToUse, Total4),
+   getScore_left_tree5(F, G, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+left(F, G, TreesToUse, Total) :- waitHere("This should not fail", left(F, G, TreesToUse, Total)).
+
+getScore_left_tree1(F, G, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_left_tree1(F, G, TreesToUse, Total1) :- left_tree1(F, G, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_left_tree2(F, G, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_left_tree2(F, G, TreesToUse, Total2) :- left_tree2(F, G, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_left_tree3(F, G, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_left_tree3(F, G, TreesToUse, Total3) :- left_tree3(F, G, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_left_tree4(F, G, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_left_tree4(F, G, TreesToUse, Total4) :- left_tree4(F, G, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_left_tree5(F, G, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_left_tree5(F, G, TreesToUse, Total5) :- left_tree5(F, G, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(left, 3, [
+   leftLadder(a, underscore, b),
+   onLadder(a, underscore, b),
+   rightLadder(a, underscore, b)]).
+
+%%%%%  WILL-Produced Tree Combined @ 16:16:28 5/29/25.  [Using 33,814,320 memory cells.]  %%%%%
+
+% FOR left(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 3.2804090909092833;  // std dev = 6.057, 3,960.000 (wgt'ed) examples reached here.  /* #pos=3,960 */
+%   else if ( rightLadder(A, D, B) )
+%   | then return -0.11760578186597967;  // std dev = 1.547, 7,610.000 (wgt'ed) examples reached here.  /* #pos=7,610 */
+%   | else return -0.14716272848854556;  // std dev = 0.749, 22,430.000 (wgt'ed) examples reached here.  /* #pos=22,430 */
+
+
+% Clauses:
+
+left(A, B, 3.2804090909092833) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, -0.11760578186597967) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #2.
+
+left(A, B, -0.14716272848854556) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, 3.2804090909092833) :-  /* #pos=3,960 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(a, b, -0.11760578186597967) :-  /* #pos=7,610 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_left(underscore, underscore, -0.14716272848854556) :-  /* #pos=22,430 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+%   rightLadder(a, underscore, b)

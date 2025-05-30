@@ -1,0 +1,253 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 0.003
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 153
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 22:07:17 5/29/25.  [Using 4,205,288 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 8.856999999999996;  // std dev = 1.65e-06, 31.000 (wgt'ed) examples reached here.  /* #pos=31 */
+%   else return -0.14909836065573762;  // std dev = 0.022, 122.000 (wgt'ed) examples reached here.  /* #pos=122 */
+
+
+% Clauses:
+
+noop(A, B, 8.856999999999996) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -0.14909836065573762) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, 8.856999999999996) :-  /* #pos=31 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -0.14909836065573762) :-  /* #pos=122 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #2 @ 22:07:17 5/29/25.  [Using 4,238,944 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( rightLadder(A, C, B) )
+%   then return 0.0020983606557376244;  // std dev = 2.33e-10, 58.000 (wgt'ed) examples reached here.  /* #pos=58 */
+%   else return -0.0012811044003440224;  // std dev = 0.009, 95.000 (wgt'ed) examples reached here.  /* #pos=95 */
+
+
+% Clauses:
+
+noop(A, B, 0.0020983606557376244) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -0.0012811044003440224) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, 0.0020983606557376244) :-  /* #pos=58 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -0.0012811044003440224) :-  /* #pos=95 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #3 @ 22:07:17 5/29/25.  [Using 4,273,728 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 0.001281104400348454;  // std dev = 1.43e-10, 31.000 (wgt'ed) examples reached here.  /* #pos=31 */
+%   else return -3.255265279571756E-4;  // std dev = 0.003, 122.000 (wgt'ed) examples reached here.  /* #pos=122 */
+
+
+% Clauses:
+
+noop(A, B, 0.001281104400348454) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -3.255265279571756E-4) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, 0.001281104400348454) :-  /* #pos=31 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -3.255265279571756E-4) :-  /* #pos=122 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #4 @ 22:07:17 5/29/25.  [Using 4,298,512 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( rightLadder(A, C, B) )
+%   then return 3.2552652795717063E-4;  // std dev = 0.000, 58.000 (wgt'ed) examples reached here.  /* #pos=58 */
+%   else return -1.9874251180543691E-4;  // std dev = 0.001, 95.000 (wgt'ed) examples reached here.  /* #pos=95 */
+
+
+% Clauses:
+
+noop(A, B, 3.2552652795717063E-4) :- 
+     rightLadder(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -1.9874251180543691E-4) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, 3.2552652795717063E-4) :-  /* #pos=58 */ 
+   rightLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -1.9874251180543691E-4) :-  /* #pos=95 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   rightLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #5 @ 22:07:17 5/29/25.  [Using 4,302,336 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 1.9874251180596048E-4;  // std dev = 2.06e-11, 31.000 (wgt'ed) examples reached here.  /* #pos=31 */
+%   else return -5.050014644236711E-5;  // std dev = 0.000531, 122.000 (wgt'ed) examples reached here.  /* #pos=122 */
+
+
+% Clauses:
+
+noop(A, B, 1.9874251180596048E-4) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -5.050014644236711E-5) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, 1.9874251180596048E-4) :-  /* #pos=31 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -5.050014644236711E-5) :-  /* #pos=122 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for noop.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+noop(D, E, Total) :- // A general accessor. 
+   noop(D, E, 1000000, Total), !.
+noop(D, E, Total) :- waitHere("This should not fail", noop(D, E, Total)).
+
+noop(D, E, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_noop_tree1(D, E, TreesToUse, Total1),
+   getScore_noop_tree2(D, E, TreesToUse, Total2),
+   getScore_noop_tree3(D, E, TreesToUse, Total3),
+   getScore_noop_tree4(D, E, TreesToUse, Total4),
+   getScore_noop_tree5(D, E, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+noop(D, E, TreesToUse, Total) :- waitHere("This should not fail", noop(D, E, TreesToUse, Total)).
+
+getScore_noop_tree1(D, E, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_noop_tree1(D, E, TreesToUse, Total1) :- noop_tree1(D, E, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_noop_tree2(D, E, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_noop_tree2(D, E, TreesToUse, Total2) :- noop_tree2(D, E, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_noop_tree3(D, E, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_noop_tree3(D, E, TreesToUse, Total3) :- noop_tree3(D, E, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_noop_tree4(D, E, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_noop_tree4(D, E, TreesToUse, Total4) :- noop_tree4(D, E, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_noop_tree5(D, E, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_noop_tree5(D, E, TreesToUse, Total5) :- noop_tree5(D, E, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(noop, 2, [
+   onLadder(a, underscore, b),
+   rightLadder(a, underscore, b)]).
+
+%%%%%  WILL-Produced Tree Combined @ 22:07:17 5/29/25.  [Using 4,296,208 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( leftLadder(A, C, B) )
+%   then return -0.1539134486082982;  // std dev = 0.000, 320.000 (wgt'ed) examples reached here.  /* #pos=320 */
+%   else if ( onLadder(A, D, B) )
+%   | then return 8.858479846912138;  // std dev = 8.84e-06, 155.000 (wgt'ed) examples reached here.  /* #pos=155 */
+%   | else return -0.14457611281630497;  // std dev = 2.46e-07, 290.000 (wgt'ed) examples reached here.  /* #pos=290 */
+
+
+% Clauses:
+
+noop(A, B, -0.1539134486082982) :- 
+     leftLadder(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, 8.858479846912138) :- 
+     onLadder(A, C, B), 
+     !. // Clause #2.
+
+noop(A, B, -0.14457611281630497) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, -0.1539134486082982) :-  /* #pos=320 */ 
+   leftLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(a, b, 8.858479846912138) :-  /* #pos=155 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_noop(underscore, underscore, -0.14457611281630497) :-  /* #pos=290 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   leftLadder(a, underscore, b)
+%   onLadder(a, underscore, b)

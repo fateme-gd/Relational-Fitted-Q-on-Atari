@@ -1,0 +1,7 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(noop(A, B, 0.001281104400348454) :-  /* #pos=31 */ onLadder(A, _, B)).
+noop(_, _, -3.255265279571756E-4) /* #pos=122 */ .

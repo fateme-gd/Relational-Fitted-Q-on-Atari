@@ -3,7 +3,7 @@ from .learning_rate_strategy import LearningRateStrategy
 
 class LinearDecay(LearningRateStrategy):
 
-    def __init__(self, alpha=0.9, seed=None, min_alpha=0.01, num_epochs=100, decay_till=0.95):
+    def __init__(self, alpha=0.9, seed=None, min_alpha=0.01, num_epochs=100, decay_till=0.6):
         """Linear Decay
 
         Learning Rate begins from alpha and for (num_epochs * decay_till) iterations,

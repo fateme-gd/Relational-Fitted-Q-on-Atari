@@ -33,7 +33,7 @@ def reward_function(self) -> float:
     # else:
     #     reward = -player.y
     
-    reward = -1.0   # staying on the ladder or not being climbing
+    reward = -0.1  # staying on the ladder or not being climbing
 
     # print(f"player.y:  {player.y}  player.prev_y: {player.prev_y}  is climbing {player.climbing}")
 

@@ -19,20 +19,17 @@ nudge_path = os.path.join(visual_fitted_q_path, 'nudge')
 relational_q_learning_path = os.path.join(visual_fitted_q_path, 'Relational_Q_Learning')
 
 # added
-from blendrl.agents.blender_agent import BlenderActorCritic
 from blendrl.env_vectorized import VectorizedNudgeBaseEnv
-from blendrl.nudge.utils import save_hyperparams
 import os
 import sys
 import time
 from pathlib import Path
 
-import pickle
 import random
 import numpy as np
 from rtpt import RTPT
 
-from blendrl.nudge.utils import load_model_train
+from blendrl.nsfr.nsfr.common import get_nsfr_model
 
 ############  Fitted Q Imports ######
 from Relational_Q_Learning.core.trainer import RRT, GBQL
@@ -195,12 +192,12 @@ def main():
         
         'bk_kwargs': {'max_tree_depth': 2,
                     'node_size': 2,
-                    'ok_if_unknown':  ['onLadder/3', 'rightLadder/3', 'leftLadder/3','sameLevelChild/3'],
+                    'ok_if_unknown':  ['onLadder/3', 'rightOfLadder/3', 'leftOfLadder/3','sameLevelChild/3'],
                     },
-        'trainer_kwargs': {'n_iter': 100,
+        'trainer_kwargs': {'n_iter': 10,
                         # 'max_buffer_size': 500,
                         # 'target_predicate': 'move', 
-                        'learning_rate':0.1,
+                        'learning_rate':0.9,
                         'test_gap':10 },
         'exploration_strategy': EpsilonGreedyWithExponentialDecay,
         'modes':
@@ -216,14 +213,16 @@ def main():
                 # "on_pl_player(+state,-oplayer, -oplatform).",
                 
                 "onLadder(+player,-ladder,+state).",
-                "rightLadder(+player,-ladder,+state).",
-                "leftLadder(+player,-ladder,+state).",
+                "rightOfLadder(+player,-ladder,+state).",
+                "leftOfLadder(+player,-ladder,+state).",
                 "sameLevelChild(+player,-child,+state).",
                 
                 "up(+player,+state).",
                 "down(+player,+state).",
                 "left(+player,+state).",
-                "right(+player,+state)."]
+                "right(+player,+state).",
+                "noop(+player,+state).",
+                "fire(+player,+state).",]
                 }
 
 
@@ -233,9 +232,16 @@ def main():
         setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_id=i)
         
         train_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed)#$, **env_kwargs)
-        agent = BlenderActorCritic(train_env, args.rules, args.actor_mode, args.blender_mode, args.blend_function, args.reasoner, device)
+        agent = get_nsfr_model(train_env.name, args.rules, device=device, train=True, explain=False)
+        # agent = BlenderActorCritic(train_env, args.rules, args.actor_mode, args.blender_mode, args.blend_function, args.reasoner, device)
         bk = Background(modes=variant['modes'], **variant['bk_kwargs'])
-        test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed)#$, **env_kwargs)
+        modifs = [("disable_coconut"),
+                  ("disable_monkeys"),
+                  ("disable_thrown_coconut"),
+                  ("unlimited_time"),
+                  ("change_level_0"),
+                ]
+        test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed, modifs = modifs)#$, **env_kwargs)
 
         RRT_Trainer = GBQL(train_env=train_env, bk=bk, test_env=test_env, agent=agent, exploration_strategy=variant['exploration_strategy'](), device = device, 
                         **variant['trainer_kwargs'])

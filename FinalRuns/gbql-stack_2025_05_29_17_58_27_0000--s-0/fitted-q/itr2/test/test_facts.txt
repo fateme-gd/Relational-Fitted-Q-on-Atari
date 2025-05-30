@@ -1,0 +1,1 @@
+onLadder(obj1,obj17,ss1).

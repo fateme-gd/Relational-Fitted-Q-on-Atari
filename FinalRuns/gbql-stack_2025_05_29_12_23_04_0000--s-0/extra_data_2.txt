@@ -1,0 +1,60 @@
+Start: 
+is_success: True
+episode_length: 99
+percent_solved: 0.0
+episode_reward: [121.70004]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 
+Start: 
+is_success: True
+episode_length: 1
+percent_solved: 0.0
+episode_reward: [-0.1]
+End 

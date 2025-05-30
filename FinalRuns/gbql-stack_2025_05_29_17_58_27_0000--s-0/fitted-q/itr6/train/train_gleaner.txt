@@ -1,0 +1,312 @@
+////// Learned from a dataset containing 540 positive (540.0 weighted sum) and 0 negative (0.0 wgt'ed) examples.
+////// The minimal (wgt'ed) coverage = 3.000, the maximal (wgt'ed) NEG coverage = 0.499, and the minimal (wgt'ed) precision = 0.001 (using m = 0.1)
+
+usePrologVariables: true.
+
+
+////////////////////////////////////////////////////////////////////////////////
+////
+////     Gleaner for: allPossibleMarkers
+////
+////////////////////////////////////////////////////////////////////////////////
+
+// Best in (weighted) recall bin #1, (0.05, 0.1], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.076, precision = 0.996, and F1 = 0.142 - learned after 2 total and 0 acceptable nodes.  Node score = -10.317927356804388
+
+ FOR right(J, K) IF (rightLadder(J, Anon6191, K)) THEN output = -0.100000 ELSE output = 0.342052;
+
+// Best in (weighted) recall bin #2, (0.1, 0.15], from 'outerLoop #1, null' and covering 27.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.123, precision = 0.996, and F1 = 0.218 - learned after 2 total and 0 acceptable nodes.  Node score = -6.004977857272738
+
+ FOR left(R, T) IF (onLadder(R, Anon2931, T)) THEN output = 0.000000 ELSE output = 1.61069e-17;
+
+// Best in (weighted) recall bin #3, (0.15, 0.2], from 'outerLoop #1, null' and covering 18.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.167, precision = 0.994, and F1 = 0.285 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR noop(D, E) IF (rightLadder(D, Anon1529, E)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #4, (0.2, 0.25], from 'outerLoop #1, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.245, precision = 0.996, and F1 = 0.393 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (rightLadder(P, Anon4085, Q)) THEN output = 1.38778e-17 ELSE output = -5.57362e-16;
+
+// Best in (weighted) recall bin #5, (0.25, 0.3], from 'outerLoop #2, null' and covering 18.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.295, precision = 0.994, and F1 = 0.455 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1299999999998376E-6
+
+ FOR noop(D, E) IF (rightLadder(D, Anon1367, E)) THEN output = 0.004934 ELSE output = -0.002066;
+
+// Best in (weighted) recall bin #6, (0.3, 0.35], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.324, precision = 0.996, and F1 = 0.489 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (onLadder(P, Anon4163, Q)) THEN output = -1.77636e-15 ELSE output = 2.77556e-17;
+
+// Best in (weighted) recall bin #7, (0.35, 0.4], from 'outerLoop #3, null' and covering 29.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.386, precision = 0.997, and F1 = 0.557 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1299999991118218E-6
+
+ FOR up(F, G) IF (rightLadder(F, Anon5019, G)) THEN output = -0.097000 ELSE output = -0.104000;
+
+// Best in (weighted) recall bin #8, (0.4, 0.45], from 'outerLoop #1, null' and covering 47.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.435, precision = 0.998, and F1 = 0.606 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR noop(D, E) IF (onLadder(D, Anon1527, E)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #9, (0.45, 0.5], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.499, precision = 0.996, and F1 = 0.665 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300009094461297E-6
+
+ FOR fire(P, Q) IF (onLadder(P, Anon3871, Q)) THEN output = 11.572000 ELSE output = -0.043000;
+
+// Best in (weighted) recall bin #10, (0.5, 0.55], from 'outerLoop #1, null' and covering 50.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.510, precision = 0.998, and F1 = 0.675 - learned after 4 total and 2 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (leftLadder(P, Anon4329, Q)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #11, (0.55, 0.6], from 'outerLoop #3, null' and covering 39.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.590, precision = 0.997, and F1 = 0.741 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR left(R, T) IF (leftLadder(R, Anon2773, T)) THEN output = 6.93889e-17 ELSE output = 7.10543e-15;
+
+// Best in (weighted) recall bin #12, (0.6, 0.65], from 'outerLoop #3, null' and covering 46.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.613, precision = 0.998, and F1 = 0.759 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1299999991118218E-6
+
+ FOR up(F, G) IF (leftLadder(F, Anon5021, G)) THEN output = -0.104000 ELSE output = -0.097000;
+
+// Best in (weighted) recall bin #13, (0.65, 0.7], from 'outerLoop #2, null' and covering 50.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.675, precision = 0.998, and F1 = 0.805 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (leftLadder(P, Anon4167, Q)) THEN output = 2.77556e-17 ELSE output = -1.77636e-15;
+
+// Best in (weighted) recall bin #14, (0.7, 0.75], from 'outerLoop #2, null' and covering 235.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.723, precision = 1.000, and F1 = 0.839 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1298908636333896E-6
+
+ FOR noop(D, E) IF (onLadder(D, Anon2059, E)) THEN output = 11.529000 ELSE output = -0.092066;
+
+// Best in (weighted) recall bin #15, (0.75, 0.8], from 'outerLoop #2, null' and covering 154.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.798, precision = 0.999, and F1 = 0.887 - learned after 2 total and 0 acceptable nodes.  Node score = -6.004977857272738
+
+ FOR left(R, T) IF (rightLadder(R, Anon3065, T)) THEN output = 2.01859e-17 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #16, (0.8, 0.85], from 'outerLoop #1, null' and covering 291.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.822, precision = 1.000, and F1 = 0.902 - learned after 3 total and 1 acceptable nodes.  Node score = -11.193587664496366
+
+ FOR right(J, K) IF (leftLadder(J, Anon6791, K)) THEN output = 9.15648e-18 ELSE output = 2.81961e-17;
+      /* FALSE NEG: right(obj1, s38) Actual Bool=true Prob=11.057692307692308 Output=0.024307692307692363 */
+      /* FALSE NEG: right(obj1, s55) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s42) Actual Bool=true Prob=11.057692307692308 Output=0.024307692307692363 */
+      /* FALSE NEG: right(obj1, s71) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s103) Actual Bool=true Prob=11.057692307692308 Output=0.024307692307692363 */
+
+// Best in (weighted) recall bin #18, (0.9, 0.95], from 'outerLoop #2, null' and covering 291.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.924, precision = 1.000, and F1 = 0.960 - learned after 2 total and 0 acceptable nodes.  Node score = -10.317927356804057
+
+ FOR right(J, K) IF (leftLadder(J, Anon6903, K)) THEN output = 9.15648e-18 ELSE output = 0.000000;
+      /* FALSE NEG: right(obj1, s55) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s71) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s374) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s369) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s539) Actual Bool=true Prob=-0.1 Output=0.0 */
+
+// Best in (weighted) recall bin #19, (0.95, 1.01], from 'outerLoop #4, null' and covering 29.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.997, precision = 0.997, and F1 = 0.997 - learned after 1 total and 0 acceptable nodes.  Node score = -1.1299999991118218E-6
+
+ FOR up(F, G) IF (rightLadder(F, Anon5019, G)) THEN output = -0.097000 ELSE output = -0.104000;
+
+
+////////////////////////////////////////////////////////////////////////////////
+////
+////     Gleaner for: outerLoop #1, null
+////
+////////////////////////////////////////////////////////////////////////////////
+
+// Best in (weighted) recall bin #1, (0.05, 0.1], from 'outerLoop #1, null' and covering 29.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.093, precision = 0.997, and F1 = 0.169 - learned after 3 total and 1 acceptable nodes.  Node score = -585.1148035543687
+
+ FOR up(F, G) IF (rightLadder(F, Anon5231, G)) THEN output = -1.38778e-17 ELSE output = 3.35756e-14;
+
+// Best in (weighted) recall bin #2, (0.1, 0.15], from 'outerLoop #1, null' and covering 27.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.123, precision = 0.996, and F1 = 0.218 - learned after 2 total and 0 acceptable nodes.  Node score = -6.004977857272738
+
+ FOR left(R, T) IF (onLadder(R, Anon2931, T)) THEN output = 0.000000 ELSE output = 1.61069e-17;
+
+// Best in (weighted) recall bin #3, (0.15, 0.2], from 'outerLoop #1, null' and covering 18.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.167, precision = 0.994, and F1 = 0.285 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR noop(D, E) IF (rightLadder(D, Anon1529, E)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #4, (0.2, 0.25], from 'outerLoop #1, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.245, precision = 0.996, and F1 = 0.393 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (rightLadder(P, Anon4085, Q)) THEN output = 1.38778e-17 ELSE output = -5.57362e-16;
+
+// Best in (weighted) recall bin #5, (0.25, 0.3], from 'outerLoop #1, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.255, precision = 0.996, and F1 = 0.406 - learned after 3 total and 1 acceptable nodes.  Node score = -5.750542088333333
+
+ FOR down(H, I) IF (rightLadder(H, Anon8691, I)) THEN output = 1.85037e-17 ELSE output = 3.48927e-17;
+
+// Best in (weighted) recall bin #6, (0.3, 0.35], from 'outerLoop #1, null' and covering 32.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.340, precision = 0.997, and F1 = 0.507 - learned after 4 total and 2 acceptable nodes.  Node score = -5.750542088333334
+
+ FOR down(H, I) IF (leftLadder(H, Anon8293, I)) THEN output = -1.11022e-16 ELSE output = 1.36092e-16;
+
+// Best in (weighted) recall bin #7, (0.35, 0.4], from 'outerLoop #1, null' and covering 43.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.398, precision = 0.998, and F1 = 0.569 - learned after 4 total and 2 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR noop(D, E) IF (leftLadder(D, Anon1531, E)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #8, (0.4, 0.45], from 'outerLoop #1, null' and covering 47.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.435, precision = 0.998, and F1 = 0.606 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR noop(D, E) IF (onLadder(D, Anon1527, E)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #10, (0.5, 0.55], from 'outerLoop #1, null' and covering 50.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.510, precision = 0.998, and F1 = 0.675 - learned after 4 total and 2 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (leftLadder(P, Anon4329, Q)) THEN output = 0.000000 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #13, (0.65, 0.7], from 'outerLoop #1, null' and covering 154.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.700, precision = 0.999, and F1 = 0.823 - learned after 3 total and 1 acceptable nodes.  Node score = -6.004977857272738
+
+ FOR left(R, T) IF (rightLadder(R, Anon2933, T)) THEN output = 2.01859e-17 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #15, (0.75, 0.8], from 'outerLoop #1, null' and covering 238.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.760, precision = 1.000, and F1 = 0.864 - learned after 2 total and 0 acceptable nodes.  Node score = -585.1148035543687
+
+ FOR up(F, G) IF (onLadder(F, Anon5229, G)) THEN output = 4.00651e-14 ELSE output = 4.57042e-17;
+
+// Best in (weighted) recall bin #16, (0.8, 0.85], from 'outerLoop #1, null' and covering 291.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.822, precision = 1.000, and F1 = 0.902 - learned after 3 total and 1 acceptable nodes.  Node score = -11.193587664496366
+
+ FOR right(J, K) IF (leftLadder(J, Anon6791, K)) THEN output = 9.15648e-18 ELSE output = 2.81961e-17;
+      /* FALSE NEG: right(obj1, s38) Actual Bool=true Prob=11.057692307692308 Output=0.024307692307692363 */
+      /* FALSE NEG: right(obj1, s55) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s42) Actual Bool=true Prob=11.057692307692308 Output=0.024307692307692363 */
+      /* FALSE NEG: right(obj1, s71) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s103) Actual Bool=true Prob=11.057692307692308 Output=0.024307692307692363 */
+
+
+////////////////////////////////////////////////////////////////////////////////
+////
+////     Gleaner for: outerLoop #2, null
+////
+////////////////////////////////////////////////////////////////////////////////
+
+// Best in (weighted) recall bin #1, (0.05, 0.1], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.076, precision = 0.996, and F1 = 0.142 - learned after 2 total and 0 acceptable nodes.  Node score = -10.317927356804388
+
+ FOR right(J, K) IF (rightLadder(J, Anon6191, K)) THEN output = -0.100000 ELSE output = 0.342052;
+
+// Best in (weighted) recall bin #4, (0.2, 0.25], from 'outerLoop #2, null' and covering 39.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.202, precision = 0.997, and F1 = 0.336 - learned after 3 total and 1 acceptable nodes.  Node score = -6.004977857272738
+
+ FOR left(R, T) IF (leftLadder(R, Anon3067, T)) THEN output = 0.000000 ELSE output = 2.01859e-17;
+
+// Best in (weighted) recall bin #5, (0.25, 0.3], from 'outerLoop #2, null' and covering 18.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.295, precision = 0.994, and F1 = 0.455 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1299999999998376E-6
+
+ FOR noop(D, E) IF (rightLadder(D, Anon1367, E)) THEN output = 0.004934 ELSE output = -0.002066;
+
+// Best in (weighted) recall bin #6, (0.3, 0.35], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.324, precision = 0.996, and F1 = 0.489 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (onLadder(P, Anon4163, Q)) THEN output = -1.77636e-15 ELSE output = 2.77556e-17;
+
+// Best in (weighted) recall bin #7, (0.35, 0.4], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.386, precision = 0.996, and F1 = 0.557 - learned after 3 total and 1 acceptable nodes.  Node score = -5.7505420883333365
+
+ FOR down(H, I) IF (rightLadder(H, Anon8429, I)) THEN output = -2.03541e-16 ELSE output = 3.68127e-16;
+
+// Best in (weighted) recall bin #9, (0.45, 0.5], from 'outerLoop #2, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.499, precision = 0.996, and F1 = 0.665 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300009094461297E-6
+
+ FOR fire(P, Q) IF (onLadder(P, Anon3871, Q)) THEN output = 11.572000 ELSE output = -0.043000;
+
+// Best in (weighted) recall bin #12, (0.6, 0.65], from 'outerLoop #2, null' and covering 38.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.612, precision = 0.997, and F1 = 0.758 - learned after 2 total and 0 acceptable nodes.  Node score = -5.7505420883333365
+
+ FOR down(H, I) IF (onLadder(H, Anon8427, I)) THEN output = 3.68127e-16 ELSE output = -2.03541e-16;
+
+// Best in (weighted) recall bin #13, (0.65, 0.7], from 'outerLoop #2, null' and covering 50.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.675, precision = 0.998, and F1 = 0.805 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR fire(P, Q) IF (leftLadder(P, Anon4167, Q)) THEN output = 2.77556e-17 ELSE output = -1.77636e-15;
+
+// Best in (weighted) recall bin #14, (0.7, 0.75], from 'outerLoop #2, null' and covering 235.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.723, precision = 1.000, and F1 = 0.839 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1298908636333896E-6
+
+ FOR noop(D, E) IF (onLadder(D, Anon2059, E)) THEN output = 11.529000 ELSE output = -0.092066;
+
+// Best in (weighted) recall bin #15, (0.75, 0.8], from 'outerLoop #2, null' and covering 154.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.798, precision = 0.999, and F1 = 0.887 - learned after 2 total and 0 acceptable nodes.  Node score = -6.004977857272738
+
+ FOR left(R, T) IF (rightLadder(R, Anon3065, T)) THEN output = 2.01859e-17 ELSE output = 0.000000;
+
+// Best in (weighted) recall bin #18, (0.9, 0.95], from 'outerLoop #2, null' and covering 291.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.924, precision = 1.000, and F1 = 0.960 - learned after 2 total and 0 acceptable nodes.  Node score = -10.317927356804057
+
+ FOR right(J, K) IF (leftLadder(J, Anon6903, K)) THEN output = 9.15648e-18 ELSE output = 0.000000;
+      /* FALSE NEG: right(obj1, s55) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s71) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s374) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s369) Actual Bool=true Prob=-0.1 Output=0.0 */
+      /* FALSE NEG: right(obj1, s539) Actual Bool=true Prob=-0.1 Output=0.0 */
+
+// Best in (weighted) recall bin #19, (0.95, 1.01], from 'outerLoop #2, null' and covering 38.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.997, precision = 0.997, and F1 = 0.997 - learned after 1 total and 0 acceptable nodes.  Node score = -5.750542088333333
+
+ FOR down(H, I) IF (onLadder(H, Anon8689, I)) THEN output = 6.42761e-17 ELSE output = 7.93016e-18;
+
+
+////////////////////////////////////////////////////////////////////////////////
+////
+////     Gleaner for: outerLoop #3, null
+////
+////////////////////////////////////////////////////////////////////////////////
+
+// Best in (weighted) recall bin #7, (0.35, 0.4], from 'outerLoop #3, null' and covering 29.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.386, precision = 0.997, and F1 = 0.557 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1299999991118218E-6
+
+ FOR up(F, G) IF (rightLadder(F, Anon5019, G)) THEN output = -0.097000 ELSE output = -0.104000;
+
+// Best in (weighted) recall bin #8, (0.4, 0.45], from 'outerLoop #3, null' and covering 27.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.408, precision = 0.996, and F1 = 0.579 - learned after 2 total and 0 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR left(R, T) IF (onLadder(R, Anon2769, T)) THEN output = 7.10543e-15 ELSE output = 6.93889e-17;
+
+// Best in (weighted) recall bin #11, (0.55, 0.6], from 'outerLoop #3, null' and covering 39.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.590, precision = 0.997, and F1 = 0.741 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1300000000000002E-6
+
+ FOR left(R, T) IF (leftLadder(R, Anon2773, T)) THEN output = 6.93889e-17 ELSE output = 7.10543e-15;
+
+// Best in (weighted) recall bin #12, (0.6, 0.65], from 'outerLoop #3, null' and covering 46.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.613, precision = 0.998, and F1 = 0.759 - learned after 3 total and 1 acceptable nodes.  Node score = -1.1299999991118218E-6
+
+ FOR up(F, G) IF (leftLadder(F, Anon5021, G)) THEN output = -0.104000 ELSE output = -0.097000;
+
+// Best in (weighted) recall bin #19, (0.95, 1.01], from 'outerLoop #3, null' and covering 24.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.996, precision = 0.996, and F1 = 0.996 - learned after 1 total and 0 acceptable nodes.  Node score = -1.1300009094461297E-6
+
+ FOR fire(P, Q) IF (onLadder(P, Anon3871, Q)) THEN output = 11.572000 ELSE output = -0.043000;
+
+
+////////////////////////////////////////////////////////////////////////////////
+////
+////     Gleaner for: outerLoop #4, null
+////
+////////////////////////////////////////////////////////////////////////////////
+
+// Best in (weighted) recall bin #19, (0.95, 1.01], from 'outerLoop #4, null' and covering 29.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.997, precision = 0.997, and F1 = 0.997 - learned after 1 total and 0 acceptable nodes.  Node score = -1.1299999991118218E-6
+
+ FOR up(F, G) IF (rightLadder(F, Anon5019, G)) THEN output = -0.097000 ELSE output = -0.104000;
+
+
+////////////////////////////////////////////////////////////////////////////////
+////
+////     Gleaner for: outerLoop #5, null
+////
+////////////////////////////////////////////////////////////////////////////////
+
+// Best in (weighted) recall bin #19, (0.95, 1.01], from 'outerLoop #5, null' and covering 32.0 wgt'ed positive and 0.0 wgt'ed negative examples:
+//    Wgt'ed recall = 0.997, precision = 0.997, and F1 = 0.997 - learned after 2 total and 0 acceptable nodes.  Node score = -Infinity
+
+ FOR down(H, I) IF (leftLadder(H, Anon8187, I)) THEN output = -0.209000 ELSE output = 0.000000;
+

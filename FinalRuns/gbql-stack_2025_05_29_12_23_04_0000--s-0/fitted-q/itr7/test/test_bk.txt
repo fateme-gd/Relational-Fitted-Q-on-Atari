@@ -1,0 +1,17 @@
+setParam: nodeSize=2.
+setParam: maxTreeDepth=2.
+setParam: numberOfClauses=100.
+setParam: numberOfCycles=100.
+usePrologVariables: true.
+mode: onLadder(+player,-ladder,+state).
+mode: rightLadder(+player,-ladder,+state).
+mode: leftLadder(+player,-ladder,+state).
+mode: sameLevelChild(+player,-child,+state).
+mode: up(+player,+state).
+mode: down(+player,+state).
+mode: left(+player,+state).
+mode: right(+player,+state).
+okIfUnknown: onLadder/3.
+okIfUnknown: rightLadder/3.
+okIfUnknown: leftLadder/3.
+okIfUnknown: sameLevelChild/3.
