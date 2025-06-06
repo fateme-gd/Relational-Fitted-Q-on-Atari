@@ -1,0 +1,3424 @@
+args[0] = -reg
+args[1] = -l
+args[2] = -train
+args[4] = -target
+args[6] = -trees
+args[8] = -NegPosRatio
+args[10] = -combine
+
+% Calling SETUP.
+% Running on host: csr-96762
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+
+Resetting the LazyGroundNthArgumentClauseIndex.
+
+% Calling ILPouterLoop from createRegressionOuterLooper.
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_pos.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_neg.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_bk.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_facts.txt]
+%  for N=0: args[N]=out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_pos.txt
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_pos.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_neg.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_bk.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_facts.txt]
+%  for N=1: args[N]=out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_neg.txt
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_pos.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_neg.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_bk.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_facts.txt]
+%  for N=2: args[N]=out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_bk.txt
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_pos.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_neg.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_bk.txt, out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_facts.txt]
+%  for N=3: args[N]=out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train_facts.txt
+
+% Welcome to the WILL ILP/SRL systems.
+
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+% Reading background theory from dir: null
+
+% Switching to VarIndicator = uppercase.
+
+***** Warning: % Since this is the first setting of the notation for variables, will keep:
+%   variableIndicator = uppercase *****
+
+% [ LazyGroundClauseIndex ]  Building full index for mode/1 with 1 assertions.
+% LoadAllModes() called.  Currently loaded modes: []
+% [ LazyGroundClauseIndex ]  Building full index for sameAs/2 with 2 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for exp/3.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for log/3.
+% LoadAllLibraries() called.  Currently loaded libraries: [listsInLogic, differentInLogic, modes_arithmeticInLogic, inlines_comparisonInLogic, modes_listsInLogic, inlines_differentInLogic, modes_differentInLogic, arithmeticInLogic, inlines_listsInLogic, modes_comparisonInLogic, comparisonInLogic, inlines_arithmeticInLogic]
+
+%  Read the facts.
+%  Have read 18,447 facts.
+
+%  LearnOneClause initialized.
+
+% The outer looper has been created.
+
+% Initializing the ILP inner looper.
+% Have read 15,344 examples from 'out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train' [out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/train*].
+
+% NEW target:                 fire(D, E)
+%  targetPred:                fire/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [fire(D, E)]
+%  targetPredicates:          [fire/2, right/2, left/2, up/2, noop/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]]]
+%  variablesInTargets:        [[D, E]]
+
+% NEW target:                 right(F, G)
+%  targetPred:                right/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [fire(D, E), right(F, G)]
+%  targetPredicates:          [fire/2, right/2, left/2, up/2, noop/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]]]
+%  variablesInTargets:        [[D, E], [F, G]]
+
+% NEW target:                 left(H, I)
+%  targetPred:                left/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [fire(D, E), right(F, G), left(H, I)]
+%  targetPredicates:          [fire/2, right/2, left/2, up/2, noop/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I]]
+
+% NEW target:                 up(J, K)
+%  targetPred:                up/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [fire(D, E), right(F, G), left(H, I), up(J, K)]
+%  targetPredicates:          [fire/2, right/2, left/2, up/2, noop/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]], [J[+player], K[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I], [J, K]]
+
+% NEW target:                 noop(P, Q)
+%  targetPred:                noop/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [fire(D, E), right(F, G), left(H, I), up(J, K), noop(P, Q)]
+%  targetPredicates:          [fire/2, right/2, left/2, up/2, noop/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]], [J[+player], K[+state]], [P[+player], Q[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I], [J, K], [P, Q]]
+
+% NEW target:                 down(R, T)
+%  targetPred:                down/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [fire(D, E), right(F, G), left(H, I), up(J, K), noop(P, Q), down(R, T)]
+%  targetPredicates:          [fire/2, right/2, left/2, up/2, noop/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]], [J[+player], K[+state]], [P[+player], Q[+state]], [R[+player], T[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I], [J, K], [P, Q], [R, T]]
+
+% Started collecting constants
+
+% Collecting the types of constants.
+
+% Looking at the training examples to see if any types of new constants can be inferred.
+% Time to collect constants: 154 milliseconds
+% Time to collect examples: 0 seconds
+
+% Read 15,344 pos examples and 0 neg examples.
+% Time to init learnOneClause: 262 milliseconds
+% Old dirnull
+Setting model dir
+
+% Have 15,344 'raw' positive examples and kept 15,344.
+% Have 0 'raw' negative examples and kept 0.
+% No neg ex for noop
+% No neg ex for left
+% No neg ex for fire
+% No neg ex for up
+% No neg ex for right
+% No neg ex for down
+
+% processing backup's for noop
+%  POS EX = 1,758
+%  NEG EX = 0
+
+% processing backup's for left
+%  POS EX = 1,798
+%  NEG EX = 0
+
+% processing backup's for fire
+%  POS EX = 6,499
+%  NEG EX = 0
+
+% processing backup's for right
+%  POS EX = 1,780
+%  NEG EX = 0
+
+% processing backup's for up
+%  POS EX = 1,804
+%  NEG EX = 0
+
+% processing backup's for down
+%  POS EX = 1,705
+%  NEG EX = 0
+
+% Memory usage by WILLSetup (just counts # targets?):
+%  |backupPosExamples| = 6
+%  |backupNegExamples| = 6
+%  |predicatesAsFacts| = 0
+%  |addedToFactBase|   = 0
+out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/
+% Using yap file:
+File: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/advice.txt doesnt exist.Hence no advice loaded
+
+% Learn model for: noop
+% Kept 1,758 of the 1,758 positive examples.
+% Kept 0 of the 0 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.7480565471699219
+Set score:0.0025
+% Dataset size: 1,758
+Computing probabilities
+prob time:2 milliseconds
+No hidden examples for : noop
+Time to build dataset: 3 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.7480565471699219
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 115 405 1084 1224 1443
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% LearnOneClause Parameters:
+%   Targets (6):
+%    up(+player, +state),
+%    down(+player, +state),
+%    left(+player, +state),
+%    right(+player, +state),
+%    noop(+player, +state),
+%    fire(+player, +state)
+%  Modes (46):
+%    onLadder(+player, -ladder, +state),
+%    rightOfLadder(+player, -ladder, +state),
+%    leftOfLadder(+player, -ladder, +state),
+%    sameLevelChild(+player, -child, +state),
+%    closeByMonkey(+player, -monkey, +state),
+%    addList(+willList, #willNumber),
+%    multiplyList(+willList, #willNumber),
+%    abs(+willNumber, &willNumber),
+%    minus(+willNumber, &willNumber),
+%    minus(+willNumber, +willNumber, &willNumber),
+%    plus(+willNumber, +willNumber, &willNumber),
+%    mult(+willNumber, +willNumber, &willNumber),
+%    div(+willNumber, +willNumber, &willNumber),
+%    allNumbers(+willList),
+%    positiveNumber(+willNumber),
+%    negativeNumber(+willNumber),
+%    in0toDot001(+willNumber),
+%    in0toDot01(+willNumber),
+%    in0toDot1(+willNumber),
+%    in0to1(+willNumber),
+%    in0to10(+willNumber),
+%    in0to100(+willNumber),
+%    in0to1000(+willNumber),
+%    equalWithTolerance(+willNumber, +willNumber, &willNumber),
+%    greaterOrEqualDifference(+willNumber, +willNumber, &willNumber),
+%    smallerOrEqualDifference(+willNumber, +willNumber, &willNumber),
+%    isaEqualTolerance(+willNumber),
+%    lessThan(+willNumber, +willNumber),
+%    greaterThan(+willNumber, +willNumber),
+%    lessThanOrEqual(+willNumber, +willNumber),
+%    greaterThanOrEqual(+willNumber, +willNumber),
+%    inBetweenOO(+willNumber, +willNumber, +willNumber),
+%    inBetweenCO(+willNumber, +willNumber, +willNumber),
+%    inBetweenOC(+willNumber, +willNumber, +willNumber),
+%    inBetweenCC(+willNumber, +willNumber, +willNumber),
+%    memberOfList(+willAnything, +willList),
+%    firstInList(+willList, &willAnything),
+%    restOfList(+willList, &willList),
+%    positionInList(+willAnything, +willList, &willNumber),
+%    nthInList(+willNumber, +willList, &willAnything),
+%    lengthOfList(+willList, &willNumber),
+%    fire(+player, +state),
+%    right(+player, +state),
+%    left(+player, +state),
+%    up(+player, +state),
+%    down(+player, +state)
+
+% target           = noop(P, Q)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for leftOfLadder/3.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for closeByMonkey/3.
+% [ LazyGroundClauseIndex ]  Building full index for fire/2 with 6,499 assertions.
+% [ LazyGroundClauseIndex ]  Building full index for right/2 with 1,780 assertions.
+% [ LazyGroundClauseIndex ]  Building full index for left/2 with 1,798 assertions.
+% [ LazyGroundClauseIndex ]  Building full index for up/2 with 1,804 assertions.
+% [ LazyGroundClauseIndex ]  Building full index for down/2 with 1,705 assertions.
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+%     Score = -2,963.899416 (regressionFit = 2,963.899415, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -2,963.899416): noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]' score=-2963.8994161767355
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -2,963.899417 (regressionFit = 2,963.899415, penalties=2.24E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+%     Score = -2,963.899417 (regressionFit = 2,963.899415, penalties=2.1400000000000003E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -2,963.899417 (regressionFit = 2,963.899415, penalties=2.24E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+
+% The best node found: noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+
+% The best node found: noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+Comparing variance: 27.699994533147063 to score=0.0025 #egs=107.0
+Comparing variance: -6.105890407992987E-17 to score=0.0025 #egs=1651.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 107.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-27.699995)
+%         ILP node to extend: noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -27.699995) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch leaf because good enough fit since score < 0.0025
+
+% Time for loop #1: 4.294 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/1,758.0 pos, 0.0/0.0 neg]
+% This clause covers 107 positive examples, of which 107 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]'
+%     Score = -2,963.899416 (regressionFit = 2,963.899415, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+
+% Have these 3 positive seeds: 2 56 95
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+% Gleaner: New best node found (score = -2,963.899416): noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=1] 'noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]' score=-2963.8994161767355
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 16 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #2, bodyLen=2] 'noop(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #2, bodyLen=2] 'noop(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1500000000000003E-6) for clause:  noop(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+
+% The best node found: noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -2,963.8994):
+%  noop(A, B) :- closeByMonkey(A, _, B).  [covers 107.0/107.0 pos, 0.0/0.0 neg]
+Created a leaf under (noop(P, Q) :- closeByMonkey(P, Anon1125, Q))
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #1 @ 3:39:11 6/5/25.  [Using 19,049,272 memory cells.]  %%%%%
+
+
+% FOR noop(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -1.0873738317757033;  // std dev = 5.263, 107.000 (wgt'ed) examples reached here.  /* #pos=107 */
+%   else return -0.04500000000000132;  // std dev = 0.000, 1,651.000 (wgt'ed) examples reached here.  /* #pos=1,651 */
+
+
+% Clauses:
+
+noop(A, B, -1.0873738317757033) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -0.04500000000000132) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, -1.0873738317757033) :-  /* #pos=107 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -0.04500000000000132) :-  /* #pos=1,651 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/noop.model.ckpt
+% Time taken to learn 1 trees is 4.895 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:27.69999453314706
+Set score:0.0025
+% Kept 1,758 of the 1,758 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,758
+Computing probabilities
+prob time:108 milliseconds
+No hidden examples for : noop
+Time to build dataset: 130 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 2 positive seeds: 1269 1405
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = noop(P, Q)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #2 @ 3:39:15 6/5/25.  [Using 19,343,224 memory cells.]  %%%%%
+
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 1.298, 1,758.000 (wgt'ed) examples reached here.  /* #pos=1,758 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=1,758 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/noop.model.ckpt
+% Time taken to learn 2 trees is 8.274 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% Kept 1,758 of the 1,758 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,758
+Computing probabilities
+prob time:100 milliseconds
+No hidden examples for : noop
+Time to build dataset: 124 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 206 371 663 1018 1178
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = noop(P, Q)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #3 @ 3:39:18 6/5/25.  [Using 19,627,232 memory cells.]  %%%%%
+
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 1.298, 1,758.000 (wgt'ed) examples reached here.  /* #pos=1,758 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=1,758 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/noop.model.ckpt
+% Time taken to learn 3 trees is 11.612 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% Kept 1,758 of the 1,758 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,758
+Computing probabilities
+prob time:99 milliseconds
+No hidden examples for : noop
+Time to build dataset: 117 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 314 378 1133 1404 1518
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = noop(P, Q)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #4 @ 3:39:22 6/5/25.  [Using 19,642,984 memory cells.]  %%%%%
+
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 1.298, 1,758.000 (wgt'ed) examples reached here.  /* #pos=1,758 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=1,758 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/noop.model.ckpt
+% Time taken to learn 4 trees is 14.935 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% Kept 1,758 of the 1,758 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,758
+Computing probabilities
+prob time:95 milliseconds
+No hidden examples for : noop
+Time to build dataset: 113 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.6859496103792542
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 1 positive seeds: 216
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = noop(P, Q)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'noop(_, _).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'noop(A, B) :- leftOfLadder(A, _, B).  [covers 1,758.0/1,758.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #5 @ 3:39:25 6/5/25.  [Using 19,644,072 memory cells.]  %%%%%
+
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 1.298, 1,758.000 (wgt'ed) examples reached here.  /* #pos=1,758 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=1,758 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/noop.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for noop.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+noop(P, Q, Total) :- // A general accessor. 
+   noop(P, Q, 1000000, Total), !.
+noop(P, Q, Total) :- waitHere("This should not fail", noop(P, Q, Total)).
+
+noop(P, Q, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_noop_tree1(P, Q, TreesToUse, Total1),
+   getScore_noop_tree2(P, Q, TreesToUse, Total2),
+   getScore_noop_tree3(P, Q, TreesToUse, Total3),
+   getScore_noop_tree4(P, Q, TreesToUse, Total4),
+   getScore_noop_tree5(P, Q, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+noop(P, Q, TreesToUse, Total) :- waitHere("This should not fail", noop(P, Q, TreesToUse, Total)).
+
+getScore_noop_tree1(P, Q, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_noop_tree1(P, Q, TreesToUse, Total1) :- noop_tree1(P, Q, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_noop_tree2(P, Q, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_noop_tree2(P, Q, TreesToUse, Total2) :- noop_tree2(P, Q, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_noop_tree3(P, Q, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_noop_tree3(P, Q, TreesToUse, Total3) :- noop_tree3(P, Q, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_noop_tree4(P, Q, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_noop_tree4(P, Q, TreesToUse, Total4) :- noop_tree4(P, Q, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_noop_tree5(P, Q, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_noop_tree5(P, Q, TreesToUse, Total5) :- noop_tree5(P, Q, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(noop, 1, [
+   closeByMonkey(a, underscore, b)]).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:42.21084719626712
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 846 3953 5377 6606
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = noop(P, Q)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  noop(_, _).  [covers 8,790.0/8,790.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: noop(_, _).  [covers 8,790.0/8,790.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'noop(_, _).  [covers 8,790.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  noop(A, B) :- leftOfLadder(A, _, B).  [covers 8,790.0/8,790.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'noop(A, B) :- leftOfLadder(A, _, B).  [covers 8,790.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree Combined @ 3:39:40 6/5/25.  [Using 19,407,840 memory cells.]  %%%%%
+
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 6.497, 8,790.000 (wgt'ed) examples reached here.  /* #pos=8,790 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=8,790 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Time taken to learn model for 'noop': 33.746 seconds.
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/noop.model
+% Using yap file:
+File: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/advice.txt doesnt exist.Hence no advice loaded
+
+% Learn model for: left
+% Kept 1,798 of the 1,798 positive examples.
+% Kept 0 of the 0 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% Dataset size: 1,798
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : left
+Time to build dataset: 76 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 474 617 808 1506 1724
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = left(H, I)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+% [ LazyGroundClauseIndex ]  Building full index for noop/2 with 1,758 assertions.
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #1 @ 3:39:44 6/5/25.  [Using 19,401,632 memory cells.]  %%%%%
+
+
+% FOR left(A, B):
+%   return 0;  // std dev = 0.916, 1,798.000 (wgt'ed) examples reached here.  /* #pos=1,798 */
+
+
+% Clauses:
+
+left(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(underscore, underscore, 0) :-  /* #pos=1,798 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/left.model.ckpt
+% Time taken to learn 1 trees is 3.370 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% Kept 1,798 of the 1,798 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,798
+Computing probabilities
+prob time:0 seconds
+No hidden examples for : left
+Time to build dataset: 76 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 470 853 1215 1580
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = left(H, I)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #2 @ 3:39:47 6/5/25.  [Using 19,684,136 memory cells.]  %%%%%
+
+
+% FOR left(A, B):
+%   return 0;  // std dev = 0.916, 1,798.000 (wgt'ed) examples reached here.  /* #pos=1,798 */
+
+
+% Clauses:
+
+left(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(underscore, underscore, 0) :-  /* #pos=1,798 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/left.model.ckpt
+% Time taken to learn 2 trees is 6.717 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% Kept 1,798 of the 1,798 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,798
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : left
+Time to build dataset: 76 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 238 384 794 973 1009
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = left(H, I)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #3 @ 3:39:50 6/5/25.  [Using 19,685,408 memory cells.]  %%%%%
+
+
+% FOR left(A, B):
+%   return 0;  // std dev = 0.916, 1,798.000 (wgt'ed) examples reached here.  /* #pos=1,798 */
+
+
+% Clauses:
+
+left(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(underscore, underscore, 0) :-  /* #pos=1,798 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/left.model.ckpt
+% Time taken to learn 3 trees is 10.083 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% Kept 1,798 of the 1,798 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,798
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : left
+Time to build dataset: 77 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 138 238 551 713 807
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = left(H, I)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #4 @ 3:39:54 6/5/25.  [Using 19,688,048 memory cells.]  %%%%%
+
+
+% FOR left(A, B):
+%   return 0;  // std dev = 0.916, 1,798.000 (wgt'ed) examples reached here.  /* #pos=1,798 */
+
+
+% Clauses:
+
+left(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(underscore, underscore, 0) :-  /* #pos=1,798 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/left.model.ckpt
+% Time taken to learn 4 trees is 13.437 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% Kept 1,798 of the 1,798 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,798
+Computing probabilities
+prob time:3 milliseconds
+No hidden examples for : left
+Time to build dataset: 78 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8394535040902572
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 232 681 1149 1392 1564
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = left(H, I)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'left(_, _).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]
+%     Score = -1,495.075549 (regressionFit = 1,495.075548, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -1,495.075549): left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]' score=-1495.07554892
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -1,495.075550 (regressionFit = 1,495.075548, penalties=2.24E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+%     Score = -1,495.075550 (regressionFit = 1,495.075548, penalties=2.1400000000000003E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'left(A, B) :- leftOfLadder(A, _, B).  [covers 1,798.0/1,798.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -1,495.075550 (regressionFit = 1,495.075548, penalties=2.24E-6) for clause:  left(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+
+% The best node found: left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+
+% The best node found: left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+Comparing variance: 14.9507554779 to score=0.0025 #egs=100.0
+Comparing variance: -5.910727999182223E-17 to score=0.0025 #egs=1698.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 100.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-14.950755)
+%         ILP node to extend: left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -14.950755) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch leaf because good enough fit since score < 0.0025
+
+% Time for loop #1: 4.105 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/1,798.0 pos, 0.0/0.0 neg]
+% This clause covers 100 positive examples, of which 100 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]'
+%     Score = -1,495.075549 (regressionFit = 1,495.075548, penalties=1.1300000000000002E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+
+% Have these 5 positive seeds: 1 3 7 25 39
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+% Gleaner: New best node found (score = -1,495.075549): left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=1] 'left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]' score=-1495.07554892
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 16 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #2, bodyLen=2] 'left(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #2, bodyLen=2] 'left(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1500000000000003E-6) for clause:  left(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+
+% The best node found: left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -1,495.0755):
+%  left(A, B) :- closeByMonkey(A, _, B).  [covers 100.0/100.0 pos, 0.0/0.0 neg]
+Created a leaf under (left(H, I) :- closeByMonkey(H, Anon2131, I))
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #5 @ 3:39:59 6/5/25.  [Using 19,764,464 memory cells.]  %%%%%
+
+
+% FOR left(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -0.4336100000000001;  // std dev = 3.867, 100.000 (wgt'ed) examples reached here.  /* #pos=100 */
+%   else return -0.04500000000000133;  // std dev = 0.000, 1,698.000 (wgt'ed) examples reached here.  /* #pos=1,698 */
+
+
+% Clauses:
+
+left(A, B, -0.4336100000000001) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+left(A, B, -0.04500000000000133) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(a, b, -0.4336100000000001) :-  /* #pos=100 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_left(underscore, underscore, -0.04500000000000133) :-  /* #pos=1,698 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/left.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for left.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+left(H, I, Total) :- // A general accessor. 
+   left(H, I, 1000000, Total), !.
+left(H, I, Total) :- waitHere("This should not fail", left(H, I, Total)).
+
+left(H, I, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_left_tree1(H, I, TreesToUse, Total1),
+   getScore_left_tree2(H, I, TreesToUse, Total2),
+   getScore_left_tree3(H, I, TreesToUse, Total3),
+   getScore_left_tree4(H, I, TreesToUse, Total4),
+   getScore_left_tree5(H, I, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+left(H, I, TreesToUse, Total) :- waitHere("This should not fail", left(H, I, TreesToUse, Total)).
+
+getScore_left_tree1(H, I, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_left_tree1(H, I, TreesToUse, Total1) :- left_tree1(H, I, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_left_tree2(H, I, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_left_tree2(H, I, TreesToUse, Total2) :- left_tree2(H, I, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_left_tree3(H, I, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_left_tree3(H, I, TreesToUse, Total3) :- left_tree3(H, I, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_left_tree4(H, I, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_left_tree4(H, I, TreesToUse, Total4) :- left_tree4(H, I, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_left_tree5(H, I, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_left_tree5(H, I, TreesToUse, Total5) :- left_tree5(H, I, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(left, 1, [
+   closeByMonkey(a, underscore, b)]).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:42.21084719626712
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 1 positive seeds: 4124
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = left(H, I)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  left(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]
+% Most-general root: left(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'left(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree Combined @ 3:39:59 6/5/25.  [Using 19,503,872 memory cells.]  %%%%%
+
+
+% FOR left(A, B):
+%   return 0;  // std dev = 6.497, 8,790.000 (wgt'ed) examples reached here.  /* #pos=8,790 */
+
+
+% Clauses:
+
+left(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_left(underscore, underscore, 0) :-  /* #pos=8,790 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Time taken to learn model for 'left': 18.249 seconds.
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/left.model
+% Using yap file:
+File: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/advice.txt doesnt exist.Hence no advice loaded
+
+% Learn model for: fire
+% Kept 6,499 of the 6,499 positive examples.
+% Kept 0 of the 0 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.4645984242364317
+Set score:0.0025
+% Dataset size: 6,499
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : fire
+Time to build dataset: 265 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.4645984242364317
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 479 2414 2816 3945 5137
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+%     Score = -3,015.818690 (regressionFit = 3,015.818688, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -3,015.818690): fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]' score=-3015.818689519911
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -3,015.818691 (regressionFit = 3,015.818688, penalties=2.24E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+%     Score = -3,015.818691 (regressionFit = 3,015.818688, penalties=2.1400000000000003E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -3,015.818691 (regressionFit = 3,015.818688, penalties=2.24E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% The best node found: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% The best node found: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+Comparing variance: 4.278088194658817 to score=0.0025 #egs=352.0
+Comparing variance: 0.2456371634732402 to score=0.0025 #egs=6147.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 352.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-4.278088)
+%         ILP node to extend: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -4.278088) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 6,147.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-0.245637)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 1 and with score = -0.245637) into the LAST position (#2) in the search queue.
+
+% Time for loop #1: 14.534 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+% This clause covers 352 positive examples, of which 352 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]'
+%     Score = -3,015.818690 (regressionFit = 3,015.818688, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Have these 5 positive seeds: 32 36 118 201 209
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+% Gleaner: New best node found (score = -3,015.818690): fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=1] 'fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]' score=-3015.818689519911
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 16 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #2, bodyLen=2] 'fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #2, bodyLen=2] 'fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1500000000000003E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% The best node found: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -3,015.8187):
+%  fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+Created a leaf under (fire(D, E) :- closeByMonkey(D, Anon2539, E))
+
+% Have these 3 positive seeds: 914 2598 4707
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #3, bodyLen=0] 'fire(_, _).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #3, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+Created a leaf under (fire(D, E) :- closeByMonkey(D, Anon2539, E))
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #1 @ 3:40:26 6/5/25.  [Using 20,008,752 memory cells.]  %%%%%
+
+
+% FOR fire(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -0.1294005681818175;  // std dev = 2.068, 352.000 (wgt'ed) examples reached here.  /* #pos=352 */
+%   else return -0.02532194566455536;  // std dev = 0.496, 6,147.000 (wgt'ed) examples reached here.  /* #pos=6,147 */
+
+
+% Clauses:
+
+fire(A, B, -0.1294005681818175) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, -0.02532194566455536) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, -0.1294005681818175) :-  /* #pos=352 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(underscore, underscore, -0.02532194566455536) :-  /* #pos=6,147 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/fire.model.ckpt
+% Time taken to learn 1 trees is 27.156 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.24563716347324022
+Set score:0.0025
+% Kept 6,499 of the 6,499 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 6,499
+Computing probabilities
+prob time:363 milliseconds
+No hidden examples for : fire
+Time to build dataset: 628 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.46404349721338406
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 97 775 1723 1756 2207
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+%     Score = -3,015.818690 (regressionFit = 3,015.818688, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -3,015.818690): fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]' score=-3015.8186895197514
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -3,015.818691 (regressionFit = 3,015.818688, penalties=2.24E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+%     Score = -3,015.818691 (regressionFit = 3,015.818688, penalties=2.1400000000000003E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -3,015.818691 (regressionFit = 3,015.818688, penalties=2.24E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% The best node found: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% The best node found: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+Comparing variance: 4.278088194658757 to score=0.0025 #egs=352.0
+Comparing variance: 0.24563716347321768 to score=0.0025 #egs=6147.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 352.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-4.278088)
+%         ILP node to extend: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -4.278088) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 6,147.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-0.245637)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 1 and with score = -0.245637) into the LAST position (#2) in the search queue.
+
+% Time for loop #1: 14.529 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/6,499.0 pos, 0.0/0.0 neg]
+% This clause covers 352 positive examples, of which 352 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]'
+%     Score = -3,015.818690 (regressionFit = 3,015.818688, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Have these 4 positive seeds: 83 229 269 341
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+% Gleaner: New best node found (score = -3,015.818690): fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=1] 'fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]' score=-3015.8186895197514
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 16 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #2, bodyLen=2] 'fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #2, bodyLen=2] 'fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1500000000000003E-6) for clause:  fire(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% The best node found: fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -3,015.8187):
+%  fire(A, B) :- closeByMonkey(A, _, B).  [covers 352.0/352.0 pos, 0.0/0.0 neg]
+Created a leaf under (fire(D, E) :- closeByMonkey(D, Anon2969, E))
+
+% Have these 5 positive seeds: 372 3168 3231 3730 4667
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #3, bodyLen=0] 'fire(_, _).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #3, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,147.0/6,147.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+Created a leaf under (fire(D, E) :- closeByMonkey(D, Anon2969, E))
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #2 @ 3:40:54 6/5/25.  [Using 21,026,728 memory cells.]  %%%%%
+
+
+% FOR fire(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -5.602368316734188E-16;  // std dev = 2.068, 352.000 (wgt'ed) examples reached here.  /* #pos=352 */
+%   else return 4.0593370313285695E-15;  // std dev = 0.496, 6,147.000 (wgt'ed) examples reached here.  /* #pos=6,147 */
+
+
+% Clauses:
+
+fire(A, B, -5.602368316734188E-16) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+fire(A, B, 4.0593370313285695E-15) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(a, b, -5.602368316734188E-16) :-  /* #pos=352 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_fire(underscore, underscore, 4.0593370313285695E-15) :-  /* #pos=6,147 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/fire.model.ckpt
+% Time taken to learn 2 trees is 54.659 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.24563716347321768
+Set score:0.0025
+% Kept 6,499 of the 6,499 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 6,499
+Computing probabilities
+prob time:749 milliseconds
+No hidden examples for : fire
+Time to build dataset: 1 seconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.46404349721338417
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 1158 1742 1856 5094 5343
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #3 @ 3:41:06 6/5/25.  [Using 20,751,632 memory cells.]  %%%%%
+
+
+% FOR fire(A, B):
+%   return 0;  // std dev = 0.681, 6,499.000 (wgt'ed) examples reached here.  /* #pos=6,499 */
+
+
+% Clauses:
+
+fire(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=6,499 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/fire.model.ckpt
+% Time taken to learn 3 trees is 1 minutes and 7.129 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.46404349721338417
+Set score:0.0025
+% Kept 6,499 of the 6,499 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 6,499
+Computing probabilities
+prob time:739 milliseconds
+No hidden examples for : fire
+Time to build dataset: 1 seconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.46404349721338417
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 3 positive seeds: 216 3101 5781
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #4 @ 3:41:19 6/5/25.  [Using 20,753,216 memory cells.]  %%%%%
+
+
+% FOR fire(A, B):
+%   return 0;  // std dev = 0.681, 6,499.000 (wgt'ed) examples reached here.  /* #pos=6,499 */
+
+
+% Clauses:
+
+fire(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=6,499 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/fire.model.ckpt
+% Time taken to learn 4 trees is 1 minutes and 19.609 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.46404349721338417
+Set score:0.0025
+% Kept 6,499 of the 6,499 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 6,499
+Computing probabilities
+prob time:753 milliseconds
+No hidden examples for : fire
+Time to build dataset: 1 seconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.46404349721338417
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 933 1090 2100 3004 3017
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'fire(_, _).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'fire(A, B) :- leftOfLadder(A, _, B).  [covers 6,499.0/6,499.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #5 @ 3:41:31 6/5/25.  [Using 20,754,752 memory cells.]  %%%%%
+
+
+% FOR fire(A, B):
+%   return 0;  // std dev = 0.681, 6,499.000 (wgt'ed) examples reached here.  /* #pos=6,499 */
+
+
+% Clauses:
+
+fire(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=6,499 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/fire.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for fire.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+fire(D, E, Total) :- // A general accessor. 
+   fire(D, E, 1000000, Total), !.
+fire(D, E, Total) :- waitHere("This should not fail", fire(D, E, Total)).
+
+fire(D, E, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_fire_tree1(D, E, TreesToUse, Total1),
+   getScore_fire_tree2(D, E, TreesToUse, Total2),
+   getScore_fire_tree3(D, E, TreesToUse, Total3),
+   getScore_fire_tree4(D, E, TreesToUse, Total4),
+   getScore_fire_tree5(D, E, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+fire(D, E, TreesToUse, Total) :- waitHere("This should not fail", fire(D, E, TreesToUse, Total)).
+
+getScore_fire_tree1(D, E, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_fire_tree1(D, E, TreesToUse, Total1) :- fire_tree1(D, E, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_fire_tree2(D, E, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_fire_tree2(D, E, TreesToUse, Total2) :- fire_tree2(D, E, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_fire_tree3(D, E, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_fire_tree3(D, E, TreesToUse, Total3) :- fire_tree3(D, E, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_fire_tree4(D, E, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_fire_tree4(D, E, TreesToUse, Total4) :- fire_tree4(D, E, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_fire_tree5(D, E, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_fire_tree5(D, E, TreesToUse, Total5) :- fire_tree5(D, E, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(fire, 1, [
+   closeByMonkey(a, underscore, b)]).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:42.21084719626712
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 1445 1500 2276 5926
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = fire(D, E)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  fire(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]
+% Most-general root: fire(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'fire(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree Combined @ 3:41:31 6/5/25.  [Using 19,816,192 memory cells.]  %%%%%
+
+
+% FOR fire(A, B):
+%   return 0;  // std dev = 6.497, 8,790.000 (wgt'ed) examples reached here.  /* #pos=8,790 */
+
+
+% Clauses:
+
+fire(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_fire(underscore, underscore, 0) :-  /* #pos=8,790 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Time taken to learn model for 'fire': 1 minutes and 32.659 seconds.
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/fire.model
+% Using yap file:
+File: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/advice.txt doesnt exist.Hence no advice loaded
+
+% Learn model for: up
+% Kept 1,804 of the 1,804 positive examples.
+% Kept 0 of the 0 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0032416530339080952
+Set score:8.104132584770238E-4
+% Dataset size: 1,804
+Computing probabilities
+prob time:0 seconds
+No hidden examples for : up
+Time to build dataset: 59 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0032416530339080952
+Set score:8.104132584770238E-4
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 3 positive seeds: 628 763 970
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = up(J, K)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #1 @ 3:41:35 6/5/25.  [Using 19,428,712 memory cells.]  %%%%%
+
+
+% FOR up(A, B):
+%   return 0;  // std dev = 0.057, 1,804.000 (wgt'ed) examples reached here.  /* #pos=1,804 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=1,804 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/up.model.ckpt
+% Time taken to learn 1 trees is 3.370 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0032416530339080952
+Set score:8.104132584770238E-4
+% Kept 1,804 of the 1,804 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,804
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : up
+Time to build dataset: 61 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0032416530339080952
+Set score:8.104132584770238E-4
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 413 589 763 1529 1803
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = up(J, K)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+%     Score = -0.000001 (regressionFit = -1.51434e-13, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -0.000001): up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]' score=-1.1299998485655796E-6
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -0.000002 (regressionFit = -1.51434e-13, penalties=2.24E-6) for clause:  up(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+%     Score = -0.000002 (regressionFit = -1.51434e-13, penalties=2.1400000000000003E-6) for clause:  up(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -0.000002 (regressionFit = -1.51434e-13, penalties=2.24E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% The best node found: up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% The best node found: up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+Comparing variance: -5.203469529556289E-16 to score=8.104132584770238E-4 #egs=99.0
+Comparing variance: -5.860414792742762E-17 to score=8.104132584770238E-4 #egs=1705.0
+%   Creating a TRUE-branch leaf because good enough fit since score < 8.104132584770238E-4
+%   Creating a FALSE-branch leaf because good enough fit since score < 8.104132584770238E-4
+
+% Time for loop #1: 4.122 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+% This clause covers 99 positive examples, of which 99 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #2 @ 3:41:39 6/5/25.  [Using 19,860,272 memory cells.]  %%%%%
+
+
+% FOR up(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -0.29500000000000076;  // std dev = 0.000, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return -0.04500000000000133;  // std dev = 0.000, 1,705.000 (wgt'ed) examples reached here.  /* #pos=1,705 */
+
+
+% Clauses:
+
+up(A, B, -0.29500000000000076) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, -0.04500000000000133) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, -0.29500000000000076) :-  /* #pos=99 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, -0.04500000000000133) :-  /* #pos=1,705 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/up.model.ckpt
+% Time taken to learn 2 trees is 7.581 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0032416530339080952
+Set score:8.104132584770238E-4
+% Kept 1,804 of the 1,804 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,804
+Computing probabilities
+prob time:99 milliseconds
+No hidden examples for : up
+Time to build dataset: 160 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.5982583417133623E-32
+Set score:3.995645854283406E-33
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 166 219 750 1799
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = up(J, K)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+%     Score = -0.000001 (regressionFit = 0.000000, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -0.000001): up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]' score=-1.1300000000000002E-6
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -0.000002 (regressionFit = 0.000000, penalties=2.24E-6) for clause:  up(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+%     Score = -0.000002 (regressionFit = 0.000000, penalties=2.1400000000000003E-6) for clause:  up(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -0.000002 (regressionFit = 0.000000, penalties=2.24E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% The best node found: up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% The best node found: up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+Comparing variance: 0.0 to score=3.995645854283406E-33 #egs=99.0
+Comparing variance: 0.0 to score=3.995645854283406E-33 #egs=1705.0
+%   Creating a TRUE-branch leaf because good enough fit since score < 3.995645854283406E-33
+%   Creating a FALSE-branch leaf because good enough fit since score < 3.995645854283406E-33
+
+% Time for loop #1: 4.113 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      up(A, B) :- closeByMonkey(A, _, B).  [covers 99.0/1,804.0 pos, 0.0/0.0 neg]
+% This clause covers 99 positive examples, of which 99 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #3 @ 3:41:43 6/5/25.  [Using 19,863,104 memory cells.]  %%%%%
+
+
+% FOR up(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return 7.771561172376096E-16;  // std dev = 0.000, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 1.3322676295501878E-15;  // std dev = 0.000, 1,705.000 (wgt'ed) examples reached here.  /* #pos=1,705 */
+
+
+% Clauses:
+
+up(A, B, 7.771561172376096E-16) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, 1.3322676295501878E-15) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 7.771561172376096E-16) :-  /* #pos=99 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, 1.3322676295501878E-15) :-  /* #pos=1,705 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/up.model.ckpt
+% Time taken to learn 3 trees is 11.885 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:1.5982583417133623E-32
+Set score:3.995645854283406E-33
+% Kept 1,804 of the 1,804 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,804
+Computing probabilities
+prob time:197 milliseconds
+No hidden examples for : up
+Time to build dataset: 257 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 420 517 768 1476
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = up(J, K)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #4 @ 3:41:47 6/5/25.  [Using 19,717,296 memory cells.]  %%%%%
+
+
+% FOR up(A, B):
+%   return 0;  // std dev = 0.000, 1,804.000 (wgt'ed) examples reached here.  /* #pos=1,804 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=1,804 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/up.model.ckpt
+% Time taken to learn 4 trees is 15.426 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0
+Set score:0.0
+% Kept 1,804 of the 1,804 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,804
+Computing probabilities
+prob time:210 milliseconds
+No hidden examples for : up
+Time to build dataset: 271 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.0
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 142 170 440 637 727
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = up(J, K)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'up(_, _).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'up(A, B) :- leftOfLadder(A, _, B).  [covers 1,804.0/1,804.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #5 @ 3:41:50 6/5/25.  [Using 19,718,664 memory cells.]  %%%%%
+
+
+% FOR up(A, B):
+%   return 0;  // std dev = 0.000, 1,804.000 (wgt'ed) examples reached here.  /* #pos=1,804 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=1,804 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/up.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for up.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+up(J, K, Total) :- // A general accessor. 
+   up(J, K, 1000000, Total), !.
+up(J, K, Total) :- waitHere("This should not fail", up(J, K, Total)).
+
+up(J, K, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_up_tree1(J, K, TreesToUse, Total1),
+   getScore_up_tree2(J, K, TreesToUse, Total2),
+   getScore_up_tree3(J, K, TreesToUse, Total3),
+   getScore_up_tree4(J, K, TreesToUse, Total4),
+   getScore_up_tree5(J, K, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+up(J, K, TreesToUse, Total) :- waitHere("This should not fail", up(J, K, TreesToUse, Total)).
+
+getScore_up_tree1(J, K, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_up_tree1(J, K, TreesToUse, Total1) :- up_tree1(J, K, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_up_tree2(J, K, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_up_tree2(J, K, TreesToUse, Total2) :- up_tree2(J, K, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_up_tree3(J, K, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_up_tree3(J, K, TreesToUse, Total3) :- up_tree3(J, K, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_up_tree4(J, K, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_up_tree4(J, K, TreesToUse, Total4) :- up_tree4(J, K, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_up_tree5(J, K, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_up_tree5(J, K, TreesToUse, Total5) :- up_tree5(J, K, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(up, 1, [
+   closeByMonkey(a, underscore, b)]).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:42.21084719626712
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 680 1128 2464 3019 6749
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = up(J, K)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  up(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]
+% Most-general root: up(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'up(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree Combined @ 3:41:50 6/5/25.  [Using 19,531,352 memory cells.]  %%%%%
+
+
+% FOR up(A, B):
+%   return 0;  // std dev = 6.497, 8,790.000 (wgt'ed) examples reached here.  /* #pos=8,790 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=8,790 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Time taken to learn model for 'up': 19.015 seconds.
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/up.model
+% Using yap file:
+File: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/advice.txt doesnt exist.Hence no advice loaded
+
+% Learn model for: right
+% Kept 1,780 of the 1,780 positive examples.
+% Kept 0 of the 0 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% Dataset size: 1,780
+Computing probabilities
+prob time:0 seconds
+No hidden examples for : right
+Time to build dataset: 59 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 3 positive seeds: 978 1038 1208
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = right(F, G)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #1 @ 3:41:54 6/5/25.  [Using 19,438,904 memory cells.]  %%%%%
+
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.695, 1,780.000 (wgt'ed) examples reached here.  /* #pos=1,780 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,780 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/right.model.ckpt
+% Time taken to learn 1 trees is 3.332 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% Kept 1,780 of the 1,780 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,780
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : right
+Time to build dataset: 61 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 3 positive seeds: 1036 1212 1303
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = right(F, G)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #2 @ 3:41:57 6/5/25.  [Using 19,719,184 memory cells.]  %%%%%
+
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.695, 1,780.000 (wgt'ed) examples reached here.  /* #pos=1,780 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,780 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/right.model.ckpt
+% Time taken to learn 2 trees is 6.631 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% Kept 1,780 of the 1,780 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,780
+Computing probabilities
+prob time:2 milliseconds
+No hidden examples for : right
+Time to build dataset: 61 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 3 positive seeds: 56 461 835
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = right(F, G)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #3 @ 3:42:00 6/5/25.  [Using 19,720,416 memory cells.]  %%%%%
+
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.695, 1,780.000 (wgt'ed) examples reached here.  /* #pos=1,780 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,780 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/right.model.ckpt
+% Time taken to learn 3 trees is 9.907 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% Kept 1,780 of the 1,780 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,780
+Computing probabilities
+prob time:2 milliseconds
+No hidden examples for : right
+Time to build dataset: 61 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 73 651 1060 1207
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = right(F, G)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #4 @ 3:42:04 6/5/25.  [Using 19,721,800 memory cells.]  %%%%%
+
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.695, 1,780.000 (wgt'ed) examples reached here.  /* #pos=1,780 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,780 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/right.model.ckpt
+% Time taken to learn 4 trees is 13.210 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% Kept 1,780 of the 1,780 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,780
+Computing probabilities
+prob time:3 milliseconds
+No hidden examples for : right
+Time to build dataset: 61 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:2.874583373682599
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 269 499 991 1522 1664
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = right(F, G)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'right(_, _).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'right(A, B) :- leftOfLadder(A, _, B).  [covers 1,780.0/1,780.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #5 @ 3:42:07 6/5/25.  [Using 19,723,072 memory cells.]  %%%%%
+
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.695, 1,780.000 (wgt'ed) examples reached here.  /* #pos=1,780 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,780 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/right.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for right.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+right(F, G, Total) :- // A general accessor. 
+   right(F, G, 1000000, Total), !.
+right(F, G, Total) :- waitHere("This should not fail", right(F, G, Total)).
+
+right(F, G, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_right_tree1(F, G, TreesToUse, Total1),
+   getScore_right_tree2(F, G, TreesToUse, Total2),
+   getScore_right_tree3(F, G, TreesToUse, Total3),
+   getScore_right_tree4(F, G, TreesToUse, Total4),
+   getScore_right_tree5(F, G, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+right(F, G, TreesToUse, Total) :- waitHere("This should not fail", right(F, G, TreesToUse, Total)).
+
+getScore_right_tree1(F, G, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_right_tree1(F, G, TreesToUse, Total1) :- right_tree1(F, G, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_right_tree2(F, G, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_right_tree2(F, G, TreesToUse, Total2) :- right_tree2(F, G, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_right_tree3(F, G, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_right_tree3(F, G, TreesToUse, Total3) :- right_tree3(F, G, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_right_tree4(F, G, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_right_tree4(F, G, TreesToUse, Total4) :- right_tree4(F, G, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_right_tree5(F, G, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_right_tree5(F, G, TreesToUse, Total5) :- right_tree5(F, G, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(0, []).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:42.21084719626712
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 54 1065 2194 2230 2449
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = right(F, G)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  right(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]
+% Most-general root: right(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'right(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree Combined @ 3:42:07 6/5/25.  [Using 19,539,824 memory cells.]  %%%%%
+
+
+% FOR right(A, B):
+%   return 0;  // std dev = 6.497, 8,790.000 (wgt'ed) examples reached here.  /* #pos=8,790 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=8,790 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Time taken to learn model for 'right': 16.549 seconds.
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/right.model
+% Using yap file:
+File: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/advice.txt doesnt exist.Hence no advice loaded
+
+% Learn model for: down
+% Kept 1,705 of the 1,705 positive examples.
+% Kept 0 of the 0 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.9025667733521392
+Set score:0.0
+% Dataset size: 1,705
+Computing probabilities
+prob time:0 seconds
+No hidden examples for : down
+Time to build dataset: 71 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.9025667733521392
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 4 positive seeds: 316 803 1248 1558
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = down(R, T)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #1 @ 3:42:10 6/5/25.  [Using 19,443,384 memory cells.]  %%%%%
+
+
+% FOR down(A, B):
+%   return 0;  // std dev = 0.950, 1,705.000 (wgt'ed) examples reached here.  /* #pos=1,705 */
+
+
+% Clauses:
+
+down(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_down(underscore, underscore, 0) :-  /* #pos=1,705 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/down.model.ckpt
+% Time taken to learn 1 trees is 3.221 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.9025667733521392
+Set score:0.0
+% Kept 1,705 of the 1,705 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,705
+Computing probabilities
+prob time:0 seconds
+No hidden examples for : down
+Time to build dataset: 70 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.9025667733521392
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 2 positive seeds: 889 1356
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = down(R, T)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #2 @ 3:42:13 6/5/25.  [Using 19,719,200 memory cells.]  %%%%%
+
+
+% FOR down(A, B):
+%   return 0;  // std dev = 0.950, 1,705.000 (wgt'ed) examples reached here.  /* #pos=1,705 */
+
+
+% Clauses:
+
+down(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_down(underscore, underscore, 0) :-  /* #pos=1,705 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/down.model.ckpt
+% Time taken to learn 2 trees is 6.404 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.9025667733521392
+Set score:0.0
+% Kept 1,705 of the 1,705 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,705
+Computing probabilities
+prob time:1 milliseconds
+No hidden examples for : down
+Time to build dataset: 72 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.9025667733521392
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 178 356 771 964 1030
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = down(R, T)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+%     Score = -1,494.608484 (regressionFit = 1,494.608483, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+% Gleaner: New best node found (score = -1,494.608484): down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]' score=-1494.6084837691767
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -1,494.608485 (regressionFit = 1,494.608483, penalties=2.24E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+%     Score = -1,494.608485 (regressionFit = 1,494.608483, penalties=2.1400000000000003E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #1, bodyLen=1] 'down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -1,494.608485 (regressionFit = 1,494.608483, penalties=2.24E-6) for clause:  down(A, B) :- leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+
+% The best node found: down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+
+% The best node found: down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Expanding node at Level 0 with score = 1.797693e+308.
+% Will extend: down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+Comparing variance: 15.408334872568831 to score=0.0 #egs=97.0
+Comparing variance: -6.269169815669417E-17 to score=0.0 #egs=1608.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 97.0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-15.408335)
+%         ILP node to extend: down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -15.408335) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch leaf because good enough fit since score < 0.0
+
+% Time for loop #1: 3.888 seconds.
+% Internal node max length = 2
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 2
+% Max number of clauses    = 12
+
+% On cycle #1, the best clause found is:
+%      down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/1,705.0 pos, 0.0/0.0 neg]
+% This clause covers 97 positive examples, of which 97 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]'
+%     Score = -1,494.608484 (regressionFit = 1,494.608483, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+
+% Have these 5 positive seeds: 13 26 36 50 53
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+% Gleaner: New best node found (score = -1,494.608484): down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=1] 'down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]' score=-1494.6084837691767
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 16 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #2, bodyLen=2] 'down(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 1.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), leftOfLadder(A, _, B), closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#3 of outerLoop #2, bodyLen=2] 'down(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 3, |OPEN| = 0.  Pruned 0 variant children.  Sending 2 items to OPEN for evaluation and possible insertion.
+% Have created 2 valid-on-seeds descendants and have picked up 8 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.2500000000000006E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), leftOfLadder(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1500000000000003E-6) for clause:  down(A, B) :- closeByMonkey(A, _, B), closeByMonkey(A, _, B), closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+
+% The best node found: down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -1,494.6085):
+%  down(A, B) :- closeByMonkey(A, _, B).  [covers 97.0/97.0 pos, 0.0/0.0 neg]
+Created a leaf under (down(R, T) :- closeByMonkey(R, Anon4797, T))
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #3 @ 3:42:18 6/5/25.  [Using 19,792,968 memory cells.]  %%%%%
+
+
+% FOR down(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -0.7406288659793818;  // std dev = 3.925, 97.000 (wgt'ed) examples reached here.  /* #pos=97 */
+%   else return -0.04500000000000131;  // std dev = 0.000, 1,608.000 (wgt'ed) examples reached here.  /* #pos=1,608 */
+
+
+% Clauses:
+
+down(A, B, -0.7406288659793818) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+down(A, B, -0.04500000000000131) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_down(a, b, -0.7406288659793818) :-  /* #pos=97 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_down(underscore, underscore, -0.04500000000000131) :-  /* #pos=1,608 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/down.model.ckpt
+% Time taken to learn 3 trees is 10.891 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:15.40833487256883
+Set score:0.0
+% Kept 1,705 of the 1,705 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,705
+Computing probabilities
+prob time:91 milliseconds
+No hidden examples for : down
+Time to build dataset: 162 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8766032156241498
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 2 positive seeds: 901 1540
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = down(R, T)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #4 @ 3:42:21 6/5/25.  [Using 19,722,976 memory cells.]  %%%%%
+
+
+% FOR down(A, B):
+%   return 0;  // std dev = 0.936, 1,705.000 (wgt'ed) examples reached here.  /* #pos=1,705 */
+
+
+% Clauses:
+
+down(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_down(underscore, underscore, 0) :-  /* #pos=1,705 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/down.model.ckpt
+% Time taken to learn 4 trees is 14.159 seconds.
+
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8766032156241498
+Set score:0.0
+% Kept 1,705 of the 1,705 positive examples.
+% Kept 0 of the 0 negative examples.
+% Dataset size: 1,705
+Computing probabilities
+prob time:94 milliseconds
+No hidden examples for : down
+Time to build dataset: 164 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.8766032156241498
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 36 246 279 503 602
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = down(R, T)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+% Unacceptable due to being the root node.
+% Most-general root: down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'down(_, _).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 0 variant children.  Sending 1 items to OPEN for evaluation and possible insertion.
+% Have created 1 valid-on-seeds descendants and have picked up 9 bad extensions.
+%     Score = -Infinity (regressionFit = Infinity, penalties=1.1300000000000002E-6) for clause:  down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]
+
+% Consider expanding [#2 of outerLoop #1, bodyLen=1] 'down(A, B) :- leftOfLadder(A, _, B).  [covers 1,705.0/1,705.0 pos, 0.0/0.0 neg]' score=-Infinity
+%  At # nodes expanded = 2, |OPEN| = 0.  Pruned 0 variant children.  Sending 0 items to OPEN for evaluation and possible insertion.
+% Have created 0 valid-on-seeds descendants and have picked up 9 bad extensions.
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree #5 @ 3:42:24 6/5/25.  [Using 19,724,320 memory cells.]  %%%%%
+
+
+% FOR down(A, B):
+%   return 0;  // std dev = 0.936, 1,705.000 (wgt'ed) examples reached here.  /* #pos=1,705 */
+
+
+% Clauses:
+
+down(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_down(underscore, underscore, 0) :-  /* #pos=1,705 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/down.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for down.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+down(R, T, Total) :- // A general accessor. 
+   down(R, T, 1000000, Total), !.
+down(R, T, Total) :- waitHere("This should not fail", down(R, T, Total)).
+
+down(R, T, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_down_tree1(R, T, TreesToUse, Total1),
+   getScore_down_tree2(R, T, TreesToUse, Total2),
+   getScore_down_tree3(R, T, TreesToUse, Total3),
+   getScore_down_tree4(R, T, TreesToUse, Total4),
+   getScore_down_tree5(R, T, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+down(R, T, TreesToUse, Total) :- waitHere("This should not fail", down(R, T, TreesToUse, Total)).
+
+getScore_down_tree1(R, T, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_down_tree1(R, T, TreesToUse, Total1) :- down_tree1(R, T, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_down_tree2(R, T, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_down_tree2(R, T, TreesToUse, Total2) :- down_tree2(R, T, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_down_tree3(R, T, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_down_tree3(R, T, TreesToUse, Total3) :- down_tree3(R, T, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_down_tree4(R, T, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_down_tree4(R, T, TreesToUse, Total4) :- down_tree4(R, T, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_down_tree5(R, T, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_down_tree5(R, T, TreesToUse, Total5) :- down_tree5(R, T, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(down, 1, [
+   closeByMonkey(a, underscore, b)]).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1.797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1.797693135e+308) into the LAST position (#1) in the search queue.
+Variance:42.21084719626712
+Set score:0.0
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 5 positive seeds: 2038 2278 4999 5030 5169
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = down(R, T)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  down(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]
+% Most-general root: down(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'down(_, _).  [covers 0.0/8,790.0 pos, 0.0/0.0 neg]' score=-Infinity
+
+% The best node found: null
+
+% No acceptable clause was learned on this cycle of the ILP inner loop (LearnOneClause).
+% The closest-to-acceptable node found (score = -Infinity):
+%  null
+
+% ******************************************
+
+%  Have stopped ILP's outer loop because the tree-structured queue is empty.
+
+% ******************************************
+
+%%%%%  WILL-Produced Tree Combined @ 3:42:24 6/5/25.  [Using 19,552,840 memory cells.]  %%%%%
+
+
+% FOR down(A, B):
+%   return 0;  // std dev = 6.497, 8,790.000 (wgt'ed) examples reached here.  /* #pos=8,790 */
+
+
+% Clauses:
+
+down(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_down(underscore, underscore, 0) :-  /* #pos=8,790 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+% Time taken to learn model for 'down': 17.502 seconds.
+% Saving model in: out/gbql-stack/gbql-stack_2025_06_04_18_06_58_0000--s-0/fitted-q/itr3/train/models/bRDNs/down.model
+cached groundings hit: 0
+Misses: 0
+
+% Total learning time (5 trees): 3 minutes and 18.236 seconds.

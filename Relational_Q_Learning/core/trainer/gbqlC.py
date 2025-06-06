@@ -2,6 +2,7 @@ from collections import OrderedDict
 import os
 from Relational_Q_Learning.core.learning_rate_strategy.decay import LinearDecay
 from Relational_Q_Learning.core.learning_rate_strategy.learning_rate_strategy import LearningRateStrategy
+from Relational_Q_Learning.core.trainer.advice import AdviceHandler, AdviceRule
 from ins.envs.kangaroo.reward_eng import clear_environment_info, reward_engineering
 from Relational_Q_Learning.srlearn import Background, Database
 from ..srl import RDNRegressor
@@ -16,7 +17,33 @@ from ..exploration_strategy import EpsilonGreedy
 import torch
 from ..util.save_model import save_image
 from torch.utils.tensorboard import SummaryWriter
+from typing import List
 
+ACTION_LIST = ["noop", "fire", "up", "right", "left", "down"]
+advice = AdviceRule(
+    ["onLadder(P, L)"], preferred_action=2,  # up
+)
+handler = AdviceHandler([advice])
+
+def apply_advice_to_q_values(
+    q_value_array: List[float],
+    state_predicates: List[str],
+    advice_handler: AdviceHandler,
+    epsilon: float = 0.01
+) -> List[float]:
+    """
+    If advice applies, boost the Q-value of the preferred action.
+    """
+    q_values = q_value_array.copy()
+    preferred_action = advice_handler.get_advised_action(state_predicates)
+    
+    if preferred_action and preferred_action in ACTION_LIST:
+        idx = ACTION_LIST.index(preferred_action)
+        max_q = max(q_values)
+        if q_values[idx] <= max_q:
+            print(f"[Advice] Boosting Q-value of '{preferred_action}' to {max_q + epsilon}")
+            q_values[idx] = max_q + epsilon
+    return q_values, idx
 
 
 def get_key_from_value(d, value):
@@ -49,7 +76,7 @@ class GBQL(Trainer):
                  train_env=None, bk=None, max_trajectory_length=4000,
                  replay_sampling_rate=0.10, test_env=None, agent = None,
                  max_buffer_size=100000, target_predicate="q_value",
-                 learning_rate=0.9, discount_factor=0.99,
+                 learning_rate=0.9, ad_coef=0.9, discount_factor=0.99,
                  n_evaluation_trajectories=10, n_burn_in_traj=0,
                  additional_facts=None, goal_q_value=200,  
                  exploration_strategy=EpsilonGreedy(), device = None, learning_rate_strategy=LinearDecay(),
@@ -68,6 +95,7 @@ class GBQL(Trainer):
         self.buffer = buffer(max_size=max_buffer_size)  #a queue of size 1000 (max_buffer_size)
         self.replay_sampling_rate = replay_sampling_rate
         self.learning_rate = learning_rate
+        self.ad_coef = ad_coef
         self.discount_factor = discount_factor
         self.n_eval_traj = n_evaluation_trajectories
         self.burn_in_traj = n_burn_in_traj
@@ -103,46 +131,59 @@ class GBQL(Trainer):
 
         traj_reward = 0.0
 
-        for i in range(batch_size):
+        batches = batch_size #if q_function is not None else 100
+        max_traj_len = self.max_traj_len #if q_function is not None else 50000
+
+        for i in range(batches):
             print("Generating batch: ", i)
 
             """keep reseting the env if it starts at the end or the logic representation is empty"""
-            while goal_reached or len(current_state) == 0: 
-                done = True
-                next_logic_obs, img2 = self.env.reset()
+            done = True
+            while done or goal_reached or len(current_state) == 0: 
+                next_logic_obs, _ = self.env.reset()
                 action = random.choice([0,1,2,3,4,5])
-                (next_logic_obs, _ ), _, _, _ , _ = self.env.step(action)
+                (next_logic_obs, img ), reward, done, _ , _ = self.env.step(action)
+                done = done[0]
+                reward = torch.tensor(reward).to(self.device).view(-1)
+                reward = reward.cpu().numpy()
+                if reward < -100:
+                    done = True
                 self.agent.compute_init_v(next_logic_obs)  # we need to pass the state to logic actor to compute the init v
                 current_state, goal_reached = self.agent.print_valuations_input(self.agent.V_0, min_value=0.7)
+                
             print(f"Current state: {state_id}{current_state}")
-        
+            # save_image(img, f"img/state_{state_id}.png")
             done = False
             traj_len = 0
             while not done:
-                action, q_value = self.get_action(current_state, q_function)   
+                action, q_value, advice_action, advice_qvalue = self.get_action(current_state, q_function)   
                 action_key = get_key_from_value(self.env.pred2action, action)
                 action_key = "{ACTION}({player},{state_id})".format(ACTION = action_key, player = "obj1", state_id=f"s{state_id}")
                 # trajectory.append((current_state, action))  #cause later we need the action from trajectory to step in the env. if sth else is needed to be done with trajectory. then we have to erite a reverse action func
-                
+
                 (next_state, img_0 ), reward , done, _ , _ = self.env.step(action)
+
+                reward = torch.tensor(reward).to(self.device).view(-1)
+                reward = reward.cpu().numpy()
+                done = done[0]
+                if reward < -100:
+                    done = True    
+                                
 
                 self.agent.compute_init_v(next_state)
                 next_state, goal_reached = self.agent.print_valuations_input(self.agent.V_0, min_value=0.7)
                 
-                reward = torch.tensor(reward).to(self.device).view(-1)
-                reward = reward.cpu().numpy()
-
-                # print(f"st: {state_id}, C_s:{current_state}, N_s:{next_state}, a:{action_key}, r:{reward}")
-
+                if done or goal_reached:
+                    print(f"st: {state_id}, C_s:{current_state}, N_s:{next_state}, a:{action_key}, r:{reward} , done:{done}, goal_reached:{goal_reached}")
+                save_image(img_0, f"img/state_{state_id}.png")
                 if len(next_state)==0:
                     print(f"next_state in {state_id} is empty")
-                    save_image(img_0, f"img/state_{state_id+1}_1.png")
+                    print(f"img_0: {img_0}")
+                    save_image(img_0, f"img/state_{state_id}_1.png")
                     # save_image(img_1, f"img/state_{state_id+1}_2.png")
                     # save_image(img_2, f"img/state_{state_id+1}_3.png")
                     # reward -= 1
                     next_state = current_state 
-
-                done = done[0]
 
                 if goal_reached:
                     done = True
@@ -161,24 +202,29 @@ class GBQL(Trainer):
                 #     print(f"next_state: {next_state}")
                 
 
-                if state_id%1000==0:
-                    save_image(img_0, f"img/state_{state_id+1}.png")
+                # if state_id%1000==0:
+                #     save_image(img_0, f"img/state_{state_id+1}.png")
 
                 traj_reward += reward
                 if goal_reached:                               
                     next_state_qvalue = self.goal_qvalue
                     print(f"Reached goal, setting next state Q-value to goal Q-value: {next_state_qvalue}")
                 else:
-                    _, next_state_qvalue = self.get_action(next_state, q_function, best_train=True)     
+                    """Since this is for bellman error calculation, we need to get the best next state Q-value without considering advice"""
+                    n_action, next_state_qvalue, n_a_action, n_a_qvalue = self.get_action(next_state, q_function, best_train=True)
+                    
                     traj_len += 1
                     
-                    if traj_len >= self.max_traj_len :
+                    if traj_len >= max_traj_len :
                         done = True
 
                 current_state = next_state  
 
-
-                q = ((1.0 - self.learning_rate) * q_value) + (self.learning_rate * (reward + (self.discount_factor * next_state_qvalue)))
+                new_q_value = self.learning_rate * (reward + (self.discount_factor * next_state_qvalue))
+                
+                if action == advice_action:
+                    q = self.ad_coef* advice_qvalue + ((1-self.ad_coef)/2 * (q_value + new_q_value))
+                q = ((1.0 - self.learning_rate) * q_value) + (self.learning_rate * new_q_value)
                 
                 bellman_error += abs(q_value - (reward + (self.discount_factor * next_state_qvalue)))
                 
@@ -206,18 +252,25 @@ class GBQL(Trainer):
         return train_batch, avg_steps, avg_rewards , avg_bellman_error
     
 
-    def get_action(self, state, q_function=None, env=None, best_train=False, best_test=False, print_test=None):
+    def get_action(self, state, q_function=None, env=None, best_train=False, best_test=False, print_test=None, use_advice=False):
         if env is None:
             env = self.env        #env
         # possible_actions = self.env.all_actions()   #based on getout  g
         possible_actions = list(env.pred2action.values()) #{'noop': 0, 'fire': 1, 'up': 2, 'right': 3, 'left': 4, 'down': 5}
-        possible_actions = possible_actions # not use fire or noop for now
+        advice_adjusted_q = prefered_action = None
+        
         if q_function is None:    # at first q_function is none
+            q_values = [0.0] * len(possible_actions)  #initial q_values are all zero
+            if use_advice:
+                advice_adjusted_q, prefered_action = apply_advice_to_q_values(q_values, state, handler)
             action = random.choice(possible_actions)    #this is where we should use Imitation learning for the initial q_function
-            return action, 0.0
+            return action, 0.0, prefered_action, advice_adjusted_q
         
         idx, q_values, best_action = self.predict(env, q_function, state, self.additional_facts, print_test)
         
+        if use_advice:
+            advice_adjusted_q, prefered_action = apply_advice_to_q_values(q_values, state, handler)
+
         #we still need randomeness in the action selection due to the noise in the environment
         if best_test and not best_train:
             rand = random.Random().random()
@@ -228,11 +281,13 @@ class GBQL(Trainer):
         if not best_train and not best_test:
             idx = self.exploration_strategy.get_action_idx(idx, len(possible_actions))
             # print(f"Exploration strategy selected action index: {idx}")
-        return possible_actions[idx], q_values[idx]
+        return possible_actions[idx], q_values[idx], prefered_action, advice_adjusted_q
 
     def train(self):
         """Fitted Q Learning"""
         current_q = None
+        # current_q = RDNRegressor()
+        # current_q.from_json(f"FinalRuns/gbql-stack_2025_05_29_17_58_27_0000--s-0/itr_9.json")
         
         writer_base_dir = f"{logger.get_snapshot_dir()}/tensorboard"
         os.makedirs(writer_base_dir, exist_ok=True)
@@ -265,7 +320,7 @@ class GBQL(Trainer):
             # current_q.from_json(f"out/gbql-stack/gbql-stack_2025_05_20_11_40_45_0000--s-0/itr_{i}.json")
             # updated_q = current_q   #remove this after test
             
-            if i >= 0:  # I dont do evaluation for Kangaroo
+            if i < 0:  # I dont do evaluation for Kangaroo
                 logger.log(f"Iteration {i} evaluating")
                 paths = self.evaluate(self.n_eval_traj, updated_q)
                 gt.stamp("bsrl evaluation", unique=False)
@@ -340,7 +395,7 @@ class GBQL(Trainer):
             state_test_id = 0
             while not done:
                 # print(f"Current state: {state_test_id}{current_test_state}")
-                action, _ = self.get_action(current_test_state, q_function, env=self.test_env, best_test=True, print_test=False) 
+                action, _, _, _ = self.get_action(current_test_state, q_function, env=self.test_env, best_test=True, print_test=False) 
                 action_key = get_key_from_value(self.env.pred2action, action)
                 action_key = "{ACTION}".format(ACTION=action_key)
                 
@@ -426,13 +481,13 @@ class RRT(GBQL):
 
     def __init__(self, n_iter=1, batch_size=10, train_env=None, bk=None, agent=None, max_trajectory_length=50,
                  replay_sampling_rate=0.10, test_env=None, max_buffer_size=1000, target_predicate="q_value",
-                 learning_rate=0.9, discount_factor=0.99, n_evaluation_trajectories=10,
+                 learning_rate=0.9, ad_coef=0.9, discount_factor=0.99, n_evaluation_trajectories=10,
                  n_burn_in_traj=0, additional_facts=None, goal_q_value=100, exploration_strategy=EpsilonGreedy(), device=None,
                  learning_rate_strategy=None, buffer=ReplayBuffer, test_gap=10):
         super().__init__(n_iter=n_iter, n_trees=1, batch_size=batch_size, train_env=train_env, bk=bk,
                          max_trajectory_length=max_trajectory_length, replay_sampling_rate=replay_sampling_rate,
                          test_env=test_env, agent=agent, max_buffer_size=max_buffer_size, target_predicate=target_predicate,
-                         learning_rate=learning_rate, discount_factor=discount_factor,
+                         learning_rate=learning_rate, ad_coef=ad_coef, discount_factor=discount_factor,
                          n_evaluation_trajectories=n_evaluation_trajectories, n_burn_in_traj=n_burn_in_traj,
                          additional_facts=additional_facts, goal_q_value=goal_q_value,
                          exploration_strategy=exploration_strategy, device = device, learning_rate_strategy=learning_rate_strategy,

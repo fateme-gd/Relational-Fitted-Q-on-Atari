@@ -1,0 +1,7 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(noop(A, B, 4.85722573273506E-17) :-  /* #pos=40 */ leftOfLadder(A, _, B), !).
+(noop(_, _, 0) :-  /* #pos=4 */ !).

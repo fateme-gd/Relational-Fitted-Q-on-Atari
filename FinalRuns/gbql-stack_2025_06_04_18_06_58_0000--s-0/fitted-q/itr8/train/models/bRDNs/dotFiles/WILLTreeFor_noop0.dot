@@ -1,0 +1,7 @@
+digraph G{ 
+1[label = "[closeByMonkey(A, C, B)]"];
+1 -> 2[label="True"];
+1 -> 3[label="False"];
+2[shape = box,label = "-2.229(0.097)"];
+3[shape = box,label = "-0.125(0.469)"];
+}

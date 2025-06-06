@@ -1,0 +1,1 @@
+having a optimum initial policy, it still cannot get what to do with monkey. Since most of its samples are when it was left of the monkey, the best strategy it could get was to do the left if it is close to monkey, which results in escaping from it.

@@ -1,0 +1,174 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 6.23e-08
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 1,833
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 6:31:04 6/5/25.  [Using 24,530,272 memory cells.]  %%%%%
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.162, 1,833.000 (wgt'ed) examples reached here.  /* #pos=1,833 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,833 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #2 @ 6:31:08 6/5/25.  [Using 24,819,048 memory cells.]  %%%%%
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.162, 1,833.000 (wgt'ed) examples reached here.  /* #pos=1,833 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,833 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #3 @ 6:31:13 6/5/25.  [Using 24,820,288 memory cells.]  %%%%%
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.162, 1,833.000 (wgt'ed) examples reached here.  /* #pos=1,833 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,833 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #4 @ 6:31:18 6/5/25.  [Using 24,821,592 memory cells.]  %%%%%
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.162, 1,833.000 (wgt'ed) examples reached here.  /* #pos=1,833 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,833 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #5 @ 6:31:22 6/5/25.  [Using 24,822,824 memory cells.]  %%%%%
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.162, 1,833.000 (wgt'ed) examples reached here.  /* #pos=1,833 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=1,833 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for right.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+right(P, Q, Total) :- // A general accessor. 
+   right(P, Q, 1000000, Total), !.
+right(P, Q, Total) :- waitHere("This should not fail", right(P, Q, Total)).
+
+right(P, Q, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_right_tree1(P, Q, TreesToUse, Total1),
+   getScore_right_tree2(P, Q, TreesToUse, Total2),
+   getScore_right_tree3(P, Q, TreesToUse, Total3),
+   getScore_right_tree4(P, Q, TreesToUse, Total4),
+   getScore_right_tree5(P, Q, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+right(P, Q, TreesToUse, Total) :- waitHere("This should not fail", right(P, Q, TreesToUse, Total)).
+
+getScore_right_tree1(P, Q, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_right_tree1(P, Q, TreesToUse, Total1) :- right_tree1(P, Q, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_right_tree2(P, Q, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_right_tree2(P, Q, TreesToUse, Total2) :- right_tree2(P, Q, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_right_tree3(P, Q, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_right_tree3(P, Q, TreesToUse, Total3) :- right_tree3(P, Q, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_right_tree4(P, Q, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_right_tree4(P, Q, TreesToUse, Total4) :- right_tree4(P, Q, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_right_tree5(P, Q, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_right_tree5(P, Q, TreesToUse, Total5) :- right_tree5(P, Q, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(0, []).
+
+%%%%%  WILL-Produced Tree Combined @ 6:31:23 6/5/25.  [Using 24,634,176 memory cells.]  %%%%%
+
+% FOR right(A, B):
+%   return 0;  // std dev = 1.005, 9,090.000 (wgt'ed) examples reached here.  /* #pos=9,090 */
+
+
+% Clauses:
+
+right(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_right(underscore, underscore, 0) :-  /* #pos=9,090 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:

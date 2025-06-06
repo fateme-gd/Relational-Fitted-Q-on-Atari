@@ -1,0 +1,6 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+right(_, _, 0) /* #pos=4,624 */ .

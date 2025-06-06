@@ -2,3 +2,4 @@ onLadder:2:oplayer,oladder
 rightOfLadder:2:oplayer,oladder
 leftOfLadder:2:oplayer,oladder
 sameLevelChild:2:oplayer,ochild
+closeByMonkey:2:oplayer,omonkey

@@ -1,0 +1,2 @@
+closeByMonkey(obj1,obj4,ss1).
+leftOfLadder(obj1,obj15,ss1).

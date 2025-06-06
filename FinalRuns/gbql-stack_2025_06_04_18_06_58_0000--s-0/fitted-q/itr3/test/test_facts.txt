@@ -1,0 +1,1 @@
+closeByMonkey(obj1,obj3,ss1).

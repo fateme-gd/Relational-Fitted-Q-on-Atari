@@ -1,0 +1,186 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 0.003
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 988
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 19:01:23 6/4/25.  [Using 9,933,272 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -2.4809139072847777;  // std dev = 20.568, 151.000 (wgt'ed) examples reached here.  /* #pos=151 */
+%   else return -0.09799999999999925;  // std dev = 5.14e-07, 837.000 (wgt'ed) examples reached here.  /* #pos=837 */
+
+
+% Clauses:
+
+noop(A, B, -2.4809139072847777) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+noop(A, B, -0.09799999999999925) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(a, b, -2.4809139072847777) :-  /* #pos=151 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_noop(underscore, underscore, -0.09799999999999925) :-  /* #pos=837 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #2 @ 19:01:24 6/4/25.  [Using 10,102,400 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 8.041, 988.000 (wgt'ed) examples reached here.  /* #pos=988 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=988 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #3 @ 19:01:25 6/4/25.  [Using 10,262,272 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 8.041, 988.000 (wgt'ed) examples reached here.  /* #pos=988 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=988 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #4 @ 19:01:26 6/4/25.  [Using 10,270,688 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 8.041, 988.000 (wgt'ed) examples reached here.  /* #pos=988 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=988 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+%%%%%  WILL-Produced Tree #5 @ 19:01:27 6/4/25.  [Using 10,273,712 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 8.041, 988.000 (wgt'ed) examples reached here.  /* #pos=988 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=988 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for noop.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+noop(R, T, Total) :- // A general accessor. 
+   noop(R, T, 1000000, Total), !.
+noop(R, T, Total) :- waitHere("This should not fail", noop(R, T, Total)).
+
+noop(R, T, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_noop_tree1(R, T, TreesToUse, Total1),
+   getScore_noop_tree2(R, T, TreesToUse, Total2),
+   getScore_noop_tree3(R, T, TreesToUse, Total3),
+   getScore_noop_tree4(R, T, TreesToUse, Total4),
+   getScore_noop_tree5(R, T, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+noop(R, T, TreesToUse, Total) :- waitHere("This should not fail", noop(R, T, TreesToUse, Total)).
+
+getScore_noop_tree1(R, T, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_noop_tree1(R, T, TreesToUse, Total1) :- noop_tree1(R, T, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_noop_tree2(R, T, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_noop_tree2(R, T, TreesToUse, Total2) :- noop_tree2(R, T, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_noop_tree3(R, T, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_noop_tree3(R, T, TreesToUse, Total3) :- noop_tree3(R, T, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_noop_tree4(R, T, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_noop_tree4(R, T, TreesToUse, Total4) :- noop_tree4(R, T, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_noop_tree5(R, T, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_noop_tree5(R, T, TreesToUse, Total5) :- noop_tree5(R, T, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(noop, 1, [
+   closeByMonkey(a, underscore, b)]).
+
+%%%%%  WILL-Produced Tree Combined @ 19:01:30 6/4/25.  [Using 10,138,144 memory cells.]  %%%%%
+
+% FOR noop(A, B):
+%   return 0;  // std dev = 40.213, 4,940.000 (wgt'ed) examples reached here.  /* #pos=4,940 */
+
+
+% Clauses:
+
+noop(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_noop(underscore, underscore, 0) :-  /* #pos=4,940 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:

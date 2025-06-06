@@ -1,0 +1,6 @@
+regressionExample(noop(obj1,ss1),0.000).
+regressionExample(fire(obj1,ss1),0.000).
+regressionExample(up(obj1,ss1),0.000).
+regressionExample(right(obj1,ss1),0.000).
+regressionExample(left(obj1,ss1),0.000).
+regressionExample(down(obj1,ss1),0.000).

@@ -1,0 +1,8 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(left(A, B, -0.3892617030762029) :-  /* #pos=6,729 */ leftOfLadder(A, _, B), closeByMonkey(A, _, B)).
+(left(A, B, -0.38811165845648954) :-  /* #pos=609 */ leftOfLadder(A, _, B)).
+left(_, _, -0.060999999999999985) /* #pos=11 */ .

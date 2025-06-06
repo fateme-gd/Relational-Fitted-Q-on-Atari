@@ -1,0 +1,7 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(up(A, B, -0.272) :-  /* #pos=8 */ closeByMonkey(A, _, B)).
+up(_, _, -0.05099999999999998) /* #pos=36 */ .

@@ -1,0 +1,7 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(noop(A, B, -2.2289999999999996) :-  /* #pos=3 */ closeByMonkey(A, _, B)).
+noop(_, _, -0.12470967741935485) /* #pos=31 */ .

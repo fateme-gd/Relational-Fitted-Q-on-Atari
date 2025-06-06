@@ -192,7 +192,7 @@ def main():
         
         'bk_kwargs': {'max_tree_depth': 2,
                     'node_size': 2,
-                    'ok_if_unknown':  ['onLadder/3', 'rightOfLadder/3', 'leftOfLadder/3','sameLevelChild/3'],
+                    'ok_if_unknown':  ['onLadder/3', 'rightOfLadder/3', 'leftOfLadder/3','sameLevelChild/3', 'closeByMonkey/3',],
                     },
         'trainer_kwargs': {'n_iter': 10,
                         # 'max_buffer_size': 500,
@@ -216,6 +216,7 @@ def main():
                 "rightOfLadder(+player,-ladder,+state).",
                 "leftOfLadder(+player,-ladder,+state).",
                 "sameLevelChild(+player,-child,+state).",
+                "closeByMonkey(+player,-monkey,+state).",
                 
                 "up(+player,+state).",
                 "down(+player,+state).",

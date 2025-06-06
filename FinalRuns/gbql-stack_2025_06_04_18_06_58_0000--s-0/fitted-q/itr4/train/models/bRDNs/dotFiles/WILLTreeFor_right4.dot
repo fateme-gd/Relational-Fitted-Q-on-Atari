@@ -1,0 +1,7 @@
+digraph G{ 
+1[label = "[closeByMonkey(A, C, B), leftOfLadder(A, D, B)]"];
+1 -> 2[label="True"];
+1 -> 3[label="False"];
+2[shape = box,label = "0.890(0.709)"];
+3[shape = box,label = "-0.182(0.455)"];
+}

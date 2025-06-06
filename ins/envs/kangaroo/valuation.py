@@ -129,6 +129,10 @@ def same_level_ladder_(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     return bool_to_probs(is_same_level)
 
 def _same_level(obj1: th.Tensor, obj2: th.Tensor) -> th.Tensor:
+
+    obj1_y = obj1[..., 2]
+    obj2_y = obj2[..., 2]
+    return bool_to_probs(abs(obj1_y - obj2_y) < 18)
     obj1_y = obj1[..., 2] 
     obj2_y = obj2[..., 2]
     
@@ -138,6 +142,7 @@ def _same_level(obj1: th.Tensor, obj2: th.Tensor) -> th.Tensor:
     
     is_same_level = th.logical_or(is_3rd_level, th.logical_or(is_2nd_level, is_1st_level))
     return bool_to_probs(is_same_level)
+
 
 def close_by_fruit(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     return _close_by(player, obj) * _same_level(player, obj)
@@ -151,7 +156,13 @@ def close_by_throwncoconut(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
 def close_by_fallingcoconut(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
     return _close_by(player, obj)
 
-def close_by_monkey(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
+def closeByMonkey(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
+    """True iff the player is 'left of' the object."""
+    player_x = player[..., 1]
+    obj_x = obj[..., 1]
+    obj_prob = obj[:, 0]
+    return bool_to_probs(abs(obj_x - player_x) < 12)  * _same_level(player, obj) * obj_prob 
+
     return _close_by(player, obj)
 
 def close_by_coconut(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
@@ -159,7 +170,7 @@ def close_by_coconut(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
 
 
 def _close_by(player: th.Tensor, obj: th.Tensor) -> th.Tensor:
-    th = 32
+    th = 1
     player_x = player[:, 1]
     player_y = player[:, 2]
     obj_x = obj[:, 1]

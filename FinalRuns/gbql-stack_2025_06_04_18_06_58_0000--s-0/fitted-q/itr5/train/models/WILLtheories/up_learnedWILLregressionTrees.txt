@@ -1,0 +1,219 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 6.23e-08
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 1,799
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 6:30:30 6/5/25.  [Using 24,587,320 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -0.26813043478260784;  // std dev = 0.002, 161.000 (wgt'ed) examples reached here.  /* #pos=161 */
+%   else return -0.057003663003664225;  // std dev = 0.006, 1,638.000 (wgt'ed) examples reached here.  /* #pos=1,638 */
+
+
+% Clauses:
+
+up(A, B, -0.26813043478260784) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, -0.057003663003664225) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, -0.26813043478260784) :-  /* #pos=161 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, -0.057003663003664225) :-  /* #pos=1,638 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #2 @ 6:30:38 6/5/25.  [Using 24,871,416 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return -8.712837214993076E-16;  // std dev = 0.002, 161.000 (wgt'ed) examples reached here.  /* #pos=161 */
+%   else return 1.2190128502333626E-15;  // std dev = 0.006, 1,638.000 (wgt'ed) examples reached here.  /* #pos=1,638 */
+
+
+% Clauses:
+
+up(A, B, -8.712837214993076E-16) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, 1.2190128502333626E-15) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, -8.712837214993076E-16) :-  /* #pos=161 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, 1.2190128502333626E-15) :-  /* #pos=1,638 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #3 @ 6:30:46 6/5/25.  [Using 24,874,040 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return 1.68946982008176E-17;  // std dev = 0.002, 161.000 (wgt'ed) examples reached here.  /* #pos=161 */
+%   else return -2.2324768543095907E-18;  // std dev = 0.006, 1,638.000 (wgt'ed) examples reached here.  /* #pos=1,638 */
+
+
+% Clauses:
+
+up(A, B, 1.68946982008176E-17) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, -2.2324768543095907E-18) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 1.68946982008176E-17) :-  /* #pos=161 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, -2.2324768543095907E-18) :-  /* #pos=1,638 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #4 @ 6:30:54 6/5/25.  [Using 24,876,040 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( closeByMonkey(A, C, B) )
+%   then return 1.68946982008176E-17;  // std dev = 0.002, 161.000 (wgt'ed) examples reached here.  /* #pos=161 */
+%   else return -2.2324768543095907E-18;  // std dev = 0.006, 1,638.000 (wgt'ed) examples reached here.  /* #pos=1,638 */
+
+
+% Clauses:
+
+up(A, B, 1.68946982008176E-17) :- 
+     closeByMonkey(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, -2.2324768543095907E-18) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 1.68946982008176E-17) :-  /* #pos=161 */ 
+   closeByMonkey(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, -2.2324768543095907E-18) :-  /* #pos=1,638 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   closeByMonkey(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #5 @ 6:30:59 6/5/25.  [Using 24,805,184 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   return 0;  // std dev = 0.000705, 1,799.000 (wgt'ed) examples reached here.  /* #pos=1,799 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=1,799 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for up.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+up(R, T, Total) :- // A general accessor. 
+   up(R, T, 1000000, Total), !.
+up(R, T, Total) :- waitHere("This should not fail", up(R, T, Total)).
+
+up(R, T, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_up_tree1(R, T, TreesToUse, Total1),
+   getScore_up_tree2(R, T, TreesToUse, Total2),
+   getScore_up_tree3(R, T, TreesToUse, Total3),
+   getScore_up_tree4(R, T, TreesToUse, Total4),
+   getScore_up_tree5(R, T, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+up(R, T, TreesToUse, Total) :- waitHere("This should not fail", up(R, T, TreesToUse, Total)).
+
+getScore_up_tree1(R, T, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_up_tree1(R, T, TreesToUse, Total1) :- up_tree1(R, T, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_up_tree2(R, T, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_up_tree2(R, T, TreesToUse, Total2) :- up_tree2(R, T, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_up_tree3(R, T, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_up_tree3(R, T, TreesToUse, Total3) :- up_tree3(R, T, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_up_tree4(R, T, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_up_tree4(R, T, TreesToUse, Total4) :- up_tree4(R, T, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_up_tree5(R, T, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_up_tree5(R, T, TreesToUse, Total5) :- up_tree5(R, T, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(up, 1, [
+   closeByMonkey(a, underscore, b)]).
+
+%%%%%  WILL-Produced Tree Combined @ 6:30:59 6/5/25.  [Using 24,621,672 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   return 0;  // std dev = 1.005, 9,090.000 (wgt'ed) examples reached here.  /* #pos=9,090 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=9,090 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:
