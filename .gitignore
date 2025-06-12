@@ -19,3 +19,6 @@ out/*
 *.png
 trajectory_log.json
 
+HackAtari/
+OC_Atari/
+
