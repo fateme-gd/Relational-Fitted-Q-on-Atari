@@ -231,7 +231,7 @@ def main():
     all_iters_test_avg_reward = []
     all_iters_test_avg_length = []
 
-    log_dir = create_parent_folder_log("Advice-Simple-AllActions")
+    log_dir = create_parent_folder_log("FullAdvice-SimpleEnv-AllActions-RewardShaping")
     for i in range(n_iter):
         variant['experiment_no'] = i
         setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_directory=log_dir, exp_id=i)

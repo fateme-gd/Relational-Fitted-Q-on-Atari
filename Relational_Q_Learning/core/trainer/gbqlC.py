@@ -22,9 +22,8 @@ from typing import List
 ACTION_LIST = ["noop", "fire", "up", "right", "left", "down"]
 advice = [
 # AdviceRule(["closeByMonkey(P, M)"], preferred_action=1),
-# AdviceRule(["rightOfLadder(P, L)"], preferred_action=4,),
-# AdviceRule(["leftOfLadder(P, L)"], preferred_action=3),
-# AdviceRule(["rightOfLadder(P, L)"], preferred_action=4),
+AdviceRule(["leftOfLadder(P, L)"], preferred_action=3),
+AdviceRule(["rightOfLadder(P, L)"], preferred_action=4),
 AdviceRule(["onLadder(P, L)"], preferred_action=2),
   ]     
 
@@ -281,14 +280,13 @@ class GBQL(Trainer):
 
         if q_function is None:
             q_values = [0.0] * len(possible_actions)
+            action = random.choice(possible_actions)  # Use imitation learning here if available
             if use_advice:
                 advice_adjusted_q, prefered_action = apply_advice_to_q_values(q_values, state, handler)
-                epsilon = 1 - self.ad_coef
-                if rng.random() <= epsilon:
-                    idx = rng.randrange(len(possible_actions))
-                else:
-                    idx = prefered_action
-            action = random.choice(possible_actions)  # Use imitation learning here if available
+                if prefered_action is not None:
+                    epsilon = 1 - self.ad_coef
+                    if rng.random() > epsilon:
+                        action = prefered_action
             return action, 0.0, prefered_action, advice_adjusted_q
 
         idx, q_values, best_action = self.predict(env, q_function, state, self.additional_facts, print_test)
@@ -411,7 +409,6 @@ class GBQL(Trainer):
         done = False
         current_test_state = []
         goal_reached = True
-        solved = False
 
         # TODO: Evaluation takes maximum time, this could be improved with parallel environments
         for i in range(eval_batch_size):
@@ -449,7 +446,11 @@ class GBQL(Trainer):
 
                 if goal_reached:
                     path['is_success'] = True
-                    solved = True
+                    done = True
+
+                if done or goal_reached:
+                    print(f"st: {state_test_id}, C_s:{current_test_state}, N_s:{next_symbolic}, a:{action}, r:{reward} , done:{done}, goal_reached:{goal_reached}")
+                    
             
                 r = reward
                 r = torch.tensor(reward).to(self.device).view(-1)
@@ -460,19 +461,16 @@ class GBQL(Trainer):
                     r -= 1
 
                 total_reward += r
-                
                 traj_len += 1
 
-                if solved or traj_len >= self.max_traj_len:
+                if done or traj_len >= self.max_traj_len:
                     path['states'].append(next_symbolic)
-                    path['is_success'] = solved
                     path['episode_length'] = traj_len
                     path['episode_reward'] = total_reward
-
-                    done = True
                 else:
                     current_test_state = next_symbolic
                     state_test_id += 1
+
             paths.append(path)
             print(path)
         return paths

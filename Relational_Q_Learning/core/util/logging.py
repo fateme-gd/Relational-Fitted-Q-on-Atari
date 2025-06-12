@@ -202,11 +202,6 @@ class Logger(object):
             file.write(f"episode_length: {element['episode_length']}\n")
             file.write(f"percent_solved: {element['percent_solved']}\n")
             file.write(f"episode_reward: {element['episode_reward']}\n")
-            for (s,a) in zip(element['states'],element['actions']):
-                file.write(str(s))
-                file.write(" -- ")
-                file.write(a)
-                file.write("\n")
             file.write("End \n")
         file.close()
         return file_name
