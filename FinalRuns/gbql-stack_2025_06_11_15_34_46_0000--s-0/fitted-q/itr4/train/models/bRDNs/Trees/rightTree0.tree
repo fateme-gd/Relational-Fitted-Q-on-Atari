@@ -1,0 +1,8 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(right(A, B, 0.5870559440559445) :-  /* #pos=286 */ leftOfLadder(A, _, B)).
+(right(A, B, 14.46412121212122) :-  /* #pos=33 */ onLadder(A, _, B)).
+right(_, _, -0.04000000000000001) /* #pos=25 */ .

@@ -1,0 +1,7 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(fire(A, B, 1.0765799026668185E-16) :-  /* #pos=33 */ onLadder(A, _, B), !).
+(fire(_, _, 0) :-  /* #pos=249 */ !).

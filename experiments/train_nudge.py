@@ -21,12 +21,14 @@ relational_q_learning_path = os.path.join(visual_fitted_q_path, 'Relational_Q_Le
 # added
 from blendrl.env_vectorized import VectorizedNudgeBaseEnv
 import os
+import os.path as osp
 import sys
 import time
 from pathlib import Path
 
 import random
 import numpy as np
+import pandas as pd
 from rtpt import RTPT
 
 from blendrl.nsfr.nsfr.common import get_nsfr_model
@@ -34,7 +36,7 @@ from blendrl.nsfr.nsfr.common import get_nsfr_model
 ############  Fitted Q Imports ######
 from Relational_Q_Learning.core.trainer import RRT, GBQL
 from Relational_Q_Learning.core.exploration_strategy import EpsilonGreedyWithExponentialDecay
-from Relational_Q_Learning.core.util.launcher_util import setup_logger
+from Relational_Q_Learning.core.util.launcher_util import create_exp_name, create_parent_folder_log, setup_logger
 import gtimer as gt
 from Relational_Q_Learning.srlearn import Background
 ######################################
@@ -50,7 +52,7 @@ torch.set_num_threads(5)
 class Args:
     exp_name: str = os.path.basename(__file__)[: -len(".py")]
     """the name of this experiment"""
-    seed: int = 0
+    seed: int = 42
     """seed of the experiment"""
     torch_deterministic: bool = True
     """if toggled, `torch.backends.cudnn.deterministic=False`"""
@@ -58,12 +60,6 @@ class Args:
     """if toggled, cuda will be enabled by default"""
     track: bool = False
     """if toggled, this experiment will be tracked with Weights and Biases"""
-    wandb_project_name: str = "blendeRL"
-    """the wandb's project name"""
-    wandb_entity: str = None
-    """the entity (team) of wandb's project"""
-    capture_video: bool = False
-    """whether to capture videos of the agent performances (check out `videos` folder)"""
 
     # Algorithm specific arguments
     env_id: str = "Seaquest-v4"
@@ -150,16 +146,6 @@ def main():
     model_description = "{}_blender_{}".format(args.blend_function, args.blender_mode)
     learning_description = f"lr_{args.learning_rate}_llr_{args.logic_learning_rate}_blr_{args.blender_learning_rate}_gamma_{args.gamma}_bentcoef_{args.blend_ent_coef}_numenvs_{args.num_envs}_steps_{args.num_steps}_"
     run_name = f"{args.env_name}_{model_description}_{learning_description}_{args.seed}"
-    if args.track:
-        wandb.init(
-            project=args.wandb_project_name + "_" + args.env_name,
-            entity=args.wandb_entity,
-            sync_tensorboard=True,
-            config=vars(args),
-            name = run_name,
-            monitor_gym=True,
-            save_code=True,
-        )
 
     # for logging and model saving
     experiment_dir = OUT_PATH / "runs" / run_name # / now.strftime("%y-%m-%d-%H-%M")
@@ -198,7 +184,11 @@ def main():
                         # 'max_buffer_size': 500,
                         # 'target_predicate': 'move', 
                         'learning_rate':0.9,
-                        'test_gap':10 },
+                        'test_gap':10,
+                        'max_trajectory_length': 4000,
+                        'batch_size': 10,
+                        'n_evaluation_trajectories': 10,
+                        'use_advice': True,},
         'exploration_strategy': EpsilonGreedyWithExponentialDecay,
         'modes':
                 [
@@ -227,15 +217,29 @@ def main():
                 }
 
 
-    n_iter = 1
+    n_iter = 5
+
+    all_iters_steps = []
+    all_iters_rewards = []
+    all_iters_bellman_errors = []
+    all_iters_test_rewards = []
+    all_iters_test_lengths = []
+
+    all_iters_avg_step = []
+    all_iters_avg_reward = []
+    all_iters_avg_bellman_error = []
+    all_iters_test_avg_reward = []
+    all_iters_test_avg_length = []
+
+    log_dir = create_parent_folder_log("Advice-Simple-AllActions")
     for i in range(n_iter):
         variant['experiment_no'] = i
-        setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_id=i)
-        
+        setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_directory=log_dir, exp_id=i)
         train_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed)#$, **env_kwargs)
         agent = get_nsfr_model(train_env.name, args.rules, device=device, train=True, explain=False)
         # agent = BlenderActorCritic(train_env, args.rules, args.actor_mode, args.blender_mode, args.blend_function, args.reasoner, device)
         bk = Background(modes=variant['modes'], **variant['bk_kwargs'])
+        
         modifs = [("disable_coconut"),
                   ("disable_monkeys"),
                   ("disable_thrown_coconut"),
@@ -247,9 +251,35 @@ def main():
         RRT_Trainer = GBQL(train_env=train_env, bk=bk, test_env=test_env, agent=agent, exploration_strategy=variant['exploration_strategy'](), device = device, 
                         **variant['trainer_kwargs'])
         
-        fitted_q = RRT_Trainer.train()
+        fitted_q, experiment_avg_bellman_error, experiment_avg_reward, experiment_avg_step, \
+               experiment_test_avg_reward, experiment_test_avg_length  = RRT_Trainer.train()
+        
+        all_iters_steps.append(experiment_avg_step)
+        all_iters_rewards.append(experiment_avg_reward)
+        all_iters_bellman_errors.append(experiment_avg_bellman_error)
+        all_iters_test_rewards.append(experiment_test_avg_reward)
+        all_iters_test_lengths.append(experiment_test_avg_length)
+
         gt.reset_root()
 
+    for i in range(n_iter):
+        all_iters_avg_step.append(np.mean([run[i] for run in all_iters_steps]))
+        all_iters_avg_reward.append(np.mean([run[i] for run in all_iters_rewards]))
+        all_iters_avg_bellman_error.append(np.mean([run[i] for run in all_iters_bellman_errors]))
+        all_iters_test_avg_reward.append(np.mean([run[i] for run in all_iters_test_rewards]))
+        all_iters_test_avg_length.append(np.mean([run[i] for run in all_iters_test_lengths]))
+
+
+    results = {
+        "avg_step": all_iters_avg_step,
+        "avg_reward": all_iters_avg_reward,
+        "avg_bellman_error": all_iters_avg_bellman_error,
+        "test_avg_reward": all_iters_test_avg_reward,
+        "test_avg_length": all_iters_test_avg_length,
+    }
+    df = pd.DataFrame(results)
+    csv_path = os.path.join(log_dir, "testResults.csv")
+    df.to_csv(csv_path, index=True)
     ################################################################################################################
      
    

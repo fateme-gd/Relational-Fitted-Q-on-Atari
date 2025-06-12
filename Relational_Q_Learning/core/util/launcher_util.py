@@ -50,7 +50,8 @@ def setup_logger(
         log_dir=None,
         git_infos=None,
         script_name=None,
-        **create_log_dir_kwargs
+        exp_directory = None,
+        exp_id=0
 ):
     """
     Set up logger to have some reasonable default settings.
@@ -76,13 +77,14 @@ def setup_logger(
     :param script_name: If set, save the script name to this.
     :return:
     """
+
     logger.reset()
     if git_infos is None:
         git_infos = get_git_infos(CODE_DIRS_TO_MOUNT)
     
     first_time = log_dir is None
     if first_time:
-        log_dir = create_log_dir(exp_prefix, **create_log_dir_kwargs)
+        log_dir = create_log_dir(exp_prefix=exp_prefix, exp_directory=exp_directory, exp_id=exp_id)
 
     if variant is not None:
         logger.log("Variant:")
@@ -108,26 +110,6 @@ def setup_logger(
     exp_name = log_dir.split("/")[-1]
     logger.push_prefix("[%s] " % exp_name)
 
-    # if git_infos is not None:
-    #     for (
-    #         directory, code_diff, code_diff_staged, commit_hash, branch_name
-    #     ) in git_infos:
-    #         if directory[-1] == '/':
-    #             directory = directory[:-1]
-    #         diff_file_name = directory[1:].replace("/", "-") + ".patch"
-    #         diff_staged_file_name = (
-    #             directory[1:].replace("/", "-") + "_staged.patch"
-    #         )
-    #         if code_diff is not None and len(code_diff) > 0:
-    #             with open(osp.join(log_dir, diff_file_name), "w") as f:
-    #                 f.write(code_diff + '\n')
-    #         if code_diff_staged is not None and len(code_diff_staged) > 0:
-    #             with open(osp.join(log_dir, diff_staged_file_name), "w") as f:
-    #                 f.write(code_diff_staged + '\n')
-    #         with open(osp.join(log_dir, "git_infos.txt"), "a") as f:
-    #             f.write("directory: {}\n".format(directory))
-    #             f.write("git hash: {}\n".format(commit_hash))
-    #             f.write("git branch name: {}\n\n".format(branch_name))
     if script_name is not None:
         with open(osp.join(log_dir, "script_name.txt"), "w") as f:
             f.write(script_name)
@@ -167,7 +149,7 @@ def create_log_dir(
         exp_id=0,
         seed=0,
         base_log_dir=None,
-        include_exp_prefix_sub_dir=True,
+        exp_directory=None
 ):
     """
     Creates and returns a unique log directory.
@@ -179,14 +161,15 @@ def create_log_dir(
     :param base_log_dir: The directory where all log should be saved.
     :return:
     """
-    exp_name = create_exp_name(exp_prefix, exp_id=exp_id,
+    exp_name = create_exp_name(exp_prefix.replace("_", "-"), exp_id=exp_id,
                                seed=seed)
+
     if base_log_dir is None:
-        base_log_dir = LOCAL_LOG_DIR
-    if include_exp_prefix_sub_dir:
-        log_dir = osp.join(base_log_dir, exp_prefix.replace("_", "-"), exp_name)
-    else:
-        log_dir = osp.join(base_log_dir, exp_name)
+        if exp_directory is None:
+            base_log_dir = LOCAL_LOG_DIR
+        else:
+            base_log_dir = exp_directory
+    log_dir = osp.join(base_log_dir, exp_name)
     if osp.exists(log_dir):
         print("WARNING: Log directory already exists {}".format(log_dir))
     os.makedirs(log_dir, exist_ok=True)
@@ -232,4 +215,13 @@ def create_exp_name(exp_prefix, exp_id=0, seed=0):
     """
     now = datetime.datetime.now(dateutil.tz.tzlocal())
     timestamp = now.strftime('%Y_%m_%d_%H_%M_%S')
-    return "%s_%s_%04d--s-%d" % (exp_prefix, timestamp, exp_id, seed)
+    return f"{exp_prefix}-{timestamp}--seed{seed}--exp-Id-{exp_id}"
+
+
+def create_parent_folder_log(exp_prefix):
+    # log_name = create_exp_name(exp_prefix)
+    log_dir = osp.join(LOCAL_LOG_DIR, exp_prefix)
+    
+    os.makedirs(log_dir, exist_ok=True)
+
+    return log_dir

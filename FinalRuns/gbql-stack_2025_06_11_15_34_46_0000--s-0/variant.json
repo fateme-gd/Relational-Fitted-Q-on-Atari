@@ -1,0 +1,36 @@
+{
+  "bk_kwargs": {
+    "max_tree_depth": 2,
+    "node_size": 2,
+    "ok_if_unknown": [
+      "onLadder/3",
+      "rightOfLadder/3",
+      "leftOfLadder/3",
+      "sameLevelChild/3",
+      "closeByMonkey/3"
+    ]
+  },
+  "experiment_no": 0,
+  "exploration_strategy": {
+    "$class": "Relational_Q_Learning.core.exploration_strategy.epsilon_greedy.EpsilonGreedyWithExponentialDecay"
+  },
+  "modes": [
+    "onLadder(+player,-ladder,+state).",
+    "rightOfLadder(+player,-ladder,+state).",
+    "leftOfLadder(+player,-ladder,+state).",
+    "sameLevelChild(+player,-child,+state).",
+    "closeByMonkey(+player,-monkey,+state).",
+    "up(+player,+state).",
+    "down(+player,+state).",
+    "left(+player,+state).",
+    "right(+player,+state).",
+    "noop(+player,+state).",
+    "fire(+player,+state)."
+  ],
+  "trainer": "gbql",
+  "trainer_kwargs": {
+    "learning_rate": 0.9,
+    "n_iter": 10,
+    "test_gap": 10
+  }
+}

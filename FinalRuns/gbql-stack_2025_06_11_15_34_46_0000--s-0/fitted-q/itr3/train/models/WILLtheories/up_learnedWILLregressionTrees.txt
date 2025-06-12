@@ -1,0 +1,242 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 2
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 2
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 12
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10,000
+% maxAcceptableNodeScoreToStop        = 6.07e-09
+% negPosRatio                         = 1.000
+% testNegPosRatio                     = -1.000
+% # of pos examples                   = 239
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 16:54:11 6/11/25.  [Using 4,069,408 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 32.4459236641222;  // std dev = 8.854, 131.000 (wgt'ed) examples reached here.  /* #pos=131 */
+%   else if ( rightOfLadder(A, D, B) )
+%   | then return -0.09399999999999999;  // std dev = 1.97e-08, 48.000 (wgt'ed) examples reached here.  /* #pos=48 */
+%   | else return -0.08100000000000004;  // std dev = 0.000, 60.000 (wgt'ed) examples reached here.  /* #pos=60 */
+
+
+% Clauses:
+
+up(A, B, 32.4459236641222) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, -0.09399999999999999) :- 
+     rightOfLadder(A, C, B), 
+     !. // Clause #2.
+
+up(A, B, -0.08100000000000004) :- !. // Clause #3.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 32.4459236641222) :-  /* #pos=131 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(a, b, -0.09399999999999999) :-  /* #pos=48 */ 
+   rightOfLadder(a, underscore, b),
+   !. // Flattened version of clause #2.
+
+flattened_up(underscore, underscore, -0.08100000000000004) :-  /* #pos=60 */ 
+   !. // Flattened version of clause #3.
+
+
+% The unique flattened literals:
+%   rightOfLadder(a, underscore, b)
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #2 @ 16:54:11 6/11/25.  [Using 4,095,688 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return -6.24030089688546E-14;  // std dev = 8.854, 131.000 (wgt'ed) examples reached here.  /* #pos=131 */
+%   else return 1.696174065399545E-17;  // std dev = 2.87e-16, 108.000 (wgt'ed) examples reached here.  /* #pos=108 */
+
+
+% Clauses:
+
+up(A, B, -6.24030089688546E-14) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, 1.696174065399545E-17) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, -6.24030089688546E-14) :-  /* #pos=131 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, 1.696174065399545E-17) :-  /* #pos=108 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #3 @ 16:54:11 6/11/25.  [Using 4,099,416 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 3.3357540648279513E-15;  // std dev = 8.854, 131.000 (wgt'ed) examples reached here.  /* #pos=131 */
+%   else return 3.0839528461809902E-18;  // std dev = 2.87e-16, 108.000 (wgt'ed) examples reached here.  /* #pos=108 */
+
+
+% Clauses:
+
+up(A, B, 3.3357540648279513E-15) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, 3.0839528461809902E-18) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 3.3357540648279513E-15) :-  /* #pos=131 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, 3.0839528461809902E-18) :-  /* #pos=108 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #4 @ 16:54:11 6/11/25.  [Using 4,101,272 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 3.3357540648279513E-15;  // std dev = 8.854, 131.000 (wgt'ed) examples reached here.  /* #pos=131 */
+%   else return 3.0839528461809902E-18;  // std dev = 2.87e-16, 108.000 (wgt'ed) examples reached here.  /* #pos=108 */
+
+
+% Clauses:
+
+up(A, B, 3.3357540648279513E-15) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, 3.0839528461809902E-18) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 3.3357540648279513E-15) :-  /* #pos=131 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, 3.0839528461809902E-18) :-  /* #pos=108 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+%%%%%  WILL-Produced Tree #5 @ 16:54:11 6/11/25.  [Using 4,104,624 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   if ( onLadder(A, C, B) )
+%   then return 3.3357540648279513E-15;  // std dev = 8.854, 131.000 (wgt'ed) examples reached here.  /* #pos=131 */
+%   else return 3.0839528461809902E-18;  // std dev = 2.87e-16, 108.000 (wgt'ed) examples reached here.  /* #pos=108 */
+
+
+% Clauses:
+
+up(A, B, 3.3357540648279513E-15) :- 
+     onLadder(A, C, B), 
+     !. // Clause #1.
+
+up(A, B, 3.0839528461809902E-18) :- !. // Clause #2.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(a, b, 3.3357540648279513E-15) :-  /* #pos=131 */ 
+   onLadder(a, underscore, b),
+   !. // Flattened version of clause #1.
+
+flattened_up(underscore, underscore, 3.0839528461809902E-18) :-  /* #pos=108 */ 
+   !. // Flattened version of clause #2.
+
+
+% The unique flattened literals:
+%   onLadder(a, underscore, b)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for up.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+stepLength_tree2(1.0).
+stepLength_tree3(1.0).
+stepLength_tree4(1.0).
+stepLength_tree5(1.0).
+
+logPrior(0.0).
+up(D, E, Total) :- // A general accessor. 
+   up(D, E, 1000000, Total), !.
+up(D, E, Total) :- waitHere("This should not fail", up(D, E, Total)).
+
+up(D, E, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_up_tree1(D, E, TreesToUse, Total1),
+   getScore_up_tree2(D, E, TreesToUse, Total2),
+   getScore_up_tree3(D, E, TreesToUse, Total3),
+   getScore_up_tree4(D, E, TreesToUse, Total4),
+   getScore_up_tree5(D, E, TreesToUse, Total5),
+   Total is LogPrior + Total1 + Total2 + Total3 + Total4 + Total5,
+   !.
+up(D, E, TreesToUse, Total) :- waitHere("This should not fail", up(D, E, TreesToUse, Total)).
+
+getScore_up_tree1(D, E, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_up_tree1(D, E, TreesToUse, Total1) :- up_tree1(D, E, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+getScore_up_tree2(D, E, TreesToUse, 0.0) :- 2 > TreesToUse, !.
+getScore_up_tree2(D, E, TreesToUse, Total2) :- up_tree2(D, E, Total), stepLength_tree2(StepLen), Total2 is Total * StepLen.
+
+getScore_up_tree3(D, E, TreesToUse, 0.0) :- 3 > TreesToUse, !.
+getScore_up_tree3(D, E, TreesToUse, Total3) :- up_tree3(D, E, Total), stepLength_tree3(StepLen), Total3 is Total * StepLen.
+
+getScore_up_tree4(D, E, TreesToUse, 0.0) :- 4 > TreesToUse, !.
+getScore_up_tree4(D, E, TreesToUse, Total4) :- up_tree4(D, E, Total), stepLength_tree4(StepLen), Total4 is Total * StepLen.
+
+getScore_up_tree5(D, E, TreesToUse, 0.0) :- 5 > TreesToUse, !.
+getScore_up_tree5(D, E, TreesToUse, Total5) :- up_tree5(D, E, Total), stepLength_tree5(StepLen), Total5 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(up, 2, [
+   rightOfLadder(a, underscore, b),
+   onLadder(a, underscore, b)]).
+
+%%%%%  WILL-Produced Tree Combined @ 16:54:11 6/11/25.  [Using 4,071,736 memory cells.]  %%%%%
+
+% FOR up(A, B):
+%   return 0;  // std dev = 5.446, 590.000 (wgt'ed) examples reached here.  /* #pos=590 */
+
+
+% Clauses:
+
+up(A, B, 0) :- !. // Clause #1.
+
+
+% The flattened versions of these clauses:
+
+flattened_up(underscore, underscore, 0) :-  /* #pos=590 */ 
+   !. // Flattened version of clause #1.
+
+
+% The unique flattened literals:

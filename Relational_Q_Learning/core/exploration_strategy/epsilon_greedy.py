@@ -11,8 +11,8 @@ class EpsilonGreedy(ExplorationStrategy):
 
     def get_action_idx(self, best_idx, action_space):
         rand = self.rng.random()
-        # print(f"Random value: {rand}, Epsilon: {self.epsilon}")
-        if rand <= self.epsilon:
+        epsilon = self.epsilon
+        if rand <= epsilon:
             return self.rng.randrange(0, action_space)
         return best_idx
 

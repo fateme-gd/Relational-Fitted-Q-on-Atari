@@ -1,0 +1,242 @@
+args[0] = -reg
+args[1] = -i
+args[2] = -test
+args[4] = -model
+args[6] = -target
+args[8] = -trees
+args[10] = -aucJarPath
+% Running on host: csr-96762
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+
+Resetting the LazyGroundNthArgumentClauseIndex.
+
+% Calling ILPouterLoop from createRegressionOuterLooper.
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_pos.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_neg.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_bk.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_facts.txt]
+%  for N=0: args[N]=out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_pos.txt
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_pos.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_neg.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_bk.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_facts.txt]
+%  for N=1: args[N]=out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_neg.txt
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_pos.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_neg.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_bk.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_facts.txt]
+%  for N=2: args[N]=out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_bk.txt
+
+% getInputArgWithDefaultValue: args=[out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_pos.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_neg.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_bk.txt, out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_facts.txt]
+%  for N=3: args[N]=out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test_facts.txt
+
+% Welcome to the WILL ILP/SRL systems.
+
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+% Reading background theory from dir: null
+
+% Switching to VarIndicator = uppercase.
+
+***** Warning: % Since this is the first setting of the notation for variables, will keep:
+%   variableIndicator = uppercase *****
+
+% [ LazyGroundClauseIndex ]  Building full index for mode/1 with 1 assertions.
+% LoadAllModes() called.  Currently loaded modes: []
+% [ LazyGroundClauseIndex ]  Building full index for sameAs/2 with 2 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for exp/3.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for log/3.
+% LoadAllLibraries() called.  Currently loaded libraries: [listsInLogic, differentInLogic, modes_arithmeticInLogic, inlines_comparisonInLogic, modes_listsInLogic, inlines_differentInLogic, modes_differentInLogic, arithmeticInLogic, inlines_listsInLogic, modes_comparisonInLogic, comparisonInLogic, inlines_arithmeticInLogic]
+
+%  Read the facts.
+%  Have read 1 facts.
+
+%  LearnOneClause initialized.
+
+% The outer looper has been created.
+
+% Initializing the ILP inner looper.
+% Have read 6 examples from 'out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test' [out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/test*].
+
+% NEW target:                 noop(D, E)
+%  targetPred:                noop/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [noop(D, E)]
+%  targetPredicates:          [noop/2, fire/2, up/2, right/2, left/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]]]
+%  variablesInTargets:        [[D, E]]
+
+% NEW target:                 fire(F, G)
+%  targetPred:                fire/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [noop(D, E), fire(F, G)]
+%  targetPredicates:          [noop/2, fire/2, up/2, right/2, left/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]]]
+%  variablesInTargets:        [[D, E], [F, G]]
+
+% NEW target:                 up(H, I)
+%  targetPred:                up/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [noop(D, E), fire(F, G), up(H, I)]
+%  targetPredicates:          [noop/2, fire/2, up/2, right/2, left/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I]]
+
+% NEW target:                 right(J, K)
+%  targetPred:                right/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [noop(D, E), fire(F, G), up(H, I), right(J, K)]
+%  targetPredicates:          [noop/2, fire/2, up/2, right/2, left/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]], [J[+player], K[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I], [J, K]]
+
+% NEW target:                 left(P, Q)
+%  targetPred:                left/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [noop(D, E), fire(F, G), up(H, I), right(J, K), left(P, Q)]
+%  targetPredicates:          [noop/2, fire/2, up/2, right/2, left/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]], [J[+player], K[+state]], [P[+player], Q[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I], [J, K], [P, Q]]
+
+% NEW target:                 down(R, T)
+%  targetPred:                down/2
+%  targetArgTypes:            signature = [const, const], types = [+player, +state]
+%  targets:                   [noop(D, E), fire(F, G), up(H, I), right(J, K), left(P, Q), down(R, T)]
+%  targetPredicates:          [noop/2, fire/2, up/2, right/2, left/2, down/2]
+%  targetArgSpecs:            [[D[+player], E[+state]], [F[+player], G[+state]], [H[+player], I[+state]], [J[+player], K[+state]], [P[+player], Q[+state]], [R[+player], T[+state]]]
+%  variablesInTargets:        [[D, E], [F, G], [H, I], [J, K], [P, Q], [R, T]]
+
+% Started collecting constants
+
+% Collecting the types of constants.
+
+% Looking at the training examples to see if any types of new constants can be inferred.
+% Time to collect constants: 1 milliseconds
+% Time to collect examples: 0 seconds
+
+% Read 6 pos examples and 0 neg examples.
+% Time to init learnOneClause: 7 milliseconds
+% Old dirout/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/
+
+% Have 6 'raw' positive examples and kept 6.
+% Have 0 'raw' negative examples and kept 0.
+% No neg ex for noop
+% No neg ex for left
+% No neg ex for fire
+% No neg ex for up
+% No neg ex for right
+% No neg ex for down
+
+% processing backup's for noop
+%  POS EX = 1
+%  NEG EX = 0
+
+% processing backup's for left
+%  POS EX = 1
+%  NEG EX = 0
+
+% processing backup's for fire
+%  POS EX = 1
+%  NEG EX = 0
+
+% processing backup's for up
+%  POS EX = 1
+%  NEG EX = 0
+
+% processing backup's for right
+%  POS EX = 1
+%  NEG EX = 0
+
+% processing backup's for down
+%  POS EX = 1
+%  NEG EX = 0
+
+% Memory usage by WILLSetup (just counts # targets?):
+%  |backupPosExamples| = 6
+%  |backupNegExamples| = 6
+%  |predicatesAsFacts| = 0
+%  |addedToFactBase|   = 0
+
+% Getting bRDN's target predicates.
+% Did not learn a model for 'noop' this run.
+%   loadModel (#0): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/noopTree0.tree
+%   loadModel (#1): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/noopTree1.tree
+%   loadModel (#2): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/noopTree2.tree
+%   loadModel (#3): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/noopTree3.tree
+%   loadModel (#4): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/noopTree4.tree
+%  Done loading 5 models.
+% Did not learn a model for 'left' this run.
+%   loadModel (#0): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/leftTree0.tree
+%   loadModel (#1): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/leftTree1.tree
+%   loadModel (#2): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/leftTree2.tree
+%   loadModel (#3): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/leftTree3.tree
+%   loadModel (#4): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/leftTree4.tree
+%  Done loading 5 models.
+% Did not learn a model for 'fire' this run.
+%   loadModel (#0): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/fireTree0.tree
+%   loadModel (#1): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/fireTree1.tree
+%   loadModel (#2): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/fireTree2.tree
+%   loadModel (#3): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/fireTree3.tree
+%   loadModel (#4): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/fireTree4.tree
+%  Done loading 5 models.
+% Did not learn a model for 'up' this run.
+%   loadModel (#0): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/upTree0.tree
+%   loadModel (#1): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/upTree1.tree
+%   loadModel (#2): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/upTree2.tree
+%   loadModel (#3): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/upTree3.tree
+%   loadModel (#4): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/upTree4.tree
+%  Done loading 5 models.
+% Did not learn a model for 'right' this run.
+%   loadModel (#0): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/rightTree0.tree
+%   loadModel (#1): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/rightTree1.tree
+%   loadModel (#2): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/rightTree2.tree
+%   loadModel (#3): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/rightTree3.tree
+%   loadModel (#4): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/rightTree4.tree
+%  Done loading 5 models.
+% Did not learn a model for 'down' this run.
+%   loadModel (#0): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/downTree0.tree
+%   loadModel (#1): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/downTree1.tree
+%   loadModel (#2): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/downTree2.tree
+%   loadModel (#3): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/downTree3.tree
+%   loadModel (#4): out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/train/models/bRDNs/Trees/downTree4.tree
+%  Done loading 5 models.
+File: out/gbql-stack/gbql-stack_2025_06_11_15_34_46_0000--s-0/fitted-q/itr7/test/advice.txt doesnt exist.Hence no advice loaded
+
+% for noop |lookupPos| = 1
+% for noop |lookupNeg| = 0
+
+% for left |lookupPos| = 1
+% for left |lookupNeg| = 0
+
+% for fire |lookupPos| = 1
+% for fire |lookupNeg| = 0
+
+% for up |lookupPos| = 1
+% for up |lookupNeg| = 0
+
+% for right |lookupPos| = 1
+% for right |lookupNeg| = 0
+
+% for down |lookupPos| = 1
+% for down |lookupNeg| = 0
+% getJointExamples: |pos| = 6, |neg| = 0
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for onLadder/3.
+noop
+SquaredError = 331.09138334027773
+MeanSquaredError = 331.09138334027773
+left
+SquaredError = 233.34090025000003
+MeanSquaredError = 233.34090025000003
+fire
+SquaredError = 325.044841
+MeanSquaredError = 325.044841
+up
+SquaredError = 1401.6718890740185
+MeanSquaredError = 1401.6718890740185
+right
+SquaredError = 287.14765950464886
+MeanSquaredError = 287.14765950464886
+down
+SquaredError = 94.11788956640626
+MeanSquaredError = 94.11788956640626
+
+% Total inference time (5 trees): 152 milliseconds.

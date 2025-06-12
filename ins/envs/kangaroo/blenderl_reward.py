@@ -43,8 +43,8 @@ def reward_function(self) -> float:
         if player.y > player.prev_y:    # climbing down
             reward = -20
     
-    if player.crashed:
-        reward = -200
+    # if player.crashed:
+    #     reward = -200
                       
 
     return reward
