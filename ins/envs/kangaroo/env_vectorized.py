@@ -65,7 +65,7 @@ class VectorizedNudgeEnv(VectorizedNudgeBaseEnv):
                 modifs= [
                         ("unlimited_time"),
                         ("disable_coconut"),
-                        ("disable_monkeys"),
+                        # ("disable_monkeys"),
                         ("disable_thrown_coconut"),
                         ("change_level_0"),
                                 ],

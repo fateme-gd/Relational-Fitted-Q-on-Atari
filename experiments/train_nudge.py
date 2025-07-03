@@ -217,7 +217,7 @@ def main():
                 }
 
 
-    n_iter = 5
+    n_iter = 3
 
     all_iters_steps = []
     all_iters_rewards = []
@@ -231,8 +231,14 @@ def main():
     all_iters_test_avg_reward = []
     all_iters_test_avg_length = []
 
-    log_dir = create_parent_folder_log("FullAdvice-SimpleEnv-AllActions-RewardShaping")
+    log_dir = create_parent_folder_log("test")
     for i in range(n_iter):
+        all_iters_avg_step = []
+        all_iters_avg_reward = []
+        all_iters_avg_bellman_error = []
+        all_iters_test_avg_reward = []
+        all_iters_test_avg_length = []
+
         variant['experiment_no'] = i
         setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_directory=log_dir, exp_id=i)
         train_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed)#$, **env_kwargs)
@@ -245,6 +251,7 @@ def main():
                   ("disable_thrown_coconut"),
                   ("unlimited_time"),
                   ("change_level_0"),
+
                 ]
         test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed, modifs = modifs)#$, **env_kwargs)
 
@@ -262,24 +269,24 @@ def main():
 
         gt.reset_root()
 
-    for i in range(n_iter):
-        all_iters_avg_step.append(np.mean([run[i] for run in all_iters_steps]))
-        all_iters_avg_reward.append(np.mean([run[i] for run in all_iters_rewards]))
-        all_iters_avg_bellman_error.append(np.mean([run[i] for run in all_iters_bellman_errors]))
-        all_iters_test_avg_reward.append(np.mean([run[i] for run in all_iters_test_rewards]))
-        all_iters_test_avg_length.append(np.mean([run[i] for run in all_iters_test_lengths]))
+        for j in range(variant['trainer_kwargs']['batch_size']):
+            all_iters_avg_step.append(np.mean([run[j] for run in all_iters_steps]))
+            all_iters_avg_reward.append(np.mean([run[j] for run in all_iters_rewards]))
+            all_iters_avg_bellman_error.append(np.mean([run[j] for run in all_iters_bellman_errors]))
+            all_iters_test_avg_reward.append(np.mean([run[j] for run in all_iters_test_rewards]))
+            all_iters_test_avg_length.append(np.mean([run[j] for run in all_iters_test_lengths]))
 
 
-    results = {
-        "avg_step": all_iters_avg_step,
-        "avg_reward": all_iters_avg_reward,
-        "avg_bellman_error": all_iters_avg_bellman_error,
-        "test_avg_reward": all_iters_test_avg_reward,
-        "test_avg_length": all_iters_test_avg_length,
-    }
-    df = pd.DataFrame(results)
-    csv_path = os.path.join(log_dir, "testResults.csv")
-    df.to_csv(csv_path, index=True)
+        results = {
+            "avg_step": all_iters_avg_step,
+            "avg_reward": all_iters_avg_reward,
+            "avg_bellman_error": all_iters_avg_bellman_error,
+            "test_avg_reward": all_iters_test_avg_reward,
+            "test_avg_length": all_iters_test_avg_length,
+        }
+        df = pd.DataFrame(results)
+        csv_path = os.path.join(log_dir, f"testResults_{i}.csv")
+        df.to_csv(csv_path, index=True)
     ################################################################################################################
      
    

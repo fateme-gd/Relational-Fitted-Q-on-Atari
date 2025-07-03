@@ -21,7 +21,7 @@ from typing import List
 
 ACTION_LIST = ["noop", "fire", "up", "right", "left", "down"]
 advice = [
-# AdviceRule(["closeByMonkey(P, M)"], preferred_action=1),
+AdviceRule(["closeByMonkey(P, M)"], preferred_action=1),
 AdviceRule(["leftOfLadder(P, L)"], preferred_action=3),
 AdviceRule(["rightOfLadder(P, L)"], preferred_action=4),
 AdviceRule(["onLadder(P, L)"], preferred_action=2),
@@ -137,8 +137,10 @@ class GBQL(Trainer):
 
         return reg
 
-    def generate_batch(self, train_batch, batch_size=10, q_function=None):
+    def generate_batch(self, train_batch, batch_size=10, q_function=None, q_table=None):
         """Generate a training batch"""
+        # q_table = {}
+
         state_id = 0
         bellman_error = 0.0
         goal_reached = True
@@ -171,37 +173,34 @@ class GBQL(Trainer):
             done = False
             traj_len = 0
             while not done:
-                action, q_value, advice_action, advice_qvalue = self.get_action(current_state, q_function, use_advice=self.use_advice)   
+                action, q_value, advice_action, advice_qvalue,_ = self.get_action(current_state, q_function, use_advice=self.use_advice, q_table=q_table)   
                 action_key = get_key_from_value(self.env.pred2action, action)
                 action_key = "{ACTION}({player},{state_id})".format(ACTION = action_key, player = "obj1", state_id=f"s{state_id}")
                 # trajectory.append((current_state, action))  #cause later we need the action from trajectory to step in the env. if sth else is needed to be done with trajectory. then we have to erite a reverse action func
 
                 (next_state, img_0 ), reward , done, _ , _ = self.env.step(action)
 
-                reward = torch.tensor(reward).to(self.device).view(-1)
-                reward = reward.cpu().numpy()
+                reward = reward[0] if isinstance(reward, list) else reward
                 done = done[0]
-                if reward < -100:
-                    done = True    
-                                
-
+                   
                 self.agent.compute_init_v(next_state)
                 next_state, goal_reached = self.agent.print_valuations_input(self.agent.V_0, min_value=0.7)
                 
+                reward, crashed = reward_engineering(reward=reward, state=next_state)
+
+                if crashed:
+                    continue
+                # print(f"reward: {reward}, done: {done}, goal_reached: {goal_reached}")
+                if reward < -100:
+                    done = True 
+
                 if done or goal_reached:
                     print(f"st: {state_id}, C_s:{current_state}, N_s:{next_state}, a:{action}, advised_action:{advice_action}, r:{reward} , done:{done}, goal_reached:{goal_reached}")
                 # save_image(img_0, f"img/state_{state_id}.png")
                 if len(next_state)==0:
                     print(f"next_state in {state_id} is empty")
-                    # print(f"img_0: {img_0}")
                     save_image(img_0, f"img/state_{state_id}_1.png")
-                    # save_image(img_1, f"img/state_{state_id+1}_2.png")
-                    # save_image(img_2, f"img/state_{state_id+1}_3.png")
-                    # reward -= 1
                     next_state = current_state 
-
-                if goal_reached:
-                    done = True
 
                 modified_states = []
                 for state in current_state:
@@ -210,23 +209,17 @@ class GBQL(Trainer):
                     modified_state = f"{predicate}({args},s{state_id})."
                     modified_states.append(modified_state)
                 
-                # if reward >= 10:
-                #     print(f"{state_id}   Modified states: {modified_states}")
-                #     print(f"action: {action_key}")
-                #     print(f"reward: {reward}")
-                #     print(f"next_state: {next_state}")
-                
-
                 # if state_id%1000==0:
                 #     save_image(img_0, f"img/state_{state_id+1}.png")
 
                 traj_reward += reward
-                if goal_reached:                               
+                if goal_reached:
+                    done = True                             
                     next_state_qvalue = self.goal_qvalue
                     print(f"Reached goal, setting next state Q-value to goal Q-value: {next_state_qvalue}")
                 else:
                     """Since this is for bellman error calculation, we need to get the best next state Q-value without considering advice"""
-                    n_action, next_state_qvalue, n_a_action, n_a_qvalue = self.get_action(next_state, q_function, best_train=True)
+                    n_action, next_state_qvalue, n_a_action, n_a_qvalue,_ = self.get_action(next_state, q_function, best_train=True, q_table=q_table)
                     
                     traj_len += 1
                     
@@ -240,27 +233,24 @@ class GBQL(Trainer):
                 
                 if action == advice_action and not goal_reached:
                     q_advice = self.ad_coef*advice_qvalue + (1-self.ad_coef) * q
-                    # print(f"st: {state_id}, C_s:{current_state}, N_s:{next_state}, a:{action}, advised_action:{advice_action}, r:{reward} , done:{done}, goal_reached:{goal_reached}")
-                    # print(f"finalq: {q_advice}, q_update without advice: {q}, q_value by current model: {q_value}, advice_qvalue: {advice_qvalue}, bellman update q_value: {new_q_value}")
                     q = q_advice
                 
                 bellman_error += abs(q_value - (reward + (self.discount_factor * next_state_qvalue)))
                 
 
                 train_batch.facts += modified_states   
-                train_batch.pos.append(f"regressionExample({action_key},{q[0]:.3f}).")
+                train_batch.pos.append(f"regressionExample({action_key},{q:.3f}).")
 
                 state_id += 1
-            # new_batch.append(trajectory)
-            # log_trajectory(trajectory, filename="trajectory_log.json")
 
-        return (state_id /batch_size), (traj_reward / batch_size), (bellman_error / batch_size)    #average step size, average reward, average bellman error
 
-    def get_training_batch(self, batch_size, q_function):
+        return (state_id /batch_size), (traj_reward / batch_size), (bellman_error / batch_size)   #average step size, average reward, average bellman error
+
+    def get_training_batch(self, batch_size, q_function, q_table):
         train_batch = Database()
 
         gt.stamp('sampled historic trajectories', unique=False)
-        avg_steps, avg_rewards , avg_bellman_error = self.generate_batch(train_batch, batch_size, q_function)
+        avg_steps, avg_rewards , avg_bellman_error = self.generate_batch(train_batch, batch_size, q_function, q_table=q_table)
         gt.stamp('sampled new trajectories', unique=False)
         
         # self.buffer.add_all_trajectories(new_traj)
@@ -270,7 +260,7 @@ class GBQL(Trainer):
         return train_batch, avg_steps, avg_rewards , avg_bellman_error
     
 
-    def get_action(self, state, q_function=None, env=None, best_train=False, best_test=False, print_test=None, use_advice=False):
+    def get_action(self, state, q_function=None, q_table=None, env=None, best_train=False, best_test=False, print_test=None, use_advice=False):
         if env is None:
             env = self.env
 
@@ -287,9 +277,10 @@ class GBQL(Trainer):
                     epsilon = 1 - self.ad_coef
                     if rng.random() > epsilon:
                         action = prefered_action
-            return action, 0.0, prefered_action, advice_adjusted_q
+            return action, 0.0, prefered_action, advice_adjusted_q, q_table
 
-        idx, q_values, best_action = self.predict(env, q_function, state, self.additional_facts, print_test)
+        idx, q_values, best_action = self.predict(env, q_function, q_table=q_table, state=state, additional_facts=self.additional_facts, print_test=print_test)
+
 
         if use_advice:
             advice_adjusted_q, prefered_action = apply_advice_to_q_values(q_values, state, handler)
@@ -306,13 +297,14 @@ class GBQL(Trainer):
                 if rng.random() > epsilon:
                     idx = prefered_action
 
-        return possible_actions[idx], q_values[idx], prefered_action, advice_adjusted_q
+        return possible_actions[idx], q_values[idx], prefered_action, advice_adjusted_q, q_table
 
 
 
     def train(self):
         """Fitted Q Learning"""
         current_q = None
+        q_table = {}
         # current_q = RDNRegressor()
         # current_q.from_json(f"FinalRuns/gbql-stack_2025_05_29_17_58_27_0000--s-0/itr_9.json")
         
@@ -325,7 +317,11 @@ class GBQL(Trainer):
         for i in gt.timed_for(range(self.n_iterations), save_itrs=True):
             logger.log(f"Iteration {i} started")
             logger.log(f"Iteration {i} getting training batch")
-            train_batch, avg_steps, avg_rewards , avg_bellman_error = self.get_training_batch(self.batch_size, current_q)
+
+            print("q_table should be the one that evaluation produced just now: ", q_table)
+            train_batch, avg_steps, avg_rewards , avg_bellman_error = self.get_training_batch(self.batch_size, current_q, q_table=q_table)
+
+            print("q_table: ", q_table)
 
             writer.add_scalar("charts/train_avg_steps", avg_steps, i)
             writer.add_scalar("charts/train_avg_reward", avg_rewards, i)
@@ -337,6 +333,8 @@ class GBQL(Trainer):
 
             updated_q = self.fit_q(train_batch, target="noop,fire,up,right,left,down",path=f"{logger.get_snapshot_dir()}/fitted-q/itr{i}", save=True) #returns a regressor
 
+            q_table = {}
+            
             gt.stamp("bsrl learning", unique=False)
         
             self.n_estimators.append(updated_q) 
@@ -352,7 +350,7 @@ class GBQL(Trainer):
             
             if i >= 0:  # I dont do evaluation for Kangaroo
                 logger.log(f"Iteration {i} evaluating")
-                paths = self.evaluate(self.n_eval_traj, updated_q)
+                paths, q_table = self.evaluate(self.n_eval_traj, updated_q, q_table=q_table)
                 gt.stamp("bsrl evaluation", unique=False)
                 training_stats = None
                 self._log_stat(updated_q, training_stats, paths, i)
@@ -384,8 +382,8 @@ class GBQL(Trainer):
     def _log_stat(self, q_function, training_stats, paths, itr):
         logger.save_itr_params(itr, q_function)
         # logger.record_dict(training_stats, prefix='training/')
-        buffer_stats = self.buffer.get_diagnostics()
-        logger.record_dict(buffer_stats, prefix='buffer/')
+        # buffer_stats = self.buffer.get_diagnostics()
+        # logger.record_dict(buffer_stats, prefix='buffer/')
         evaluation_stats = get_diagnostics(paths)    
         logger.record_dict(evaluation_stats, prefix='evaluation/')
         logger.save_eval_data(paths, itr=itr)
@@ -402,7 +400,7 @@ class GBQL(Trainer):
         logger.record_dict(times, prefix=f'time/')
 
 
-    def evaluate(self, eval_batch_size, q_function):
+    def evaluate(self, eval_batch_size, q_function, q_table=None):
         """Evaluation in Test env """
         paths = []
         total_reward = 0
@@ -431,7 +429,7 @@ class GBQL(Trainer):
             state_test_id = 0
             while not done:
                 # print(f"Current state: {state_test_id}{current_test_state}")
-                action, _, _, _ = self.get_action(current_test_state, q_function, env=self.test_env, best_test=True, print_test=False) 
+                action, _, _, _, q_table = self.get_action(current_test_state, q_function, q_table= q_table , env=self.test_env, best_test=True, print_test=False) 
                 action_key = get_key_from_value(self.env.pred2action, action)
                 action_key = "{ACTION}".format(ACTION=action_key)
                 
@@ -467,16 +465,17 @@ class GBQL(Trainer):
                     path['states'].append(next_symbolic)
                     path['episode_length'] = traj_len
                     path['episode_reward'] = total_reward
+                    done = True
                 else:
                     current_test_state = next_symbolic
                     state_test_id += 1
 
             paths.append(path)
             print(path)
-        return paths
+        return paths, q_table
 
 
-    def predict(self, env, q_function, state, additional_facts=None, print_test = None):   
+    def predict(self, env, q_function, q_table=None, state=None, additional_facts=None, print_test = None):   
         
         state_id = "s1"
         all_actions = list(env.pred2action.values())
@@ -500,8 +499,15 @@ class GBQL(Trainer):
         
         if additional_facts is not None:
             test.facts += additional_facts
+        
+        if tuple(modified_test_states) not in q_table:
+            #To Do: if it comes from evaluation, we calculate the uncertainty as well and add to uncertainty table
+            q_values = q_function.predict(test)     #rql prediction
+            q_table[tuple(modified_test_states)] = q_values
+        
+        # print(q_table)
+        q_values = q_table[tuple(modified_test_states)]
 
-        q_values = q_function.predict(test)     #rql prediction
         if print_test:
             print("q_values: ", q_values)  #up,right,left,down
 
