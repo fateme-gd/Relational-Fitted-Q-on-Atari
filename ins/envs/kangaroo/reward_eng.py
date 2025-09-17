@@ -13,12 +13,16 @@ def clear_environment_info():
     return environment_info
 
 
-def reward_engineering(reward, state: str):
+def reward_engineering(reward, current_state: str, next_state: str):
     # print("state: ", state)
-    monkey_present = any("closeByMonkey" in s for s in state)
+    monkey_present = any("closeByMonkey" in s for s in current_state)
+    monkey_present_next = any("closeByMonkey" in s for s in next_state)
 
-    if not monkey_present and reward < -100:
+    if not monkey_present and not monkey_present_next and reward < -0.5:
         return 0.0, True
+    
+    # if len(state) == 0:
+    #     print("reward is:", reward)
 
     return reward, False
 

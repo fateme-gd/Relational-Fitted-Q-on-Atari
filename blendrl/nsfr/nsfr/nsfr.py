@@ -141,7 +141,7 @@ class NSFReasoner(nn.Module):
                     if predicate is None or predicate == atom.pred.name:
                         if str(atom) not in [".(__T__)", ".(__F__)"] and not re.match(r"nothing_around\(.+\)", str(atom)):
                             symbolic_states.append(str(atom)+'.')
-                        if "sameLevelChild" in str(atom):
+                        if "sameLevelChild" in str(atom):  #TODO: remove this hack as it is only for kangaroo
                             goal_reached = True
                         if print_state:
                             print(f"{value:.3f} {atom}")

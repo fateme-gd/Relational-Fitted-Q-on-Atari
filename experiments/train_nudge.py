@@ -52,7 +52,7 @@ torch.set_num_threads(5)
 class Args:
     exp_name: str = os.path.basename(__file__)[: -len(".py")]
     """the name of this experiment"""
-    seed: int = 42
+    seed: int = 41
     """seed of the experiment"""
     torch_deterministic: bool = True
     """if toggled, `torch.backends.cudnn.deterministic=False`"""
@@ -178,17 +178,17 @@ def main():
         
         'bk_kwargs': {'max_tree_depth': 2,
                     'node_size': 2,
-                    'ok_if_unknown':  ['onLadder/3', 'rightOfLadder/3', 'leftOfLadder/3','sameLevelChild/3', 'closeByMonkey/3',],
+                    'ok_if_unknown':  ['onLadder/3', 'rightOfLadder/3', 'leftOfLadder/3','sameLevelChild/3', 'closeByMonkey/3','down/2',],
                     },
-        'trainer_kwargs': {'n_iter': 10,
+        'trainer_kwargs': {'n_iter': 30,
                         # 'max_buffer_size': 500,
                         # 'target_predicate': 'move', 
                         'learning_rate':0.9,
-                        'test_gap':10,
-                        'max_trajectory_length': 4000,
+                        'test_gap':10, #after how many iters do we test the agent
+                        'max_trajectory_length': 2000,
                         'batch_size': 10,
                         'n_evaluation_trajectories': 10,
-                        'use_advice': True,},
+                        'use_advice': False,},
         'exploration_strategy': EpsilonGreedyWithExponentialDecay,
         'modes':
                 [
@@ -217,7 +217,7 @@ def main():
                 }
 
 
-    n_iter = 3
+    n_iter = 5
 
     all_iters_steps = []
     all_iters_rewards = []
@@ -231,7 +231,10 @@ def main():
     all_iters_test_avg_reward = []
     all_iters_test_avg_length = []
 
-    log_dir = create_parent_folder_log("test")
+    # log_dir = create_parent_folder_log("Monkey_Kangaroo_Noactiveadvice")
+    log_dir = create_parent_folder_log("test_kangMon_Noadvice")
+    # log_dir = create_parent_folder_log("test_kangMon_activeadvice")
+
     for i in range(n_iter):
         all_iters_avg_step = []
         all_iters_avg_reward = []
@@ -246,14 +249,14 @@ def main():
         # agent = BlenderActorCritic(train_env, args.rules, args.actor_mode, args.blender_mode, args.blend_function, args.reasoner, device)
         bk = Background(modes=variant['modes'], **variant['bk_kwargs'])
         
-        modifs = [("disable_coconut"),
-                  ("disable_monkeys"),
-                  ("disable_thrown_coconut"),
-                  ("unlimited_time"),
-                  ("change_level_0"),
+        # modifs = [("disable_coconut"),
+        #           ("disable_monkeys"),
+        #           ("disable_thrown_coconut"),
+        #           ("unlimited_time"),
+        #           ("change_level_0"),
 
-                ]
-        test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed, modifs = modifs)#$, **env_kwargs)
+        #         ]
+        test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed, reward_path="ins/envs/kangaroo/test_reward.py")#$, **env_kwargs)
 
         RRT_Trainer = GBQL(train_env=train_env, bk=bk, test_env=test_env, agent=agent, exploration_strategy=variant['exploration_strategy'](), device = device, 
                         **variant['trainer_kwargs'])
@@ -269,13 +272,12 @@ def main():
 
         gt.reset_root()
 
-        for j in range(variant['trainer_kwargs']['batch_size']):
-            all_iters_avg_step.append(np.mean([run[j] for run in all_iters_steps]))
-            all_iters_avg_reward.append(np.mean([run[j] for run in all_iters_rewards]))
-            all_iters_avg_bellman_error.append(np.mean([run[j] for run in all_iters_bellman_errors]))
-            all_iters_test_avg_reward.append(np.mean([run[j] for run in all_iters_test_rewards]))
-            all_iters_test_avg_length.append(np.mean([run[j] for run in all_iters_test_lengths]))
-
+        all_iters_avg_step.append(np.mean(np.stack(all_iters_steps), axis=0))
+        all_iters_avg_reward.append(np.mean(np.stack(all_iters_rewards), axis=0))
+        all_iters_avg_bellman_error.append(np.mean(np.stack(all_iters_bellman_errors), axis=0))
+        all_iters_test_avg_reward.append(np.mean(np.stack(all_iters_test_rewards), axis=0))
+        all_iters_test_avg_length.append(np.mean(np.stack(all_iters_test_lengths), axis=0))
+        
 
         results = {
             "avg_step": all_iters_avg_step,

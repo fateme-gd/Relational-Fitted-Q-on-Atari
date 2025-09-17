@@ -2,7 +2,7 @@ from collections import OrderedDict, defaultdict
 import os
 from Relational_Q_Learning.core.learning_rate_strategy.decay import LinearDecay
 from Relational_Q_Learning.core.learning_rate_strategy.learning_rate_strategy import LearningRateStrategy
-from Relational_Q_Learning.core.trainer.advice import AdviceHandler, AdviceRule, compute_entropy_for_qtable, compute_uncertainty_stats, seek_advice
+from Relational_Q_Learning.core.trainer.advice import AdviceHandler, AdviceRule, compute_entropy_for_qtable, compute_uncertainty_stats, parse_predicate, seek_advice
 from ins.envs.kangaroo.reward_eng import clear_environment_info, reward_engineering
 from Relational_Q_Learning.srlearn import Background, Database
 from ..srl import RDNRegressor
@@ -38,9 +38,9 @@ def apply_advice_to_q_values(
     pref_q_value = None
     
     if preferred_action: # ToDo: and preferred_action in ACTION_LIST:
-        # idx = ACTION_LIST.index(preferred_action)
         if preferred_action == idx:
             return q_values[idx], idx
+        # idx = ACTION_LIST.index(preferred_action)
         max_q = max(q_values)
         if q_values[preferred_action] <= max_q:
             # print(f"[Advice] Boosting Q-value of '{preferred_action}' to {max_q + epsilon}")
@@ -115,7 +115,7 @@ class GBQL(Trainer):
 
         self.advice = []
         self.handler = None
-        self.adviceBudget = 3
+        self.adviceBudget = 5
         # if self.use_advice:
         #     self.advice = [
         #             # AdviceRule(["closeByMonkey(P, M)"], preferred_action=1),
@@ -159,7 +159,7 @@ class GBQL(Trainer):
             done = done[0]
             reward = torch.tensor(reward).to(self.device).view(-1)
             reward = reward.cpu().numpy()
-            if reward < -0.5:
+            if reward < -100:
                 done = True
             self.agent.compute_init_v(next_logic_obs)  # we need to pass the state to logic actor to compute the init v
             current_state, goal_reached = self.agent.print_valuations_input(self.agent.V_0, min_value=0.7)
@@ -168,12 +168,12 @@ class GBQL(Trainer):
     
 
     def polish_states(self, current_state, state_id):
-        c_state = []
-        for state in current_state:
-            if 'closeByMonkey' in state:
-                c_state.append(state)
-        if len(c_state) > 0:
-            current_state = c_state
+        # c_state = []
+        # for state in current_state:
+        #     if 'closeByMonkey' in state:
+        #         c_state.append(state)
+        # if len(c_state) > 0:
+        #     current_state = c_state
         modified_states = []
         for state in current_state:
             predicate, args = state.split('(', 1)
@@ -226,47 +226,35 @@ class GBQL(Trainer):
                 self.agent.compute_init_v(next_state)
                 next_state, goal_reached = self.agent.print_valuations_input(self.agent.V_0, min_value=0.7)
                 
-                reward, crashed = reward_engineering(reward=reward, current_state = current_state, next_state=next_state)
+                # reward, crashed = reward_engineering(reward=reward, current_state = current_state, next_state=next_state)
+                
+                # if reward != 0:
+                #     print(f"C_s:{current_state}, N_s:{next_state}, r:{reward}, done:{done}")
+                # save_image(img_0, f"img/state_{state_id+1}.png")
 
                 if next_state == current_state:
-                    state_stats[current_state[0].split('(')[0]]['remained'] += 1
+                    state_stats[tuple(current_state)]['remained'] += 1
                 elif len(next_state) == 0:
-                    state_stats[current_state[0].split('(')[0]]['crashed'] += 1
+                    state_stats[tuple(current_state)]['crashed'] += 1
                 else:
-                    state_stats[current_state[0].split('(')[0]]['departed'] += 1
-                    state_stats[next_state[0].split('(')[0]]['arrived'] += 1
-
-                    
-                if crashed:
-                    current_state = self.reset(self.env)
-                    continue  #instead of break
+                    state_stats[tuple(current_state)]['departed'] += 1
+                    state_stats[tuple(next_state)]['arrived'] += 1
                 
-                if len(next_state)==0 and reward >= 0:
+                
+                if len(next_state)==0:
                     print(f"next_state in {state_id} is empty")
                     save_image(img_0, f"img/state_{state_id}_1.png")
                     next_state = current_state 
 
-                killed = False
-                if reward < -0.5:  #when monkey killed the player
-                    killed = True #done = True
+                # killed = False
+                # if reward < -100:  #when monkey killed the player
+                #     killed = True #done = True
 
                 ret += reward
                 
-                
-                if goal_reached:
-                    current_state = self.reset(self.env) # done = True                             
-                    next_state_qvalue = self.goal_qvalue
-                    print(f"Reached goal, setting next state Q-value to goal Q-value: {next_state_qvalue}")
-                elif killed:
-                    current_state = self.reset(self.env)
-                    next_state_qvalue = -1
-                    # print(f"st: {state_id}, C_s:{current_state}, N_s:{next_state}, a:{action}, advised_action:{advice_action}, r:{reward} , done:{done}, goal_reached:{goal_reached}")
-                    # print(f"Player killed, setting next state Q-value to -200")
-                    
-                else:
-                    current_state = next_state
-                    """Since this is for bellman error calculation, we need to get the best next state Q-value without considering advice"""
-                    n_action, next_state_qvalue, n_a_action, n_a_qvalue,_ = self.get_action(next_state, q_function, best_train=True, q_table=q_table)
+                current_state = next_state
+                """Since this is for bellman error calculation, we need to get the best next state Q-value without considering advice"""
+                n_action, next_state_qvalue, n_a_action, n_a_qvalue,_ = self.get_action(next_state, q_function, best_train=True, q_table=q_table)
                     
                 traj_len += 1
                 if traj_len >= max_traj_len :
@@ -275,7 +263,7 @@ class GBQL(Trainer):
                 new_q_value = reward + (self.discount_factor * next_state_qvalue)
                 q = ((1.0 - self.learning_rate) * q_value) + (self.learning_rate * new_q_value)
                 
-                if action == advice_action and not goal_reached:
+                if action == advice_action and advice_qvalue is not None:
                     q_advice = self.ad_coef*advice_qvalue + (1-self.ad_coef) * q
                     q = q_advice
                 
@@ -289,7 +277,7 @@ class GBQL(Trainer):
             traj_reward.append(ret)
             print("reward: ", ret)
         # seek_advice(train_batch.facts, train_batch.pos)
-        print("State statistics:", state_stats)
+        # print("State statistics:", state_stats)
         return (state_id /batch_size), np.mean(traj_reward), np.mean(bellman_errors), state_stats   #average step size, average reward, average bellman error
 
     def get_training_batch(self, batch_size, q_function, q_table):
@@ -310,12 +298,12 @@ class GBQL(Trainer):
         if env is None:
             env = self.env
 
-        possible_actions = list(env.pred2action.values())[0:5]  # {'noop': 0, 'fire': 1,'up': 2, 'right': 3, 'left': 4, 'down': 5}
+        possible_actions = list(env.pred2action.values())  # {'noop': 0, 'fire': 1,'up': 2, 'right': 3, 'left': 4, 'down': 5}
         advice_adjusted_q = prefered_action = None
         rng = random.Random()
 
         if q_function is None:
-            q_values = [0.0] * len(possible_actions)
+            q_values = [-1.0] * len(possible_actions)
             action = random.choice(possible_actions)  # Use imitation learning here if available
             if use_advice:
                 advice_adjusted_q, prefered_action = apply_advice_to_q_values(q_values, state, self.handler)
@@ -323,7 +311,7 @@ class GBQL(Trainer):
                     epsilon = 1 - self.ad_coef
                     if rng.random() > epsilon:
                         action = prefered_action
-            return action, 0.0, prefered_action, advice_adjusted_q, q_table
+            return action, -1.0, prefered_action, advice_adjusted_q, q_table
 
         idx, q_values, best_action = self.predict(q_function, q_table=q_table, state=state, additional_facts=self.additional_facts, print_test=print_test)
 
@@ -351,10 +339,12 @@ class GBQL(Trainer):
         """
         q_table = {}
         for state in state_stat.keys():
-            state_0 = [state + "(obj1,obj0)."]
-            _ , q_values, _= self.predict(state = state_0, q_function= updated_q, q_table= q_table)
+            # temp_state = []
+            # for pred in state:
+            #     temp_state.append(pred+"(obj1,obj0).")
+            _ , q_values, _= self.predict(state = state, q_function= updated_q, q_table= q_table)
             if state not in q_table:
-                q_table[state] = q_values
+                q_table[tuple(state)] = q_values
         return q_table
 
 
@@ -363,7 +353,7 @@ class GBQL(Trainer):
         current_q = None
         q_table = {}
         # current_q = RDNRegressor()
-        # current_q.from_json(f"out/test/gbql-stack-2025_07_25_10_29_39--seed0--exp-Id-0/")#itr_0.json"
+        # current_q.from_json(f"FinalRuns/gbql-stack_2025_05_29_17_58_27_0000--s-0/itr_9.json")
         
         writer_base_dir = f"{logger.get_snapshot_dir()}/tensorboard"
         os.makedirs(writer_base_dir, exist_ok=True)
@@ -381,21 +371,30 @@ class GBQL(Trainer):
                 print("Q-table entropy:", q_table_entropy)
                 max_state = max(q_table_entropy, key=q_table_entropy.get)
 
-                if self.adviceBudget > 0:
-                    if max_state == 'onLadder':
-                        self.advice.append(AdviceRule(["onLadder(P, L)"], preferred_action=2))
-                        self.adviceBudget -= 1
-                    elif max_state == 'closeByMonkey':
-                        self.advice.append(AdviceRule(["closeByMonkey(P, M)"], preferred_action=1))
-                        self.adviceBudget -= 1
-                    elif max_state == 'rightOfLadder':
-                        self.advice.append(AdviceRule(["rightOfLadder(P, L)"], preferred_action=4))
-                        self.adviceBudget -= 1
-                    elif max_state == 'leftOfLadder':
-                        self.advice.append(AdviceRule(["leftOfLadder(P, L)"], preferred_action=3))
-                        self.adviceBudget -= 1
+                """
+                Exceptionally in this game, there are only two high important states which are low oxygen and full Diver.
+                So lets pich these two only and if these two are in the state enforce the action whithout asking the expert.
+                In other situations, we will ask the expert for advice. but not enforce the body.
 
-                self.handler = AdviceHandler(self.advice)
+                """
+                print("Max state with highest entropy:", max_state)
+                parsed_state = [parse_predicate(p) for p in max_state]
+                print("Parsed state:", parsed_state)
+                if self.adviceBudget > 0:
+                    # if 'oxygenlow' in parsed_state:
+                    #     self.advice.append(AdviceRule(["oxygenLow(P, O)"], preferred_action= 2, enforce=True))
+                    #     self.adviceBudget -= 1
+                    # elif 'fulldivers' in parsed_state:
+                    #     self.advice.append(AdviceRule(["fullDivers(P, O)"], preferred_action= 2, enforce=True))
+                    #     self.adviceBudget -= 1
+                    # else:
+                    preferred_action=input(f"Enter desired action for state '{max_state}' (remaining advice budget: {self.adviceBudget}): ")
+                    print("preferred_action:", preferred_action)
+                
+                    self.advice.append(AdviceRule(list(max_state), preferred_action=int(preferred_action)))
+                    self.adviceBudget -= 1
+
+                self.handler = AdviceHandler(self.advice) #TODO this might be redundant
                 self.use_advice = True
                 for adv in self.advice:
                     print(f"Advice: {adv.rule_bodies}, Preferred Action: {adv.preferred_action}")
@@ -405,12 +404,11 @@ class GBQL(Trainer):
             writer.add_scalar("charts/train_avg_steps", avg_steps, i)
             writer.add_scalar("charts/train_avg_reward", avg_rewards, i)
             writer.add_scalar("charts/train_avg_bellman_error", avg_bellman_error, i)
-           
 
             gt.stamp("training batch", unique=False)
             logger.log(f"Iteration {i} fitting q function")
 
-            updated_q = self.fit_q(train_batch, target="noop,fire,up,right,left",path=f"{logger.get_snapshot_dir()}/fitted-q/itr{i}", save=True) #returns a regressor
+            updated_q = self.fit_q(train_batch, target="noop,fire,up,right,left,down",path=f"{logger.get_snapshot_dir()}/fitted-q/itr{i}", save=True) #returns a regressor
 
             # q_table = {}
             q_table = self.fill_q_table(q_table, updated_q, state_stat)
@@ -424,13 +422,15 @@ class GBQL(Trainer):
             if self.learning_rate_strategy is not None:
                     self.learning_rate = self.learning_rate_strategy.end_epoch()
                     self.ad_coef = self.learning_rate
+            
             # current_q = RDNRegressor()
-            # current_q.from_json(f"out/test_kangMon_noAbstract/gbql-stack-2025_08_04_06_00_40--seed0--exp-Id-1/itr_{i}.json")
+            # current_q.from_json(f"out/gbql-stack/gbql-stack_2025_05_20_11_40_45_0000--s-0/itr_{i}.json")
             # updated_q = current_q   #remove this after test
             
             if i >= 0: 
                 logger.log(f"Iteration {i} evaluating")
                 paths, q_table = self.evaluate(self.n_eval_traj, updated_q, q_table=q_table)
+                # most_uncertain_state , uncertainty_stats = compute_uncertainty_stats(q_table)
 
                 gt.stamp("bsrl evaluation", unique=False)
                 training_stats = None
@@ -460,8 +460,8 @@ class GBQL(Trainer):
         print("All experiment average reward: ", self.all_experiment_avg_reward)
         print("All experiment average bellman error: ", self.all_experiment_avg_bellman_error)
         print("All experiment test average reward: ", self.all_experiment_test_avg_reward)
-        print("All experiment test average length: ", self.all_experiment_test_avg_length)  
-
+        print("All experiment test average length: ", self.all_experiment_test_avg_length) 
+        
         return current_q, self.all_experiment_avg_bellman_error, self.all_experiment_avg_reward, \
                self.all_experiment_avg_step, self.all_experiment_test_avg_reward, self.all_experiment_test_avg_length
 
@@ -491,8 +491,9 @@ class GBQL(Trainer):
         paths = []
         total_reward = 0
         current_test_state = []
-        goal_reached = True
+        # goal_reached = True
 
+        # TODO: Evaluation takes maximum time, this could be improved with parallel environments
         for i in range(eval_batch_size):
             print("Evaluating: ", i+1)
 
@@ -500,7 +501,6 @@ class GBQL(Trainer):
             path = dict(states=[], episode_reward=0, is_success=0, episode_length=0, percent_solved=0.0)
             
             current_test_state = self.reset(self.test_env)
-            path['states'].append(current_test_state)
 
             done = False
             traj_len = 0
@@ -514,16 +514,17 @@ class GBQL(Trainer):
                 self.agent.compute_init_v(next_state)
                 next_symbolic, goal_reached = self.agent.print_valuations_input(self.agent.V_0, min_value=0.7)
                 
-                done = done[0]
+                # done = done[0]
+                done = False #I need to capture rewards for the whole trajectory.
                 r = reward[0] if isinstance(reward, list) else reward
-                r, crashed = reward_engineering(reward=r, current_state = current_test_state, next_state=next_symbolic)
+                # r, crashed = reward_engineering(reward=r, current_state = current_test_state, next_state=next_symbolic)
 
                 total_reward += r
                 traj_len += 1
                 state_test_id += 1
 
-                if goal_reached:
-                    path['is_success'] += 1
+                # if goal_reached:
+                #     path['is_success'] += 1
 
                 if traj_len >= self.max_traj_len: 
                     path['states'].append(next_symbolic) #last state
@@ -531,12 +532,12 @@ class GBQL(Trainer):
                     path['episode_reward'] = total_reward
                     done = True
                 
-                if r < -0.5 or crashed or len(next_symbolic)==0 :
+                if len(next_symbolic)==0 :
                     current_test_state = self.reset(self.test_env)
                     continue  
 
                 current_test_state = next_symbolic
-
+                   
             paths.append(path)
             print(path)
         return paths, q_table
@@ -545,14 +546,14 @@ class GBQL(Trainer):
     def predict(self, q_function, q_table=None, state=None, additional_facts=None, print_test = None):   
         
         state_id = "s1"
-        all_actions = list(self.env.pred2action.values())[0:5]
+        all_actions = list(self.env.pred2action.values())
 
         test = Database()
         modified_test_states = self.polish_states(state, state_id=state_id)[1]  # polish the states to have the correct format
         test.facts = modified_test_states
         # print("modified_test_states: ", modified_test_states)
         
-        q_test_values = 0.0        # it use this as true value. In block it is always zero
+        q_test_values = -1.0        # it use this as true value. In block it is always zero
         for action in all_actions:
             action_key = get_key_from_value(self.env.pred2action, action)
             action_key = "{ACTION}({player},{state_id})".format(ACTION = action_key, player = "obj1", state_id=f"s{state_id}")
@@ -561,13 +562,17 @@ class GBQL(Trainer):
         if additional_facts is not None:
             test.facts += additional_facts
         
-        if modified_test_states[0].split('(')[0] not in q_table:
+        # test_states = []
+        # for test_state in modified_test_states:
+        #     test_states.append(test_state.split('(')[0]) 
+
+        if tuple(state) not in q_table:
             #To Do: if it comes from evaluation, we calculate the uncertainty as well and add to uncertainty table
-            q_values = q_function.predict(test)    #rql prediction
-            q_table[modified_test_states[0].split('(')[0]] = q_values
+            q_values = q_function.predict(test)     #rql prediction
+            q_table[tuple(state)] = q_values
         
         # print(q_table)
-        q_values = q_table[modified_test_states[0].split('(')[0]]
+        q_values = q_table[tuple(state)]
 
         if print_test:
             print("q_values: ", q_values)  #up,right,left,down

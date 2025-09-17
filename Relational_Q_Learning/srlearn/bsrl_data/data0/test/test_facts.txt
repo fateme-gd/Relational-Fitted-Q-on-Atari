@@ -1,0 +1,1 @@
+rightOfLadder(obj1,obj16,ss1).

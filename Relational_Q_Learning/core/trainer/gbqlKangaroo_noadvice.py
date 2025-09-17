@@ -168,12 +168,12 @@ class GBQL(Trainer):
     
 
     def polish_states(self, current_state, state_id):
-        c_state = []
-        for state in current_state:
-            if 'closeByMonkey' in state:
-                c_state.append(state)
-        if len(c_state) > 0:
-            current_state = c_state
+        # c_state = []
+        # for state in current_state:
+        #     if 'closeByMonkey' in state:
+        #         c_state.append(state)
+        # if len(c_state) > 0:
+        #     current_state = c_state
         modified_states = []
         for state in current_state:
             predicate, args = state.split('(', 1)
@@ -229,12 +229,12 @@ class GBQL(Trainer):
                 reward, crashed = reward_engineering(reward=reward, current_state = current_state, next_state=next_state)
 
                 if next_state == current_state:
-                    state_stats[current_state[0].split('(')[0]]['remained'] += 1
+                    state_stats[tuple(current_state)]['remained'] += 1
                 elif len(next_state) == 0:
-                    state_stats[current_state[0].split('(')[0]]['crashed'] += 1
+                    state_stats[tuple(current_state)]['crashed'] += 1
                 else:
-                    state_stats[current_state[0].split('(')[0]]['departed'] += 1
-                    state_stats[next_state[0].split('(')[0]]['arrived'] += 1
+                    state_stats[tuple(current_state)]['departed'] += 1
+                    state_stats[tuple(next_state)]['arrived'] += 1
 
                     
                 if crashed:
@@ -251,7 +251,6 @@ class GBQL(Trainer):
                     killed = True #done = True
 
                 ret += reward
-                
                 
                 if goal_reached:
                     current_state = self.reset(self.env) # done = True                             
@@ -275,8 +274,8 @@ class GBQL(Trainer):
                 new_q_value = reward + (self.discount_factor * next_state_qvalue)
                 q = ((1.0 - self.learning_rate) * q_value) + (self.learning_rate * new_q_value)
                 
-                if action == advice_action and not goal_reached:
-                    q_advice = self.ad_coef*advice_qvalue + (1-self.ad_coef) * q
+                if action == advice_action :
+                    q = ((1.0 - self.learning_rate) * q_advice) + (self.learning_rate * new_q_value)
                     q = q_advice
                 
                 bellman_errors.append(abs(q_value - (reward + (self.discount_factor * next_state_qvalue))))
@@ -351,10 +350,12 @@ class GBQL(Trainer):
         """
         q_table = {}
         for state in state_stat.keys():
-            state_0 = [state + "(obj1,obj0)."]
-            _ , q_values, _= self.predict(state = state_0, q_function= updated_q, q_table= q_table)
+            # temp_state = []
+            # for pred in state:
+            #     temp_state.append(pred+"(obj1,obj0).")
+            _ , q_values, _= self.predict(state = state, q_function= updated_q, q_table= q_table)
             if state not in q_table:
-                q_table[state] = q_values
+                q_table[tuple(state)] = q_values
         return q_table
 
 
@@ -380,25 +381,35 @@ class GBQL(Trainer):
                 q_table_entropy = compute_entropy_for_qtable(q_table, temperature=1.0)
                 print("Q-table entropy:", q_table_entropy)
                 max_state = max(q_table_entropy, key=q_table_entropy.get)
+                print("max_state:", max_state)
+                
+                # if self.adviceBudget > 0:
+                    
+                #     if 'onLadder' in max_state:
+                #         self.advice.append(AdviceRule(["onLadder(P, L)"], preferred_action=2))
+                #         self.adviceBudget -= 1
+                #     elif 'closeByMonkey' in max_state:
+                #         self.advice.append(AdviceRule(["closeByMonkey(P, M)"], preferred_action=1))
+                #         self.adviceBudget -= 1
+                #     elif max_state == 'rightOfLadder':
+                #         self.advice.append(AdviceRule(["rightOfLadder(P, L)"], preferred_action=4))
+                #         self.adviceBudget -= 1
+                #     elif max_state == 'leftOfLadder':
+                #         self.advice.append(AdviceRule(["leftOfLadder(P, L)"], preferred_action=3))
+                #         self.adviceBudget -= 1
+                #     else:
+                #         preferred_action=input(f"Enter desired action for state '{max_state}' (remaining advice budget: {self.adviceBudget}): ")
+                #         # preferred_body=input(f"Enter desired body for state '{max_state}', hint: 'onLadder(P, L).','closeByMonkey(P, M).'")
+                #         print("preferred_action:", preferred_action)
+                #         # print("preferred_body:", preferred_body)
 
-                if self.adviceBudget > 0:
-                    if max_state == 'onLadder':
-                        self.advice.append(AdviceRule(["onLadder(P, L)"], preferred_action=2))
-                        self.adviceBudget -= 1
-                    elif max_state == 'closeByMonkey':
-                        self.advice.append(AdviceRule(["closeByMonkey(P, M)"], preferred_action=1))
-                        self.adviceBudget -= 1
-                    elif max_state == 'rightOfLadder':
-                        self.advice.append(AdviceRule(["rightOfLadder(P, L)"], preferred_action=4))
-                        self.adviceBudget -= 1
-                    elif max_state == 'leftOfLadder':
-                        self.advice.append(AdviceRule(["leftOfLadder(P, L)"], preferred_action=3))
-                        self.adviceBudget -= 1
+                #         self.advice.append(AdviceRule(list(max_state), preferred_action=int(preferred_action)))
+                #         self.adviceBudget -= 1
 
-                self.handler = AdviceHandler(self.advice)
-                self.use_advice = True
-                for adv in self.advice:
-                    print(f"Advice: {adv.rule_bodies}, Preferred Action: {adv.preferred_action}")
+                # self.handler = AdviceHandler(self.advice)
+                # self.use_advice = True
+                # for adv in self.advice:
+                #     print(f"Advice: {adv.rule_bodies}, Preferred Action: {adv.preferred_action}")
 
             train_batch, avg_steps, avg_rewards , avg_bellman_error, state_stat = self.get_training_batch(self.batch_size, current_q, q_table=q_table)
 
@@ -424,8 +435,9 @@ class GBQL(Trainer):
             if self.learning_rate_strategy is not None:
                     self.learning_rate = self.learning_rate_strategy.end_epoch()
                     self.ad_coef = self.learning_rate
+            
             # current_q = RDNRegressor()
-            # current_q.from_json(f"out/test_kangMon_noAbstract/gbql-stack-2025_08_04_06_00_40--seed0--exp-Id-1/itr_{i}.json")
+            # current_q.from_json(f"out/test/gbql-stack-2025_07_25_10_29_39--seed0--exp-Id-0/itr_{i}.json")
             # updated_q = current_q   #remove this after test
             
             if i >= 0: 
@@ -533,7 +545,7 @@ class GBQL(Trainer):
                 
                 if r < -0.5 or crashed or len(next_symbolic)==0 :
                     current_test_state = self.reset(self.test_env)
-                    continue  
+                    continue 
 
                 current_test_state = next_symbolic
 
@@ -561,13 +573,13 @@ class GBQL(Trainer):
         if additional_facts is not None:
             test.facts += additional_facts
         
-        if modified_test_states[0].split('(')[0] not in q_table:
+        if tuple(state) not in q_table:
             #To Do: if it comes from evaluation, we calculate the uncertainty as well and add to uncertainty table
-            q_values = q_function.predict(test)    #rql prediction
-            q_table[modified_test_states[0].split('(')[0]] = q_values
+            q_values = q_function.predict(test)     #rql prediction
+            q_table[tuple(state)] = q_values
         
         # print(q_table)
-        q_values = q_table[modified_test_states[0].split('(')[0]]
+        q_values = q_table[tuple(state)]
 
         if print_test:
             print("q_values: ", q_values)  #up,right,left,down

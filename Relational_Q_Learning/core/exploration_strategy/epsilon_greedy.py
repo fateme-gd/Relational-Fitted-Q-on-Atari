@@ -52,7 +52,7 @@ class EpsilonGreedyWithLinearDecay(EpsilonGreedy):
 
 class EpsilonGreedyWithExponentialDecay(EpsilonGreedy):
 
-    def __init__(self, epsilon=0.95, seed=None, min_epsilon=0.2, decay_rate=0.90):
+    def __init__(self, epsilon=0.99, seed=None, min_epsilon=0.2, decay_rate=0.95):
         """Exponential Decay
 
         Exploration begins from epsilon and is reduced by factor of decay_rate

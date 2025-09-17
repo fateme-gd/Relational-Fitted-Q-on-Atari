@@ -41,7 +41,8 @@ class VectorizedNudgeEnv(VectorizedNudgeBaseEnv):
         render_mode="rgb_array",
         render_oc_overlay=False,
         seed=None,
-        modifs = None
+        modifs = None,
+        reward_path = None
     ):
         """
         Constructor for the VectorizedNudgeEnv class.
@@ -68,10 +69,12 @@ class VectorizedNudgeEnv(VectorizedNudgeBaseEnv):
                         # ("disable_monkeys"),
                         ("disable_thrown_coconut"),
                         ("change_level_0"),
+                        ("randomize_kangaroo_position"),
                                 ],
-                rewardfunc_path="ins/envs/kangaroo/blenderl_reward.py",
+                rewardfunc_path= reward_path if reward_path is not None else "ins/envs/kangaroo/blenderl_reward.py",
                 render_mode=render_mode,
                 render_oc_overlay=render_oc_overlay,
+                hud=True,
             )
             for i in range(n_envs)
         ]

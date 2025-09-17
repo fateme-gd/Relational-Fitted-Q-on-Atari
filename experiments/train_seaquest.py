@@ -13,31 +13,32 @@ from torch.utils.tensorboard import SummaryWriter
 import sys
 
 # Add the correct blendrl directory to sys.path
-visual_fitted_q_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+visual_fitted_q_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..','..'))
 blendrl_path = os.path.join(visual_fitted_q_path, 'blendrl')
 nudge_path = os.path.join(visual_fitted_q_path, 'nudge')
 relational_q_learning_path = os.path.join(visual_fitted_q_path, 'Relational_Q_Learning')
 
-# added
-from blendrl.agents.blender_agent import BlenderActorCritic
+if visual_fitted_q_path not in sys.path:
+    sys.path.insert(0, visual_fitted_q_path)
+
 from blendrl.env_vectorized import VectorizedNudgeBaseEnv
-from blendrl.nudge.utils import save_hyperparams
-import os
+
+# added
 import sys
 import time
 from pathlib import Path
 
-import pickle
 import random
 import numpy as np
+import pandas as pd
 from rtpt import RTPT
 
-from blendrl.nudge.utils import load_model_train
+from blendrl.nsfr.nsfr.common import get_nsfr_model
 
 ############  Fitted Q Imports ######
-from Relational_Q_Learning.core.trainer import RRT, GBQL
+from Relational_Q_Learning.core.trainer.gbqlSeaq import RRT, GBQL
 from Relational_Q_Learning.core.exploration_strategy import EpsilonGreedyWithExponentialDecay
-from Relational_Q_Learning.core.util.launcher_util import setup_logger
+from Relational_Q_Learning.core.util.launcher_util import create_exp_name, create_parent_folder_log, setup_logger
 import gtimer as gt
 from Relational_Q_Learning.srlearn import Background
 ######################################
@@ -53,7 +54,7 @@ torch.set_num_threads(5)
 class Args:
     exp_name: str = os.path.basename(__file__)[: -len(".py")]
     """the name of this experiment"""
-    seed: int = 0
+    seed: int = 42
     """seed of the experiment"""
     torch_deterministic: bool = True
     """if toggled, `torch.backends.cudnn.deterministic=False`"""
@@ -61,12 +62,6 @@ class Args:
     """if toggled, cuda will be enabled by default"""
     track: bool = False
     """if toggled, this experiment will be tracked with Weights and Biases"""
-    wandb_project_name: str = "blendeRL"
-    """the wandb's project name"""
-    wandb_entity: str = None
-    """the entity (team) of wandb's project"""
-    capture_video: bool = False
-    """whether to capture videos of the agent performances (check out `videos` folder)"""
 
     # Algorithm specific arguments
     env_id: str = "Seaquest-v4"
@@ -153,16 +148,6 @@ def main():
     model_description = "{}_blender_{}".format(args.blend_function, args.blender_mode)
     learning_description = f"lr_{args.learning_rate}_llr_{args.logic_learning_rate}_blr_{args.blender_learning_rate}_gamma_{args.gamma}_bentcoef_{args.blend_ent_coef}_numenvs_{args.num_envs}_steps_{args.num_steps}_"
     run_name = f"{args.env_name}_{model_description}_{learning_description}_{args.seed}"
-    if args.track:
-        wandb.init(
-            project=args.wandb_project_name + "_" + args.env_name,
-            entity=args.wandb_entity,
-            sync_tensorboard=True,
-            config=vars(args),
-            name = run_name,
-            monitor_gym=True,
-            save_code=True,
-        )
 
     # for logging and model saving
     experiment_dir = OUT_PATH / "runs" / run_name # / now.strftime("%y-%m-%d-%H-%M")
@@ -193,62 +178,138 @@ def main():
     variant = {
         'trainer': 'gbql',
         
-        'bk_kwargs': {'max_tree_depth': 2,
-                    'node_size': 2,
-                    'ok_if_unknown':  ['onLadder/3', 'rightLadder/3', 'leftLadder/3','sameLevelChild/3'],
+        'bk_kwargs': {'max_tree_depth': 3,
+                    'node_size': 3,
+                    'ok_if_unknown':  ["visibleEnemy/2", "visibleDiver/2", "visibleMissile/2",
+                                    "facingLeft/2", "facingRight/2", "leftOfEnemy/3", "leftOfDiver/3",
+                                    "rightOfEnemy/3", "rightOfDiver/3", "closeByEnemy/3", "closeByDiver/3",
+                                    "closeByMissile/3", "higherThanEnemy/3", "higherThanDiver/3",
+                                    "deeperThanEnemy/3", "deeperThanDiver/3",
+                                    "sameDepthEnemy/3", "sameDepthDiver/3",
+                                    "sameDepthMissile/3",
+                                    "oxygenLow/2", "fullDivers/1", "notFullDivers/1",],
                     },
-        'trainer_kwargs': {'n_iter': 25,
+        'trainer_kwargs': {'n_iter': 20,
                         # 'max_buffer_size': 500,
                         # 'target_predicate': 'move', 
-                        'learning_rate':0.1,
-                        'test_gap':10 },
+                        'learning_rate':0.9,
+                        'test_gap':10,
+                        'max_trajectory_length': 2000,
+                        'batch_size': 30,
+                        'n_evaluation_trajectories': 30,
+                        'use_advice': False,},
         'exploration_strategy': EpsilonGreedyWithExponentialDecay,
         'modes':
                 [
-                # "close_by_fruit(+state,#oplayer, #ofruit).",
-                # "close_by_bell(+state,#oplayer, #obell).",
-                # "close_by_monkey(+state,+oplayer, +omonkey).",
-                # "close_by_throwncoconut(+state,+oplayer, +othrowncoconut).",
-                # "close_by_fallingcoconut(+state,+oplayer, +ofallingcoconut).",
-                # "nothing_around(+state).",
+                "visibleEnemy(-enemy,+state).",
+                "visibleDiver(-diver,+state).",
+                "visibleMissile(-missile,+state).",
+                "facingLeft(+player,+state).",
+                "facingRight(+player,+state).",
+                "leftOfEnemy(+player,-enemy,+state).",
+                "leftOfDiver(+player,-diver,+state).",
+                "rightOfEnemy(+player,-enemy,+state).",
+                "rightOfDiver(+player,-diver,+state).",
+                "closeByEnemy(+player,-enemy,+state).",
+                "closeByDiver(+player,-diver,+state).",
+                "closeByMissile(+player,-missile,+state).",
+                "higherThanEnemy(+player,-enemy,+state).",
+                "higherThanDiver(+player,-diver,+state).",
+                "deeperThanEnemy(+player,-enemy,+state).",
+                "deeperThanDiver(+player,-diver,+state).",
+                "sameDepthEnemy(+player,-enemy,+state).",
+                "sameDepthDiver(+player,-diver,+state).",
+                "sameDepthMissile(+player,-missile,+state).",
                 
-                # "on_pl_ladder(+state,-oladder, +oplatform).",
-                # "on_pl_player(+state,-oplayer, -oplatform).",
-                
-                "onLadder(+player,-ladder,+state).",
-                "rightLadder(+player,-ladder,+state).",
-                "leftLadder(+player,-ladder,+state).",
-                "sameLevelChild(+player,-child,+state).",
+                "oxygenLow(-oxygen_bar,+state).",
+                "fullDivers(+state).",
+                "notFullDivers(+state).",
+
+
+                # "onLadder(+player,-ladder,+state).",
+                # "rightOfLadder(+player,-ladder,+state).",
+                # "leftOfLadder(+player,-ladder,+state).",
+                # "sameLevelChild(+player,-child,+state).",
+                # "closeByMonkey(+player,-monkey,+state).",
                 
                 "up(+player,+state).",
                 "down(+player,+state).",
                 "left(+player,+state).",
-                "right(+player,+state)."]
+                "right(+player,+state).",
+                "noop(+player,+state).",
+                "fire(+player,+state).",]
                 }
 
 
     n_iter = 1
+
+    all_iters_steps = []
+    all_iters_rewards = []
+    all_iters_bellman_errors = []
+    all_iters_test_rewards = []
+    all_iters_test_lengths = []
+
+    all_iters_avg_step = []
+    all_iters_avg_reward = []
+    all_iters_avg_bellman_error = []
+    all_iters_test_avg_reward = []
+    all_iters_test_avg_length = []
+
+    log_dir = create_parent_folder_log("Seaquest_test")
     for i in range(n_iter):
+        all_iters_avg_step = []
+        all_iters_avg_reward = []
+        all_iters_avg_bellman_error = []
+        all_iters_test_avg_reward = []
+        all_iters_test_avg_length = []
+
         variant['experiment_no'] = i
-        setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_id=i)
-        
+        setup_logger(f"{variant['trainer']}-stack", variant=variant, snapshot_mode="all", exp_directory=log_dir, exp_id=i)
         train_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed)#$, **env_kwargs)
-        agent = BlenderActorCritic(train_env, args.rules, args.actor_mode, args.blender_mode, args.blend_function, args.reasoner, device)
+        agent = get_nsfr_model(train_env.name, args.rules, device=device, train=True, explain=False)
+        # agent = BlenderActorCritic(train_env, args.rules, args.actor_mode, args.blender_mode, args.blend_function, args.reasoner, device)
         bk = Background(modes=variant['modes'], **variant['bk_kwargs'])
-        modifs = [("disable_coconut"),
-                  ("disable_monkeys"),
-                  ("disable_thrown_coconut"),
-                  ("unlimited_time"),
-                  ("change_level_0"),
-                ]
-        test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed, modifs = modifs)#$, **env_kwargs)
+        
+        # modifs = [("disable_coconut"),
+        #           ("disable_monkeys"),
+        #           ("disable_thrown_coconut"),
+        #           ("unlimited_time"),
+        #           ("change_level_0"),
+
+        #         ]
+        test_env = VectorizedNudgeBaseEnv.from_name(args.env_name, n_envs=args.num_envs, mode=args.algorithm, seed=args.seed)#$, **env_kwargs)
 
         RRT_Trainer = GBQL(train_env=train_env, bk=bk, test_env=test_env, agent=agent, exploration_strategy=variant['exploration_strategy'](), device = device, 
                         **variant['trainer_kwargs'])
         
-        fitted_q = RRT_Trainer.train()
+        fitted_q, experiment_avg_bellman_error, experiment_avg_reward, experiment_avg_step, \
+               experiment_test_avg_reward, experiment_test_avg_length  = RRT_Trainer.train()
+        
+        all_iters_steps.append(experiment_avg_step)
+        all_iters_rewards.append(experiment_avg_reward)
+        all_iters_bellman_errors.append(experiment_avg_bellman_error)
+        all_iters_test_rewards.append(experiment_test_avg_reward)
+        all_iters_test_lengths.append(experiment_test_avg_length)
+
         gt.reset_root()
 
+        all_iters_avg_step.append(np.mean(np.stack(all_iters_steps), axis=0))
+        all_iters_avg_reward.append(np.mean(np.stack(all_iters_rewards), axis=0))
+        all_iters_avg_bellman_error.append(np.mean(np.stack(all_iters_bellman_errors), axis=0))
+        all_iters_test_avg_reward.append(np.mean(np.stack(all_iters_test_rewards), axis=0))
+        all_iters_test_avg_length.append(np.mean(np.stack(all_iters_test_lengths), axis=0))   
+
+
+        results = {
+            "avg_step": all_iters_avg_step,
+            "avg_reward": all_iters_avg_reward,
+            "avg_bellman_error": all_iters_avg_bellman_error,
+            "test_avg_reward": all_iters_test_avg_reward,
+            "test_avg_length": all_iters_test_avg_length,
+        }
+        df = pd.DataFrame(results)
+        csv_path = os.path.join(log_dir, f"testResults_{i}.csv")
+        df.to_csv(csv_path, index=True)
     ################################################################################################################
      
    

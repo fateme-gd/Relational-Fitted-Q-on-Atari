@@ -15,18 +15,18 @@ def reward_function(self) -> float:
             break
             # return score.value
 
-    reward = -0.1  # staying on the ladder or not being climbing
+    # reward = -0.1  # staying on the ladder or not being climbing
 
-    # print(f"player.y:  {player.y}  player.prev_y: {player.prev_y}  is climbing {player.climbing}")
+    # # print(f"player.y:  {player.y}  player.prev_y: {player.prev_y}  is climbing {player.climbing}")
 
-    if player.climbing:
-        if player.y < player.prev_y:    # climbing up
-            reward = 10
-        if player.y > player.prev_y:    # climbing down
-            reward = -20
+    # if player.climbing:
+    #     if player.y < player.prev_y:    # climbing up
+    #         reward = 10
+    #     if player.y > player.prev_y:    # climbing down
+    #         reward = -20
     
-    if player.crashed:
-        reward = -1
+    # if player.crashed:
+    #     reward = -50
 
     """    Reward function when there is enemy and we do not want reward engineering"""
     # reward = self.org_reward
@@ -34,4 +34,4 @@ def reward_function(self) -> float:
     # if player.crashed:
     #     reward = -200
     """Comment the above section if you want to use reward engineering"""
-    return reward
+    return self.org_reward

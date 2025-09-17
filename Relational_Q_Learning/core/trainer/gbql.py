@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from srlearn import Background, Database
+from Relational_Q_Learning.srlearn import Background, Database
 from ..srl import RDNRegressor
 import numpy as np
 from ..data_management import ReplayBuffer

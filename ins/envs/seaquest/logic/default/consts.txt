@@ -7,4 +7,3 @@ osurfacesubmarine:obj34
 oplayermissile:obj35
 ooxygenbar:obj36
 ocollecteddiver:obj37,obj38,obj39,obj40,obj41,obj42
-image:img

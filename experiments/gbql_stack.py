@@ -1,9 +1,9 @@
-from core.trainer import GBQL
-from core.exploration_strategy import EpsilonGreedyWithExponentialDecay
-from environments.blocksworld_stack import BlocksWorldStack
-from core.util.launcher_util import setup_logger
+from Relational_Q_Learning.core.trainer import GBQL
+from Relational_Q_Learning.core.exploration_strategy import EpsilonGreedyWithExponentialDecay
+from ins.environments_old.blocksworld_stack import BlocksWorldStack
+from Relational_Q_Learning.core.util.launcher_util import setup_logger
 import gtimer as gt
-from srlearn import Background
+from Relational_Q_Learning.srlearn import Background
 
 variant= {
     'trainer': 'gbql',
